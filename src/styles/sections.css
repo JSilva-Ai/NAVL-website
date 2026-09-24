@@ -1,0 +1,1283 @@
+/* ==========================================================================
+   Page-level patterns: page heads, approach, app grid, app detail, demo,
+   prose, steps, footer
+   ========================================================================== */
+
+/* --- Page head ------------------------------------------------------------ */
+.pagehead {
+  padding-top: calc(var(--nav-h) + var(--space-2xl));
+  padding-bottom: var(--space-xl);
+  position: relative;
+}
+
+.pagehead::after {
+  content: '';
+  position: absolute;
+  inset-inline: var(--gutter);
+  bottom: 0;
+  height: 1px;
+  background: var(--line);
+  max-width: var(--container);
+  margin-inline: auto;
+}
+
+.pagehead__label {
+  margin-bottom: var(--space-s);
+}
+
+/* A breadcrumb is a standalone link, not inline text, so it needs a real
+   24px target box. */
+.pagehead__label a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.5rem;
+}
+
+.pagehead__label a:hover {
+  color: var(--blue-lift);
+}
+
+.pagehead__title {
+  font-size: var(--step-5);
+  max-width: 18ch;
+}
+
+.pagehead__lede {
+  margin-top: var(--space-m);
+  color: var(--chrome);
+  font-size: var(--step-1);
+  max-width: var(--measure);
+}
+
+.pagehead__meta {
+  margin-top: var(--space-m);
+}
+
+.pagehead__updated {
+  font-size: var(--step--2);
+  color: var(--chrome-dim);
+  letter-spacing: 0.08em;
+}
+
+/* --- Approach ------------------------------------------------------------- */
+.approach {
+  display: grid;
+  gap: var(--space-2xl);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 62rem) {
+  /* Not 1fr 1fr. The left column holds two paragraphs capped at 62ch and the
+     right holds three ruled points, so equal columns left the prose short of
+     its own column's width and the points cramped — and, because the left ran
+     out first, an empty quadrant at the bottom left of the section. */
+  .approach {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+
+  /* The intro tracks the points instead of scrolling away above them. This is
+     what fills the space the short column used to leave behind: the column is
+     no longer empty, it is holding position. */
+  .approach__body {
+    position: sticky;
+    top: calc(var(--nav-h) + var(--space-l));
+  }
+}
+
+/* A sticky element inside a scroll container that respects reduced motion
+   still moves relative to the page. Position it statically instead. */
+@media (prefers-reduced-motion: reduce) {
+  .approach__body {
+    position: static;
+  }
+}
+
+.approach__body p {
+  color: var(--chrome);
+  font-size: var(--step-1);
+  max-width: var(--measure);
+}
+
+.approach__body p + p {
+  margin-top: var(--space-m);
+}
+
+.approach__points {
+  display: grid;
+  gap: var(--space-l);
+  align-content: start;
+}
+
+.approach__point {
+  padding-top: var(--space-m);
+  border-top: 1px solid var(--line);
+}
+
+.approach__point-title {
+  font-size: var(--step-1);
+  font-variation-settings: 'wdth' 100, 'wght' 650;
+  margin-bottom: var(--space-2xs);
+}
+
+.approach__point-body {
+  color: var(--chrome);
+  font-size: var(--step-0);
+  max-width: 54ch;
+}
+
+/* --- App grid ------------------------------------------------------------- */
+.appgrid {
+  display: grid;
+  gap: var(--space-l);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+}
+
+.appcard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: var(--r-l);
+  overflow: hidden;
+  background: var(--black-100);
+  transition:
+    border-color var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+}
+
+.appcard:hover,
+.appcard:focus-within {
+  border-color: var(--blue-a35);
+  box-shadow: var(--glow-soft);
+  transform: translateY(-2px);
+}
+
+.appcard__art {
+  position: relative;
+  aspect-ratio: var(--media-ratio);
+  background: var(--black-150);
+  border-bottom: 1px solid var(--line);
+}
+
+/* Inside a card the clip is already framed by the card, so it drops its own
+   border, radius and glow rather than drawing a second frame inside the first. */
+.appcard__art .clip {
+  max-width: none;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.appcard__art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.appcard__art picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.appcard__art .appcard__concept {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 900ms var(--ease-out), filter 600ms var(--ease-out);
+}
+
+.appcard:hover .appcard__concept,
+.appcard:focus-within .appcard__concept {
+  transform: scale(1.035);
+  filter: saturate(1.08) contrast(1.03);
+}
+
+.concept-hero {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-xl);
+  background: var(--black-100);
+  box-shadow: var(--shadow-l), 0 0 4rem rgba(10, 132, 255, 0.1);
+}
+
+.concept-hero picture,
+.concept-hero img {
+  width: 100%;
+  display: block;
+}
+
+.concept-hero video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.concept-hero figcaption {
+  position: absolute;
+  inset-inline-start: var(--space-m);
+  bottom: var(--space-m);
+  padding: 0.55rem 0.85rem;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: var(--r-full);
+  background: rgba(5, 5, 7, 0.7);
+  backdrop-filter: blur(18px) saturate(150%);
+  color: var(--chrome);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: .06em;
+}
+
+.appcard__icon-art {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: var(--space-l);
+  background:
+    radial-gradient(circle at 50% 48%, rgba(223, 164, 46, 0.14), transparent 48%),
+    radial-gradient(100% 110% at 50% 115%, var(--blue-ink), transparent 62%),
+    var(--black-150);
+}
+
+.appcard__art .appcard__icon {
+  width: min(72%, 12rem);
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+  border-radius: 22%;
+  box-shadow: 0 1.25rem 3rem rgba(0, 0, 0, 0.55);
+}
+
+/* No artwork yet: a plain cover rather than an empty frame.
+   Honest about there being no screenshot, and still a designed surface — the
+   name and the product's own line give a tall panel something true to hold,
+   where an empty frame at this size reads as a failed image. */
+.appcard__cover {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-s);
+  padding: var(--space-l);
+  text-align: center;
+  background:
+    radial-gradient(120% 90% at 50% 120%, var(--blue-ink) 0%, transparent 62%),
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0 11px,
+      rgba(200, 205, 212, 0.028) 11px 12px
+    );
+}
+
+.appcard__cover-mark {
+  width: 30px;
+  height: 23px;
+  clip-path: polygon(50% 0, 100% 100%, 78% 100%, 50% 44%, 22% 100%, 0 100%);
+  background: var(--gradient-blue);
+  opacity: 0.55;
+  flex: none;
+}
+
+.appcard__cover-name {
+  font-variation-settings: var(--vf-display);
+  font-size: var(--step-3);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  text-wrap: balance;
+}
+
+.appcard__cover-line {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  color: var(--chrome-dim);
+  max-width: 24ch;
+  text-wrap: balance;
+}
+
+/* --- Portfolio groups ------------------------------------------------------
+   Two groups on one page, so the second needs air above it without a second
+   ruled border cutting the page in half again. */
+.portfolio-group + .portfolio-group {
+  margin-top: var(--space-3xl);
+}
+
+/* The group heading sits closer to its own grid than to the group above it,
+   so the pairing is unambiguous without a rule between them. */
+.portfolio-group > .head__title--sm {
+  margin-bottom: var(--space-l);
+}
+
+.portfolio__more {
+  margin-top: var(--space-2xl);
+}
+
+.appcard__meta .pill {
+  margin-bottom: var(--space-2xs);
+}
+
+.appcard__meta {
+  padding: var(--space-m);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+}
+
+.appcard__name {
+  font-size: var(--step-2);
+}
+
+/* Stretch the title's hit area across the whole card, without nesting a link
+   inside a link. */
+.appcard__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.appcard__link:hover {
+  color: var(--blue-lift);
+}
+
+.appcard__tagline {
+  color: var(--chrome);
+  font-size: var(--step--1);
+}
+
+.appcard__platforms {
+  margin-top: var(--space-2xs);
+  font-size: var(--step--2);
+  color: var(--chrome-dim);
+  letter-spacing: 0.1em;
+}
+
+/* One app: a lone 17rem card in a four-up grid reads as an empty page rather
+   than as a studio with one product. While it is alone it lays out
+   horizontally, which fills the row and looks deliberate. :has means this
+   reverts by itself when a second app lands — there is no flag to remember. */
+@media (min-width: 52rem) {
+  .appgrid:has(> :only-child) {
+    grid-template-columns: minmax(0, 42rem);
+  }
+
+  .appgrid:has(> :only-child) .appcard {
+    flex-direction: row;
+  }
+
+  .appgrid:has(> :only-child) .appcard__art {
+    flex: 0 0 16rem;
+    border-bottom: 0;
+    border-inline-end: 1px solid var(--line);
+  }
+
+  /* Top-aligned, not centred. Centring parked the name, tagline and platform
+     line as a small island halfway down a 20rem card with dead space above and
+     below it — the text read as floating in the panel rather than sitting in
+     it. Aligned to the top it shares a baseline with the artwork beside it. */
+  .appgrid:has(> :only-child) .appcard__meta {
+    justify-content: flex-start;
+    padding: var(--space-l);
+  }
+
+  /* Push the platform line to the foot of the panel so the card is anchored at
+     both ends instead of trailing off. */
+  .appgrid:has(> :only-child) .appcard__platforms {
+    margin-top: auto;
+    padding-top: var(--space-l);
+  }
+}
+
+/* --- App detail ------------------------------------------------------------ */
+/* The tagline under the pill, where the page's lede is the positioning line
+   instead. Sets the plain-English version below the slogan. */
+.app__tagline {
+  color: var(--chrome);
+  font-size: var(--step-0);
+  max-width: 54ch;
+}
+
+.app__icon {
+  display: block;
+  width: clamp(6rem, 10vw, 8rem);
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+  margin-bottom: var(--space-m);
+  border: 1px solid rgba(223, 164, 46, 0.28);
+  border-radius: 22%;
+  box-shadow:
+    0 1rem 3rem rgba(0, 0, 0, 0.52),
+    0 0 2rem rgba(223, 164, 46, 0.08);
+}
+
+/* "Nothing to show yet." Quiet and finished-looking — the loud orange [TODO]
+   treatment is for an unfinished claim, not for artwork that has not been made
+   yet. */
+.app__empty {
+  color: var(--chrome-dim);
+  font-size: var(--step--1);
+  padding: var(--space-l) 0;
+  border-top: 1px solid var(--line-weak);
+  max-width: 54ch;
+}
+
+.app {
+  display: grid;
+  gap: var(--space-2xl);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 58rem) {
+  .app {
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+    gap: var(--space-3xl);
+  }
+}
+
+.app__para {
+  color: var(--chrome);
+  font-size: var(--step-1);
+  max-width: var(--measure);
+  margin-top: var(--space-m);
+}
+
+.app__side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+  align-content: start;
+  padding: var(--space-l);
+  border: 1px solid var(--line);
+  border-radius: var(--r-l);
+  background: var(--black-100);
+  height: fit-content;
+}
+
+.app__side-h {
+  margin-top: var(--space-m);
+}
+
+.app__note {
+  color: var(--chrome);
+  font-size: var(--step--1);
+}
+
+.app__badges {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.app__platforms {
+  font-size: var(--step--1);
+  color: var(--chrome);
+  letter-spacing: 0.08em;
+}
+
+.app__links {
+  display: grid;
+  gap: var(--space-2xs);
+}
+
+.app__links a {
+  display: flex;
+  align-items: center;
+  min-height: 1.5rem;
+  color: var(--chrome);
+  font-size: var(--step--1);
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 3px;
+}
+
+.app__links a:hover {
+  color: var(--blue-lift);
+  text-decoration-color: currentColor;
+}
+
+/* The clip centres itself wherever it is dropped, which is right on the demo
+   page and wrong here: the stills grid below starts at the container's left
+   edge, and two blocks that do not share an edge read as a mistake. */
+.gameplay .clip {
+  margin-inline: 0;
+}
+
+.gameplay + .shots {
+  margin-top: var(--space-xl);
+}
+
+.shots {
+  display: grid;
+  gap: var(--space-m);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
+}
+
+.shots__item img {
+  width: 100%;
+  aspect-ratio: var(--media-ratio);
+  object-fit: cover;
+  border: 1px solid var(--line);
+  border-radius: var(--r-l);
+}
+
+/* Phone captures are presented as a cinematic rail instead of being cropped
+   into the landscape media ratio used by game artwork. The next card remains
+   visible at the edge so touch users can see that the gallery continues. */
+.shots--gallery {
+  grid-template-columns: none;
+  grid-auto-flow: column;
+  grid-auto-columns: clamp(13rem, 22vw, 17rem);
+  gap: var(--space-l);
+  overflow-x: auto;
+  padding: var(--space-s) max(var(--space-2xs), calc((100vw - var(--container)) / 2)) var(--space-l) 0;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--space-s);
+  overscroll-behavior-inline: contain;
+  scrollbar-color: var(--blue-a35) var(--black-100);
+  scrollbar-width: thin;
+}
+
+.shots--gallery .shots__item {
+  scroll-snap-align: start;
+}
+
+.shots--gallery .shots__figure {
+  display: grid;
+  gap: var(--space-s);
+  padding: 0.45rem 0.45rem var(--space-s);
+  border: 1px solid var(--line);
+  border-radius: clamp(1.35rem, 2.2vw, 1.8rem);
+  background:
+    linear-gradient(155deg, rgba(24, 39, 79, 0.82), rgba(8, 10, 17, 0.96)),
+    var(--black-100);
+  box-shadow:
+    0 1.5rem 3.75rem rgba(0, 0, 0, 0.32),
+    0 0 2.5rem rgba(38, 121, 255, 0.07);
+}
+
+.shots--gallery .shots__item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 660 / 1434;
+  object-fit: contain;
+  border-color: rgba(255, 255, 255, 0.11);
+  border-radius: clamp(1rem, 1.8vw, 1.4rem);
+}
+
+.shots__caption {
+  min-height: 2.6em;
+  padding-inline: var(--space-2xs);
+  color: var(--chrome);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  line-height: 1.3;
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 40rem) {
+  .shots--gallery {
+    grid-auto-columns: min(76vw, 16rem);
+    gap: var(--space-m);
+  }
+}
+
+/* --- Game clip: the house 520x720 media slot -------------------------------
+   Used by the demo page and by every app card, so a clip, a screenshot and an
+   empty slot are interchangeable. The aspect ratio holds at every width and the
+   520px is a cap rather than a fixed size — it has to shrink on a 320px phone. */
+.clip {
+  position: relative;
+  width: 100%;
+  max-width: var(--media-w);
+  aspect-ratio: var(--media-ratio);
+  margin-inline: auto;
+  border-radius: var(--r-l);
+  overflow: hidden;
+  background: var(--black-150);
+  border: 1px solid var(--line-strong);
+  box-shadow: var(--glow-soft);
+}
+
+.clip__poster,
+.clip__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* The poster stays mounted under the video and is what a reduced-motion
+   visitor sees. Crossfading rather than swapping avoids a flash of background
+   between the poster hiding and the first decoded frame arriving. */
+.clip__poster {
+  z-index: 1;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+
+.clip__poster[data-hidden='true'] {
+  opacity: 0;
+}
+
+.clip__video {
+  z-index: 0;
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+
+.clip__video[data-visible='true'] {
+  opacity: 1;
+}
+
+/* Shown only when autoplay was refused. Covers the slot so the whole picture
+   is the target — on a phone, where this state is most likely, a small button
+   in a corner is the wrong thing to ask for. */
+.clip__play {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-s);
+  border: 0;
+  background: rgba(5, 5, 7, 0.55);
+  backdrop-filter: blur(2px);
+  color: var(--white);
+  cursor: pointer;
+}
+
+.clip__play-icon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: var(--gradient-blue);
+  box-shadow: var(--glow-strong);
+  /* A triangle, drawn rather than set as a glyph: ▶ renders as an emoji on
+     several platforms and picks up its own colour. */
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  position: relative;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.clip__play-icon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--white);
+  clip-path: polygon(38% 30%, 72% 50%, 38% 70%);
+}
+
+.clip__play:hover .clip__play-icon {
+  transform: scale(1.06);
+}
+
+.clip__play-label {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--chrome);
+}
+
+/* --- Demo page ------------------------------------------------------------- */
+.demo {
+  display: grid;
+  gap: var(--space-xl);
+  justify-items: center;
+}
+
+.demo__side {
+  display: grid;
+  gap: var(--space-m);
+  align-content: start;
+  width: 100%;
+  max-width: var(--media-w);
+}
+
+.demo__note {
+  color: var(--chrome);
+  font-size: var(--step-0);
+}
+
+.facts {
+  display: grid;
+  gap: var(--space-2xs);
+}
+
+.facts__row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-m);
+  padding-block: var(--space-3xs);
+  border-bottom: 1px solid var(--line-weak);
+}
+
+.facts__value {
+  color: var(--chrome);
+  font-size: var(--step--1);
+}
+
+.demo__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s);
+}
+
+.demo__placeholder {
+  display: grid;
+  place-content: center;
+  gap: var(--space-2xs);
+  text-align: center;
+  width: 100%;
+  max-width: var(--media-w);
+  aspect-ratio: var(--media-ratio);
+  padding: var(--space-l);
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--r-l);
+  background: var(--black-100);
+}
+
+.demo__placeholder-title {
+  font-variation-settings: 'wdth' 100, 'wght' 700;
+  font-size: var(--step-1);
+}
+
+.demo__placeholder-body {
+  color: var(--chrome-dim);
+  font-size: var(--step--1);
+  max-width: 40ch;
+  margin-inline: auto;
+}
+
+/* Wide screens: the slot is portrait, so the copy sits beside it rather than
+   under it, and the whole thing lands above the fold. */
+@media (min-width: 62rem) {
+  .demo {
+    grid-template-columns: var(--media-w) minmax(0, 1fr);
+    align-items: start;
+    justify-items: start;
+    column-gap: var(--space-3xl);
+  }
+
+  .demo .demo__side {
+    max-width: 34ch;
+  }
+}
+
+/* --- Demo callout ---------------------------------------------------------- */
+.demo-callout__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--space-l);
+  padding: var(--space-xl);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  background:
+    radial-gradient(90% 140% at 100% 0%, var(--blue-ink) 0%, transparent 58%),
+    var(--black-100);
+}
+
+.demo-callout .head__title {
+  font-size: var(--step-3);
+  margin-top: var(--space-2xs);
+}
+
+.demo-callout .head__lede {
+  font-size: var(--step-0);
+  margin-top: var(--space-2xs);
+}
+
+/* --- Mail card (support) --------------------------------------------------- */
+.mailcard {
+  padding: var(--space-xl);
+  border: 1px solid var(--blue-a35);
+  border-radius: var(--r-l);
+  background:
+    radial-gradient(80% 160% at 0% 0%, var(--blue-ink) 0%, transparent 60%),
+    var(--black-100);
+  box-shadow: var(--glow-soft);
+}
+
+.mailcard__label {
+  margin-bottom: var(--space-2xs);
+}
+
+.mailcard__label--2 {
+  margin-top: var(--space-l);
+}
+
+.mailcard__phone {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--step-1);
+  color: var(--white);
+}
+
+.mailcard__phone:hover {
+  color: var(--blue-lift);
+}
+
+.mailcard__place {
+  margin-top: var(--space-2xs);
+  color: var(--chrome-dim);
+  font-size: var(--step--1);
+}
+
+/* Sized to fit the address on the narrowest supported screen without breaking
+   the word: an email address split across a line break ("…newaivisionla /
+   bs.com") is hard to read back and easy to mistype. */
+.mailcard__address {
+  display: inline-block;
+  font-size: clamp(1.1rem, 0.6rem + 2.6vw, 2.25rem);
+  font-variation-settings: var(--vf-display);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  overflow-wrap: normal;
+  background: var(--gradient-blue);
+  -webkit-background-clip: text;
+  background-clip: text;
+  /* Wins over the generic `.mailcard a` colour below, which would otherwise
+     paint the glyphs solid white and hide the gradient entirely. */
+  color: transparent !important;
+  text-decoration: none !important;
+}
+
+@media (max-width: 22.5rem) {
+  .mailcard__address {
+    font-size: 0.92rem;
+  }
+}
+
+/* The gradient fill removes the underline cue, so hover restores one that is
+   drawn rather than inherited. */
+.mailcard__address:hover {
+  box-shadow: inset 0 -2px 0 0 var(--blue);
+}
+
+.mailcard__note {
+  margin-top: var(--space-m);
+  margin-bottom: 0;
+}
+
+/* --- Prose ----------------------------------------------------------------- */
+.prose__layout {
+  display: grid;
+  gap: var(--space-2xl);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 62rem) {
+  .prose__layout {
+    grid-template-columns: 15rem minmax(0, 1fr);
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+
+  .toc {
+    position: sticky;
+    top: calc(var(--nav-h) + var(--space-m));
+  }
+}
+
+.toc__label {
+  margin-bottom: var(--space-s);
+}
+
+.toc__list {
+  display: grid;
+  gap: var(--space-2xs);
+  counter-reset: toc;
+}
+
+.toc__list a {
+  display: flex;
+  align-items: center;
+  min-height: 1.5rem;
+  color: var(--chrome-dim);
+  font-size: var(--step--1);
+  line-height: 1.4;
+}
+
+.toc__list a:hover {
+  color: var(--blue-lift);
+}
+
+.prose {
+  max-width: var(--measure);
+  color: var(--chrome);
+}
+
+.prose p {
+  margin-block: var(--space-s);
+}
+
+.prose__section {
+  margin-top: var(--space-xl);
+}
+
+.prose__h2 {
+  font-size: var(--step-2);
+  color: var(--white);
+  margin-bottom: var(--space-2xs);
+  /* Anchored from the ToC; keep the heading clear of the fixed nav. */
+  scroll-margin-top: calc(var(--nav-h) + var(--space-m));
+}
+
+.prose__list {
+  display: grid;
+  gap: var(--space-2xs);
+  margin-block: var(--space-s);
+  padding-inline-start: var(--space-m);
+}
+
+.prose__list li {
+  position: relative;
+  font-size: var(--step-0);
+}
+
+.prose__list li::before {
+  content: '';
+  position: absolute;
+  /* Logical, and it has to move with the padding above it. Converting the
+     list's padding to `padding-inline-start` while this stayed `left` put the
+     bullet on the far side of the text in RTL and pushed the document 3px
+     wide — caught by the RTL sweep, invisible to every LTR check. Convert a
+     pair together or not at all. */
+  inset-inline-start: calc(var(--space-m) * -1);
+  top: 0.72em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--blue);
+}
+
+.prose a,
+.mailcard a {
+  color: var(--white);
+  text-decoration: underline;
+  text-decoration-color: var(--blue-a60);
+  text-underline-offset: 3px;
+}
+
+.prose a:hover {
+  color: var(--blue-lift);
+}
+
+/* --- App-specific multilingual legal and support pages ------------------- */
+.legal-locales {
+  display: grid;
+  gap: var(--space-2xl);
+}
+
+.language-links {
+  padding: var(--space-m);
+  border: 1px solid var(--line);
+  border-radius: var(--r-l);
+  background: var(--black-100);
+}
+
+.language-links__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-s);
+}
+
+.language-links__items a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding-inline: var(--space-s);
+  border: 1px solid var(--blue-a35);
+  border-radius: 999px;
+  color: var(--white);
+  text-decoration: none;
+}
+
+.language-links__items a:hover {
+  border-color: var(--blue);
+  color: var(--blue-lift);
+}
+
+.legal-language {
+  max-width: none;
+  padding-top: var(--space-l);
+  border-top: 1px solid var(--line);
+  scroll-margin-top: calc(var(--nav-h) + var(--space-m));
+}
+
+.legal-language__title {
+  color: var(--white);
+  font-size: var(--step-4);
+}
+
+.legal-language .prose__section,
+.legal-language > p {
+  max-width: var(--measure);
+}
+
+/* --- Steps ----------------------------------------------------------------- */
+.steps {
+  display: grid;
+  gap: var(--space-m);
+  margin-block: var(--space-m);
+}
+
+.steps__item {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: var(--space-s);
+  padding-top: var(--space-s);
+  border-top: 1px solid var(--line);
+}
+
+.steps__n {
+  color: var(--blue);
+  font-size: var(--step--1);
+}
+
+.steps__title {
+  color: var(--white);
+  font-size: var(--step-1);
+  font-variation-settings: 'wdth' 100, 'wght' 650;
+  margin-bottom: var(--space-3xs);
+}
+
+/* --- Reviews (rendered only when real ones exist) --------------------------- */
+.reviews {
+  display: grid;
+  gap: var(--space-l);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+  margin-top: var(--space-xl);
+}
+
+.review {
+  padding: var(--space-l);
+  border: 1px solid var(--line);
+  border-radius: var(--r-l);
+  background: var(--black-100);
+}
+
+.review__quote {
+  font-size: var(--step-1);
+}
+
+.review__by {
+  margin-top: var(--space-m);
+  display: flex;
+  gap: var(--space-2xs);
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.review__author {
+  color: var(--chrome);
+  font-size: var(--step--1);
+}
+
+.review__source {
+  color: var(--chrome-dim);
+  font-size: var(--step--2);
+}
+
+/* --- Footer ----------------------------------------------------------------- */
+/* No margin-top. The footer already carries a rule and 4rem of padding above
+   its own content, and the last section carries its own padding below. A
+   margin on top of both stacked three separate spacings into one gap — 200px
+   of unbroken black between the final callout and the footer rule. */
+.footer {
+  border-top: 1px solid var(--line);
+  padding-top: var(--space-2xl);
+  padding-bottom: var(--space-l);
+}
+
+.footer__inner {
+  display: grid;
+  gap: var(--space-2xl);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 52rem) {
+  .footer__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  }
+}
+
+.footer__blurb {
+  margin-top: var(--space-s);
+  color: var(--chrome);
+  font-size: var(--step--1);
+  max-width: 34ch;
+}
+
+/* WCAG 2.2 target size: a link in a list is not covered by the inline-text
+   exception, so every one of these gets a 24px-tall target box. */
+.footer__contact {
+  display: grid;
+  gap: var(--space-3xs);
+  margin-top: var(--space-s);
+}
+
+.footer__contact a,
+.footer__place {
+  display: flex;
+  align-items: center;
+  min-height: 1.5rem;
+  color: var(--chrome);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+}
+
+.footer__contact a {
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 3px;
+  width: fit-content;
+}
+
+.footer__contact a:hover {
+  color: var(--blue-lift);
+}
+
+.footer__place {
+  color: var(--chrome-dim);
+}
+
+.footer__cols {
+  display: grid;
+  gap: var(--space-l);
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+}
+
+.footer__col-title {
+  margin-bottom: var(--space-s);
+}
+
+.footer__list {
+  display: grid;
+  gap: var(--space-2xs);
+}
+
+.footer__list a {
+  display: flex;
+  align-items: center;
+  min-height: 1.5rem;
+  color: var(--chrome);
+  font-size: var(--step--1);
+}
+
+.footer__list a:hover {
+  color: var(--blue-lift);
+}
+
+.footer__base {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s);
+  justify-content: space-between;
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-m);
+  border-top: 1px solid var(--line-weak);
+}
+
+.footer__copy,
+.footer__domain {
+  /* --chrome-faint is 3.21:1 on the page and is a non-text token. Even the
+     smallest legal line is still text and still needs 4.5:1. */
+  color: var(--chrome-dim);
+  font-size: var(--step--2);
+  letter-spacing: 0.08em;
+}
+
+/* --- Studio story, journal and release interest -------------------------- */
+.latest__grid,
+.interest__inner,
+.bible-story__grid {
+  display: grid;
+  gap: var(--space-2xl);
+}
+
+.latest__card,
+.interest__inner {
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  background: linear-gradient(145deg, rgba(18, 31, 53, .86), rgba(8, 10, 15, .94));
+  box-shadow: var(--shadow-l);
+}
+
+.latest__card { padding: clamp(1.4rem, 3vw, 2.5rem); }
+.latest__card h3 { margin-top: var(--space-s); font-size: var(--step-2); line-height: 1.15; }
+.latest__card p:not(.label) { margin-top: var(--space-s); color: var(--chrome); }
+.text-link { display: inline-flex; min-height: 2.75rem; align-items: center; gap: .4rem; margin-top: var(--space-m); color: var(--blue-lift); font-weight: 700; }
+.text-link:hover { color: var(--white); }
+
+.interest { position: relative; overflow: hidden; }
+.interest::before { content: ''; position: absolute; width: 30rem; height: 30rem; border-radius: 50%; background: rgba(10,132,255,.12); filter: blur(80px); inset-inline-end: -12rem; top: -15rem; pointer-events: none; }
+.interest__inner { position: relative; padding: clamp(1.5rem, 4vw, 3.5rem); align-items: center; }
+.interest__inner p { color: var(--chrome); max-width: 62ch; margin-top: var(--space-s); }
+.interest__inner small { color: var(--chrome-dim); display: block; margin-top: var(--space-xs); }
+
+.story-page__intro { max-width: 62rem; }
+.story-page__intro p { font-size: var(--step-2); line-height: 1.55; color: var(--chrome); max-width: 48ch; }
+.story-page__intro p + p { margin-top: var(--space-l); margin-inline-start: auto; }
+.principles { display: grid; gap: var(--space-l); margin-top: var(--space-2xl); }
+.principles article { border-top: 1px solid var(--line-strong); padding-top: var(--space-m); }
+.principles span { color: var(--blue-lift); }
+.principles h3 { font-size: var(--step-1); margin-top: var(--space-s); }
+.principles p { color: var(--chrome); margin-top: var(--space-xs); }
+.statement { background: radial-gradient(circle at 70% 40%, rgba(223,164,46,.12), transparent 34rem); }
+.statement h2 { font-size: var(--step-4); max-width: 14ch; line-height: 1.02; }
+.statement p { color: var(--chrome); font-size: var(--step-1); max-width: 55ch; margin-top: var(--space-m); }
+
+.journal { display: grid; }
+.journal__entry { display: grid; gap: var(--space-l); padding-block: var(--space-xl); border-bottom: 1px solid var(--line); }
+.journal__entry:first-child { padding-top: 0; }
+.journal__meta { display: grid; align-content: start; gap: var(--space-xs); color: var(--chrome-dim); }
+.journal__entry h2 { font-size: var(--step-2); line-height: 1.14; max-width: 24ch; }
+.journal__entry p { color: var(--chrome); margin-top: var(--space-s); max-width: 62ch; }
+
+.bible-story__film { position: relative; max-width: 24rem; margin-inline: auto; border: 1px solid var(--line-strong); border-radius: clamp(1.5rem, 4vw, 2.75rem); padding: .55rem; background: #080a10; box-shadow: var(--shadow-l), 0 0 5rem rgba(10,132,255,.12); overflow: hidden; }
+.bible-story__film video,
+.bible-story__film img { aspect-ratio: 9 / 16; width: 100%; object-fit: cover; border-radius: calc(clamp(1.5rem, 4vw, 2.75rem) - .55rem); }
+.bible-story__film figcaption { padding: var(--space-s) var(--space-xs) var(--space-xs); color: var(--chrome-dim); font-size: var(--step--2); }
+.bible-story__steps { display: grid; align-content: center; }
+.bible-story__steps li { display: grid; grid-template-columns: 3rem 1fr; gap: var(--space-s); padding-block: var(--space-l); border-top: 1px solid var(--line); }
+.bible-story__steps span { color: var(--blue-lift); }
+.bible-story__steps h3 { font-size: var(--step-1); }
+.bible-story__steps p { color: var(--chrome); margin-top: var(--space-xs); }
+
+@media (min-width: 52rem) {
+  .latest__grid { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: center; }
+  .interest__inner { grid-template-columns: 1fr auto; }
+  .principles { grid-template-columns: repeat(3, 1fr); }
+  .journal__entry { grid-template-columns: minmax(10rem, .35fr) 1fr; }
+  .bible-story__grid { grid-template-columns: minmax(18rem, .72fr) minmax(0, 1fr); align-items: center; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .latest__card,
+  .interest__inner,
+  .concept-hero { transition: transform 700ms var(--ease-out), box-shadow 700ms var(--ease-out); }
+  .latest__card:hover,
+  .interest__inner:hover { transform: translateY(-3px); box-shadow: var(--shadow-l), 0 0 4rem rgba(10,132,255,.11); }
+  .concept-hero img { transition: transform 8s var(--ease-out); }
+  .concept-hero:hover img { transform: scale(1.035); }
+}

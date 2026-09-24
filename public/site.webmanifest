@@ -1,0 +1,13 @@
+{
+  "name": "New AI Vision Labs",
+  "short_name": "NAI Labs",
+  "description": "An independent technology studio building intelligent applications and original games.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050507",
+  "theme_color": "#050507",
+  "icons": [
+    { "src": "/brand/mark-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

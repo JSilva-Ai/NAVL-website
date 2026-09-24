@@ -1,0 +1,200 @@
+/* ==========================================================================
+   Navigation
+   ========================================================================== */
+
+.nav {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: var(--z-nav);
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  transition:
+    background var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    backdrop-filter var(--dur-base) var(--ease-out);
+  border-bottom: 1px solid transparent;
+}
+
+/* Transparent over the hero, then a surface once the page has moved — so the
+   nav never sits on top of content it cannot be read against. */
+.nav--scrolled {
+  background: rgba(5, 5, 7, 0.82);
+  backdrop-filter: blur(14px) saturate(140%);
+  border-bottom-color: var(--line);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-m);
+  width: 100%;
+}
+
+.nav__brand {
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.language-picker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.375rem;
+  padding-inline: 0.7rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-full);
+  color: var(--chrome);
+  background: rgba(12, 13, 17, 0.72);
+  backdrop-filter: blur(18px) saturate(150%);
+}
+
+.language-picker select {
+  max-width: 7.25rem;
+  border: 0;
+  color: var(--white);
+  background: transparent;
+  cursor: pointer;
+  font-size: var(--step--2);
+}
+
+.language-picker:focus-within {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 2px var(--black-000), 0 0 0 4px var(--blue);
+}
+
+.nav__sheet .language-picker {
+  width: 100%;
+  min-height: 3rem;
+  justify-content: center;
+}
+
+.nav__sheet .language-picker select { max-width: none; }
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-m);
+  margin-inline-start: auto;
+  margin-inline-end: var(--space-m);
+}
+
+.nav__link {
+  position: relative;
+  font-size: var(--step--1);
+  color: var(--chrome);
+  padding-block: 0.4rem;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.nav__link:hover {
+  color: var(--white);
+}
+
+.nav__link[aria-current='page'] {
+  color: var(--white);
+}
+
+/* The current page is marked with a drawn rule rather than a colour change
+   alone — colour on its own is not a sufficient distinction. */
+.nav__link[aria-current='page']::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--gradient-blue);
+}
+
+/* --- Compact -------------------------------------------------------------- */
+.nav__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  min-height: 2.75rem;
+  padding: 0.45rem 0.85rem;
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-s);
+  color: var(--white);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.nav__toggle:hover {
+  border-color: var(--blue-a60);
+  box-shadow: var(--glow-blue);
+}
+
+.nav__toggle-bars {
+  display: grid;
+  gap: 4px;
+  width: 16px;
+}
+
+.nav__toggle-bars span {
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.nav__toggle[aria-expanded='true'] .nav__toggle-bars span:first-child {
+  transform: translateY(2.75px) rotate(45deg);
+}
+
+.nav__toggle[aria-expanded='true'] .nav__toggle-bars span:last-child {
+  transform: translateY(-2.75px) rotate(-45deg);
+}
+
+.nav__sheet {
+  position: fixed;
+  inset: var(--nav-h) 0 0;
+  z-index: var(--z-overlay);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+  padding: var(--space-xl) var(--gutter) var(--space-2xl);
+  background: var(--black-000);
+  border-top: 1px solid var(--line);
+  overflow-y: auto;
+}
+
+.nav__sheet[hidden] {
+  display: none;
+}
+
+.nav__sheet-links {
+  display: grid;
+  gap: var(--space-2xs);
+}
+
+.nav__sheet .nav__link {
+  font-size: var(--step-3);
+  font-variation-settings: var(--vf-display);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  padding-block: var(--space-2xs);
+  border-bottom: 1px solid var(--line-weak);
+}
+
+.nav__sheet .nav__link[aria-current='page'] {
+  color: var(--blue-lift);
+}
+
+.nav__sheet .nav__link[aria-current='page']::after {
+  display: none;
+}

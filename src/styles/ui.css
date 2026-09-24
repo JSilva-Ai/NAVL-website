@@ -1,0 +1,251 @@
+/* ==========================================================================
+   Buttons, pills, badges, cards, the lockup, and the [TODO] marker
+   ========================================================================== */
+
+/* --- Lockup --------------------------------------------------------------- */
+.lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  color: var(--white);
+}
+
+.lockup__word {
+  font-size: var(--step--1);
+  font-variation-settings: 'wdth' 108, 'wght' 600;
+  letter-spacing: 0.17em;
+  /* Tracking adds space after the last letter too; pulling it back keeps the
+     optical edge where the glyph ends. Logical rather than physical: the
+     overhang is on the end of the run whichever way the run reads. */
+  margin-inline-end: -0.17em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+@media (max-width: 26rem) {
+  .lockup__word {
+    display: none;
+  }
+}
+
+/* --- Buttons -------------------------------------------------------------- */
+.btn {
+  --btn-bg: transparent;
+  --btn-fg: var(--white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  /* 44px min target: the WCAG 2.2 minimum is 24px, but this is a site about
+     phone software and a thumb is not a cursor. */
+  min-height: 2.875rem;
+  padding: 0.6rem 1.15rem;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-s);
+  font-size: var(--step--1);
+  font-variation-settings: 'wdth' 100, 'wght' 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.btn:hover {
+  border-color: var(--blue-a60);
+  box-shadow: var(--glow-blue);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn--primary {
+  --btn-bg: var(--gradient-blue);
+  --btn-fg: var(--white);
+  border-color: transparent;
+}
+
+.btn--primary:hover {
+  border-color: transparent;
+  box-shadow: var(--glow-strong);
+}
+
+.btn--sm {
+  min-height: 2.375rem;
+  padding: 0.4rem 0.85rem;
+  font-size: var(--step--2);
+}
+
+.btn--block {
+  width: 100%;
+}
+
+.btn__arrow {
+  font-size: 0.85em;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+/* The one directional glyph on the site.
+   ↗ means "opens elsewhere", and elsewhere is forward — which is to the left
+   when the page reads right to left. A glyph does not mirror itself, and there
+   is no ↖ variant that matches this one's weight, so it is flipped. Scoped to
+   the attribute the build writes on <html>, not to a media query, because it
+   follows the document's direction rather than the reader's preferences. */
+[dir='rtl'] .btn__arrow {
+  transform: scaleX(-1);
+  /* Direction is part of page layout, not an interaction. Applying it without
+     a transition prevents the first RTL frame from briefly pointing forward. */
+  transition: none;
+}
+
+.btn:hover .btn__arrow {
+  transform: translate(2px, -2px);
+}
+
+/* The hover nudge moves the arrow the way it points, so it needs the flip too —
+   and it has to be restated rather than composed, because a later `transform`
+   replaces the earlier one outright rather than adding to it. */
+[dir='rtl'] .btn:hover .btn__arrow {
+  transform: scaleX(-1) translate(2px, -2px);
+}
+
+/* --- Pills ---------------------------------------------------------------- */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--r-full);
+  border: 1px solid var(--line-strong);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--chrome);
+  width: fit-content;
+}
+
+/* The four stages, encoded by intensity rather than by hue.
+   Four colours would read as a legend to decode; one accent getting steadily
+   louder as a product gets closer to release reads as progress at a glance,
+   and keeps the blue meaning the same thing here that it means everywhere else
+   on the site. */
+.pill--research {
+  border-color: var(--line);
+  color: var(--chrome-dim);
+}
+
+.pill--dev {
+  border-color: var(--line-strong);
+  color: var(--chrome);
+}
+
+.pill--testing {
+  border-color: var(--blue-a35);
+  color: var(--blue-lift);
+  background: var(--blue-a10);
+}
+
+.pill--live {
+  border-color: var(--blue-a60);
+  color: var(--white);
+  background: var(--blue-a20);
+}
+
+/* --- Store badges ---------------------------------------------------------
+   Sized like the real Apple / Google badges so swapping in the official
+   artwork later does not move the layout. */
+.badge {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 3.25rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-m);
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+}
+
+a.badge:hover {
+  border-color: var(--blue-a60);
+  box-shadow: var(--glow-blue);
+}
+
+.badge--pending {
+  opacity: 0.62;
+  border-style: dashed;
+}
+
+.badge__store {
+  font-variation-settings: 'wdth' 100, 'wght' 700;
+  font-size: var(--step--1);
+  line-height: 1.2;
+}
+
+.badge__note {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  color: var(--chrome-dim);
+  letter-spacing: 0.06em;
+}
+
+/* --- The [TODO] marker ----------------------------------------------------
+   Deliberately loud. These pages are templates and the unfinished parts have
+   to be impossible to miss, including by whoever ships the site in a hurry.
+   The colour is not the brand blue precisely so it never reads as a design
+   element that belongs there. */
+.todo {
+  border-inline-start: 2px solid #ffb020;
+  background: rgba(255, 176, 32, 0.07);
+  color: #ffce7a;
+  padding: var(--space-xs) var(--space-s);
+  /* Square against the rule, rounded away from it — stated logically so the
+     rule and the flat edge stay together when the text reads the other way. */
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+  border-start-end-radius: var(--r-s);
+  border-end-end-radius: var(--r-s);
+  font-size: var(--step--1);
+  margin-block: var(--space-s);
+}
+
+/* --- Section heads --------------------------------------------------------- */
+.head {
+  max-width: var(--container-text);
+  margin-bottom: var(--space-xl);
+}
+
+.head__label {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  margin-bottom: var(--space-s);
+}
+
+.head__index {
+  color: var(--blue);
+}
+
+.head__title {
+  font-size: var(--step-4);
+  margin-bottom: var(--space-s);
+}
+
+.head__title--sm {
+  font-size: var(--step-3);
+  margin-bottom: var(--space-m);
+}
+
+.head__lede {
+  color: var(--chrome);
+  font-size: var(--step-1);
+  max-width: var(--measure);
+}

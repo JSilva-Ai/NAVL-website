@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- The rest of this head is rendered from src/content/pages.ts by the
+         page-meta plugin in vite.config.ts. Only the charset and the module
+         script below stay literal: Vite has to read both without executing
+         anything. Do not add tags here — add them to the plugin, or they will
+         exist on one page and be forgotten on the other twelve. -->
+  </head>
+  <body>
+    <div id="root"></div>
+    <!--
+      Organization structured data.
+
+      Hand-written rather than generated, because it is small, it changes about
+      once a year, and a build step to emit twelve lines of JSON would be more
+      moving parts than the thing it produces. Every claim in it appears
+      somewhere on the site in prose as well — there is nothing here that a
+      visitor could not read for themselves, which is the line that keeps
+      structured data honest rather than a second, quieter set of claims.
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "New AI Vision Labs",
+        "legalName": "New AI Vision Labs LLC",
+        "url": "https://newaivisionlabs.com/",
+        "logo": "https://newaivisionlabs.com/brand/mark-512.png",
+        "email": "support@newaivisionlabs.com",
+        "telephone": "+1-404-597-3852",
+        "description": "An independent technology studio building intelligent applications and original games.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "1926 Barrett Knoll Circle NW",
+          "addressLocality": "Kennesaw",
+          "addressRegion": "GA",
+          "postalCode": "30152",
+          "addressCountry": "US"
+        }
+      }
+    </script>
+    <script type="module" src="/src/pages/home.tsx"></script>
+  </body>
+</html>

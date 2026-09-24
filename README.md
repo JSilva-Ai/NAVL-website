@@ -1,0 +1,363 @@
+# New AI Vision Labs
+
+The website for New AI Vision Labs — an independent app studio publishing to
+the App Store and Google Play.
+
+---
+
+## Running it
+
+```bash
+npm install
+npm run dev            # http://localhost:5173
+npm run build          # tsc -b && vite build
+npm run preview        # serve dist/ on :4173
+```
+
+React, Vite, and hand-written CSS. No CSS framework, no animation library, no
+router, no 3D library.
+
+## Structure
+
+This is a **multi-page build**, not a single-page app. Every route is its own
+HTML document with its own `<title>`, description, canonical, and entry module.
+
+That is a deployment decision rather than a stylistic one. On a static host an
+SPA serves unknown paths from the 404 document, and GitHub Pages returns it
+with a real 404 status. `/privacy`, `/terms`, `/support` and `/data-deletion`
+are URLs Apple and Google reviewers open directly, and a legal page that
+answers 404 is a rejected listing. Real files answer 200.
+
+```
+index.html                 → src/pages/home.tsx
+apps/index.html            → src/pages/apps.tsx
+apps/<slug>/               → src/pages/app-<slug>.tsx   (one per product)
+demo/                      → src/pages/demo.tsx
+support/  privacy/  terms/  data-deletion/
+```
+
+`vite.config.ts` discovers every `index.html` in the project, so adding a route
+means adding a directory — there is no list to keep in sync. `public/sitemap.xml`
+*is* a list, and does need updating. The one directory it skips is `mobile/`,
+which holds three more copies of the game's own `index.html` and no routes.
+
+```
+src/
+  content/
+    site.ts        studio, nav, home, apps, demo, testimonials, footer
+    legal.ts       privacy policy and terms
+    help.ts        support and data deletion
+  components/      one component per unit; nav.css and hero.css sit beside theirs
+  lib/
+    perceptionField.ts   the home hero's WebGL2 point cloud
+    url.ts               internal links and public assets, resolved against BASE_URL
+    hooks.ts             reveal, media query, pointer, scroll
+  pages/           one entry per route
+  styles/          tokens, base, ui, sections
+mobile/
+  void-striker/    the game packaged for iOS and Android with Capacitor —
+                   a separate npm project; see its own README
+scripts/
+  shoot.mjs        screenshots every route across six viewports
+  a11y.mjs         axe-core + keyboard walk + touch-target audit
+  perf.mjs         Core Web Vitals, transfer weight, measured frame rate
+  render/brand.mjs regenerates og.jpg and the app tile from the mark
+```
+
+## Adding a product
+
+1. Add an entry to `apps` in `src/content/site.ts`. `category` puts it in the
+   applications or the games group — `portfolio` derives both from the array,
+   so there is no second list to update. `status` is one of four stages, and
+   `platforms` is optional: leave it off rather than guessing at iOS and
+   Android for something too early to have decided.
+2. Copy `apps/void-striker/index.html` to `apps/<slug>/index.html` and update
+   its title, description, and canonical.
+3. Copy `src/pages/app-void-striker.tsx` to `src/pages/app-<slug>.tsx`, change
+   the slug, and point the new HTML at it.
+4. Add the route to `public/sitemap.xml` and to `ROUTES` in `scripts/shoot.mjs`.
+
+Screenshots go in `public/media/apps/<slug>/` and are listed on the app entry.
+
+## The identity
+
+The mark is an **NAI monogram**: the N drawn whole, the A set so its left arm
+crosses the N's right stem with its apex carried above the N's cap height. That
+overhang is the peak — the letters interlock rather than standing side by side.
+The i's tittle is the sphere, and it is the only filled element and the only
+one carrying the blue.
+
+Three files hold the same geometry and must move together:
+
+| | |
+|---|---|
+| `src/assets/logo.svg` | standalone asset, explicit colours |
+| `src/components/Logo.tsx` | inline, inherits `currentColor` |
+| `scripts/render/brand.mjs` | rasterised for `og.jpg` and the app tile |
+
+`public/favicon.svg` is deliberately *not* the same drawing. It is a reduction
+— the peak and the sphere only — because at 16px each of three letters gets
+about four pixels and the result is a grey smudge.
+
+Palette and type live in `src/styles/tokens.css`: `#050507` ground, `#0A84FF →
+#1E6FFF` primary, `#C8CDD4` chrome for the second voice, pure white body copy.
+Headings are heavy and condensed on Archivo's width axis (`wdth` 76, `wght`
+800) rather than by transform — scaling a letterform horizontally thins its
+horizontals unevenly.
+
+## Game media
+
+**Every piece of game media on this site is 520×720.** That is the size VOID
+STRIKER's canvas is authored at, adopted as the house format: a clip, a
+screenshot and an empty slot are then interchangeable, and a grid never reflows
+when one replaces another. The size lives in `--media-w` / `--media-h` /
+`--media-ratio` in `tokens.css`.
+The width is a cap rather than a fixed size — it has to shrink on a 320px
+phone — but the ratio always holds.
+
+`GameClip.tsx` is the one component that fills the slot. Under reduced motion
+it renders the poster and nothing else: no decoder, no source elements, no play
+control to argue with.
+
+The gameplay clip and poster are published under `public/media/games/void-striker/`.
+The editable game source, original art, and iOS/Android projects live in the
+private `JSilva-Ai/void-striker` repository. This public repository contains
+only marketing media and site pages. `/demo/` shows the clip; the former
+playable URL redirects to the product page. Generate new footage from the
+private project and copy only the finished media into this site.
+
+## The hero
+
+`src/lib/perceptionField.ts` renders a WebGL2 point cloud. Points at rest are
+achromatic; points that have returned run the mark's blue, and the deeper blue
+appears in the mid band as a depth cue — the same gradient as the sphere.
+
+It is ornament, it is confined to the home page, and it makes no claim. If the
+GPU cannot run it or the visitor prefers reduced motion, the page loses a
+texture and nothing else.
+
+## Checks
+
+```bash
+npm run ci            # everything CI runs, at the base CI runs it at
+npm run ci -- --skip-build   # reuse the dist on disk
+npm run ci -- --only=a11y    # one suite (a11y | qa | rtl)
+```
+
+`scripts/ci.mjs` **is** what `.github/workflows/checks.yml` runs, rather than a
+local approximation of it. That is the only arrangement where "it passed
+locally" and "it passed CI" mean the same thing, and it is here because both
+halves of that sentence had already been false once: the workflow's
+hand-written accessibility route list went on checking eight routes months
+after there were thirteen, and a base-path bug reached `main` because every
+local run had been at `/` while CI builds at `/NAVL-website/`.
+
+It builds at `BASE_PATH=/NAVL-website/`, **passes the same base to the preview
+server**, refuses to run if the server comes up anywhere else, reads the route
+list off the build rather than from a list someone maintains, and then runs the
+accessibility, visual and RTL suites over it.
+
+The base matters. Production builds at the domain root because `public/CNAME`
+is present, so testing at `/` would leave every base-relative URL — which is
+all of them, since links go through `lib/url.ts` — untested in the harder of
+the two configurations.
+
+The individual suites, if you want one on its own:
+
+```bash
+node scripts/a11y.mjs  --url=…   # axe-core, keyboard walk, target sizes
+node scripts/shoot.mjs --url=…   # screenshots; console, request and overflow checks
+node scripts/rtl.mjs   --url=…   # right-to-left regression coverage
+npm run qa:perf                  # Core Web Vitals, informational
+```
+
+### Right-to-left coverage
+
+`scripts/rtl.mjs` forces `dir="rtl"` on a site whose only published locale is
+English. The Latin text then reads oddly, which does not matter: none of what it
+checks is about language. It renders each route in both directions and compares
+them.
+
+- the document must not be wider than the viewport
+- nothing may hang past either edge
+- **an element's distance from the start edge must be the same in both
+  directions** — this is the check that catches a physical property that did not
+  flip, and it is scoped to elements whose width did not change, because a
+  different width means the text wrapped differently and the comparison would be
+  measuring the wrap
+- the `↗` arrow must be mirrored, since a glyph does not mirror itself
+
+It exists as a permanent suite rather than a one-off because a one-off already
+found one: converting a list's `padding-left` to `padding-inline-start` while
+leaving its bullet at `left: calc(…)` pushed `/support/` three pixels wide in
+RTL. Nothing was out of bounds, nothing looked wrong left-to-right, and the
+whole suite stayed green — because every check in it ran left-to-right.
+
+Deliberate exceptions are listed in `EXEMPT` at the top of the script, with the
+reason. Today that is the home page's phone mockup: a phone's side button is on
+the right of the device whichever way the language on its screen reads.
+
+### Screenshot coverage by locale
+
+`scripts/shoot.mjs` sweeps the default locale in full — thirteen routes across
+six viewports — and a translated locale as a sample: five routes at two
+viewports, chosen because between them they carry every component on the site.
+
+That is deliberate arithmetic. Four locales swept the way English is would be
+312 screenshots a run, and a suite slow enough to skip catches nothing. What
+differs in a translation is text — its length, its wrapping, its direction — and
+that breaks a layout at the narrowest width first.
+
+```bash
+node scripts/shoot.mjs --locales=en          # default
+node scripts/shoot.mjs --locales=en,pt       # once /pt/ exists
+```
+
+The run prints which locales it covered and at what depth, so a green result is
+never mistaken for more coverage than it was.
+
+## Deploying
+
+`.github/workflows/deploy.yml` publishes to GitHub Pages from `main`, which is
+named literally in the workflow — see the comment at the top of that file for
+why following `repository.default_branch` is a trap. `base` is configurable
+because the same build serves from a domain root and from a subpath:
+
+```bash
+npm run build                        # domain root
+BASE_PATH=/NAVL-website/ npm run build  # GitHub Pages project site
+```
+
+The workflow resolves this itself: a `public/CNAME` means a custom domain and
+the site builds for the root, otherwise it builds for `/<repo>/`. Internal
+links and runtime-built asset URLs go through `src/lib/url.ts`, which resolves
+them against `BASE_URL` — Vite cannot rewrite those for you.
+
+### The domain
+
+`public/CNAME` names `newaivisionlabs.com`, so the deploy publishes there and
+the build switches to the domain root. Everything else in the site was already
+written for that domain — every canonical URL, `public/sitemap.xml`,
+`public/robots.txt` and the manifest's `start_url` all say
+`https://newaivisionlabs.com/`, and they are simply wrong for as long as the
+site is served from the `github.io` subpath instead.
+
+This is done — the domain resolves to Pages and the site serves from it. What
+follows is the record of how, because it is the part that is easy to get
+backwards.
+
+**The DNS has to be pointed before the CNAME reaches `main`.** With a CNAME in
+the artifact, GitHub Pages sets the custom domain and redirects the `github.io`
+URL to it. If the domain is not pointed at Pages yet, that redirect leads to
+whatever the registrar is still serving — so publishing the CNAME first takes
+the working site *down* rather than moving it.
+
+At the registrar, four `A` records on the apex and one `CNAME` on `www`:
+
+```
+@      A       185.199.108.153
+@      A       185.199.109.153
+@      A       185.199.110.153
+@      A       185.199.111.153
+www    CNAME   jsilva-ai.github.io.
+```
+
+`AAAA` records for the same four hosts are optional and can be added later.
+
+Deleting the apex `A` record at Hostinger also removed the existing `www`
+CNAME, so `www` had to be created rather than edited. Check for it by name
+after any change to that zone — a missing `www` is invisible until someone
+types it.
+
+**Change only those records.** Do not switch nameservers and do not use any
+"reset/clear DNS" or "connect a website" button the registrar offers: those
+rewrite the whole zone, which takes the `MX`, `SPF` and `DMARC` records with
+them, and support email stops being delivered without anything appearing to
+break.
+
+Then, once the records resolve: merge to `main`, wait for the deploy, and turn
+on **Settings → Pages → Enforce HTTPS** after GitHub has issued the
+certificate. It cannot be enabled until the domain resolves to Pages, and a
+store reviewer opening an `http://` link that does not redirect is a bad first
+impression of a company.
+
+## The business address question
+
+The site **publishes the operator's home address**, in `site.postalAddress` and
+in the privacy policy's "Who we are". That was decided deliberately, with the
+alternatives priced and the consequence stated, and it is recorded here so that
+nobody later mistakes it for something that slipped through.
+
+The reasoning that made it a real choice rather than a default: withholding the
+address from this site would not have kept it private, because a store listing
+publishes one anyway.
+
+- **Google Play.** The developer address is shown on the store listing, is
+  verified by Google, and cannot be suppressed. A USPS PO box is refused. A
+  street address from a mailbox service or a registered agent is accepted.
+- **Offering the apps in the EU.** Apple publishes trader details — name,
+  address, phone, email — under the Digital Services Act, and the GDPR expects
+  the controller's address in the privacy notice itself.
+
+If that trade-off is ever revisited, the routes in Georgia, cheapest first:
+
+1. **A commercial mailbox with a street address** (a CMRA — the UPS Store and
+   similar). Roughly $10–30/month, accepted by Google Play because it is a
+   street address rather than a PO box.
+2. **A registered agent's address**, if the studio is or becomes an LLC.
+   Agents run $50–150/year.
+
+Switching is a one-line change to `site.postalAddress` plus the matching
+sentence in the privacy policy's "Who we are", and then the same address in
+the Play Console and App Store Connect. Nothing else reads it.
+
+### The entity
+
+**New AI Vision Labs LLC** — a Georgia limited liability company, registered
+with the Secretary of State, holding an EIN issued in that name.
+
+That matters in three places in this repo:
+
+- `site.legalName` is the entity and appears in the privacy policy, the terms,
+  and the copyright line. `site.name` is the trading name and is what the site
+  says everywhere it is talking to a visitor rather than to a lawyer.
+- The terms name Georgia as the governing law, which is where the entity is
+  formed. Those now agree, which they must.
+- The liability cap in the terms is still `[TODO]` and is now worth setting
+  properly, because there is an entity for it to protect.
+
+**The EIN is not in this repo and must never be.** It is required nowhere on a
+website and is useful to anyone attempting fraud in the company's name. The
+same is true of the formation documents.
+
+One thing worth checking outside this repo: a Georgia LLC's registered agent
+and registered office address are public record on the Secretary of State's
+searchable database. If the home address was used there, it is already public
+independently of this website, and switching to a commercial registered agent
+(around $50–150/year) is what takes it off that record.
+
+## Before this goes public
+
+- **Every `[TODO]` marker is visible on the live page.** That is deliberate.
+  `src/content/legal.ts` and `src/content/help.ts` are honest templates, not
+  finished policy — nothing in them asserts what any app collects, because that
+  is a fact about software that has to be checked rather than guessed. Have a
+  lawyer read the privacy policy and terms before publishing.
+- **VOID STRIKER's store plan is undecided, and the site says so.** Platforms
+  read `Browser` only, and the copy states no release date rather than one that
+  would move. Screenshots are still to come.
+- The canonical URLs and the sitemap point at `newaivisionlabs.com` while the
+  build is served from GitHub Pages. That is intended — the domain is owned and
+  not yet pointed at the site.
+
+## Conventions worth knowing
+
+- **Text stops at `--chrome-dim`.** `--chrome-faint` and below are under 4.5:1
+  on the ground and are reserved for rules, dots, and disabled marks.
+- **The blue is a signal.** It marks the one thing on a screen being offered.
+  If two things glow, neither reads as important.
+- **Reviews are built, switched off, and empty.** `Testimonials.tsx` renders
+  nothing until there are real store reviews to put in it. Do not write filler
+  there to see how it looks.
+- **Reduced motion is a layout, not a fallback.** Every page is designed to be
+  complete with all animation disabled.
