@@ -146,7 +146,7 @@ export const home = {
   portfolio: {
     index: '02',
     label: 'Portfolio',
-    headline: 'Six products, four stages.',
+    headline: 'Six products. One standard.',
     body: 'Four intelligent applications and two games, each marked with the stage it is actually at.',
     cta: { label: 'All products', route: routes.apps },
   },
@@ -207,10 +207,11 @@ export type Category = 'app' | 'game';
  *   'In development'     being built
  *   'Final testing'      built, being tested before release
  *   'On the stores'      published, with a store link that works
+ *   'On the App Store'    published on Apple, with Google Play pending
  *
  * Nothing may carry 'On the stores' without a real href in `stores`.
  */
-export type Status = 'Product discovery' | 'In development' | 'Final testing' | 'On the stores';
+export type Status = 'Product discovery' | 'In development' | 'Final testing' | 'On the stores' | 'On the App Store';
 
 export interface App {
   slug: string;
@@ -291,7 +292,10 @@ export const apps: App[] = [
       width: 1920,
       height: 1280,
     },
-    stores: [],
+    stores: [
+      { store: 'appStore', href: '' },
+      { store: 'googlePlay', href: '' },
+    ],
   },
   {
     slug: 'shield',
@@ -314,7 +318,10 @@ export const apps: App[] = [
       width: 1920,
       height: 1280,
     },
-    stores: [],
+    stores: [
+      { store: 'appStore', href: '' },
+      { store: 'googlePlay', href: '' },
+    ],
   },
   {
     slug: 'guard',
@@ -337,7 +344,10 @@ export const apps: App[] = [
       width: 1920,
       height: 1280,
     },
-    stores: [],
+    stores: [
+      { store: 'appStore', href: '' },
+      { store: 'googlePlay', href: '' },
+    ],
   },
   {
     slug: 'biblelink',
@@ -345,12 +355,12 @@ export const apps: App[] = [
     category: 'app',
     kind: 'Application · Daily devotional',
     positioning: 'Scripture, reflection, and prayer for every day.',
-    tagline: 'A daily devotional app, in final testing before release.',
-    status: 'Final testing',
+    tagline: 'A daily devotional app, available on the App Store.',
+    status: 'On the App Store',
     description: [
       'BIBLELINK is a daily devotional experience centered on Scripture, reflection, practical application, and prayer.',
       'It is designed around a calm, focused daily rhythm with the Bible, bringing the devotional experience together in one place.',
-      'BIBLELINK is currently in final testing before release. Store links will appear only after release is authorized.',
+      'BIBLELINK is available on the App Store. Google Play availability has not been announced.',
     ],
     icon: {
       src: 'media/apps/biblelink/icon.png',
@@ -404,7 +414,7 @@ export const apps: App[] = [
     ],
     screenshotDisplay: 'gallery',
     stores: [
-      { store: 'appStore', href: '' },
+      { store: 'appStore', href: 'https://apps.apple.com/us/app/biblelink/id6812830407' },
       { store: 'googlePlay', href: '' },
     ],
     privacyRoute: routes.bibleLinkPrivacy,
@@ -416,12 +426,12 @@ export const apps: App[] = [
     category: 'game',
     kind: 'Game',
     tagline: 'Humanity’s last fighter. The Void has awakened.',
-    status: 'Final testing',
+    status: 'On the App Store',
     platforms: ['iOS', 'Android'],
     description: [
       'Fight through five campaign sectors, take on six bosses, or enter the Daily Challenge and Survival Mode. Seven starfighters and five weapon types give every run a different rhythm.',
       'Earn Scrap to unlock ships and paint jobs, improve your arsenal between waves, and carry pilot progression into the next run. Haptics, reduced effects, and English, Portuguese, and Spanish interface options let you tune the experience.',
-      'VOID STRIKER is being prepared for sale on the App Store and Google Play. Watch the gameplay preview here; store links will appear when the game is available.',
+      'VOID STRIKER is available on the App Store. Google Play availability has not been announced.',
     ],
     screenshots: [
       {
@@ -455,7 +465,7 @@ export const apps: App[] = [
       poster: 'media/games/void-striker/poster.jpg',
     },
     stores: [
-      { store: 'appStore', href: '' },
+      { store: 'appStore', href: 'https://apps.apple.com/us/app/void-striker/id6815695186' },
       { store: 'googlePlay', href: '' },
     ],
     privacyRoute: 'apps/void-striker/privacy',
@@ -480,7 +490,10 @@ export const apps: App[] = [
       width: 1920,
       height: 1280,
     },
-    stores: [],
+    stores: [
+      { store: 'appStore', href: '' },
+      { store: 'googlePlay', href: '' },
+    ],
   },
 ];
 
@@ -509,9 +522,9 @@ export const appsPage = {
   index: '',
   label: 'Products',
   headline: 'What we are building.',
-  lede: 'Six products, at four different stages. Everything here is our own work, and each one says where it actually is rather than where we would like it to be.',
+  lede: 'Six products at different stages. Everything here is our own work, and each one says where it actually is rather than where we would like it to be.',
   /** Shown when an app has no store links yet. */
-  notYetOnStores: 'Not on the stores yet',
+  notYetOnStores: 'Not available yet',
   /**
    * Shown on any product page that is not published. The wording covers all
    * three unreleased stages on purpose — a research-stage concept and a
@@ -556,7 +569,7 @@ export const demo = {
     { label: 'Engine', value: 'None. Canvas 2D' },
     { label: 'Audio', value: 'Synthesised, Web Audio' },
   ],
-  note: 'Recorded from the real game build. VOID STRIKER is being prepared for release on mobile stores.',
+  note: 'Recorded from the real game build. VOID STRIKER is available on the App Store.',
 };
 
 /* -------------------------------------------------------------------------
@@ -628,7 +641,7 @@ export const ui = {
   playDemo: 'Play the demo',
   aboutGame: 'About the game',
   deleteRequest: 'Email a deletion request',
-  download: 'Download',
+  download: 'View in store',
   languages: 'Languages',
   phone: 'Phone',
   productsWord: 'PRODUCTS',
