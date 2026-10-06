@@ -72,14 +72,12 @@ export function AppPage({ slug }: { slug: string }) {
           </div>
 
           <aside className="app__side">
-            {/* The "Get it" block appears only once a store is the actual plan.
-                A research-stage concept has no stores array, and printing two
-                greyed-out badges under it would suggest a submission that is
-                years away from being made. */}
+            {/* Show both store logos for every product. A badge becomes a link
+                only when its official listing is available. */}
             {app.stores.length > 0 && (
               <>
                 <h2 className="label">{ui.getIt}</h2>
-                {app.status !== 'On the stores' && (
+                {!app.stores.some((store) => store.href) && (
                   <p className="app__note">{appsPage.inDevelopmentNote}</p>
                 )}
                 <div className="app__badges">
@@ -204,7 +202,7 @@ export function AppPage({ slug }: { slug: string }) {
         </div>
       </section>
       {app.slug === 'biblelink' && <BibleLinkShowcase />}
-      <InterestSection product={app.name} />
+      {!app.stores.some((store) => store.href) && <InterestSection product={app.name} />}
     </>
   );
 }
