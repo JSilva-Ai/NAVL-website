@@ -7,7 +7,7 @@ import type { Status } from '../content/en/site';
  * and the product page — and because a module that exports both a component
  * and a helper defeats fast refresh.
  *
- * Which of four treatments a stage gets is a presentation decision, so the
+ * Which treatment a stage gets is a presentation decision, so the
  * content module does not carry it: `site.ts` should not have to know that
  * pills have colours at all.
  */
@@ -20,6 +20,7 @@ export function statusModifier(status: Status): string {
     case 'Final testing':
       return 'testing';
     case 'On the stores':
+    case 'On the App Store':
       return 'live';
   }
 }

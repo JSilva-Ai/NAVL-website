@@ -158,13 +158,11 @@
   background: var(--blue-a20);
 }
 
-/* --- Store badges ---------------------------------------------------------
-   Sized like the real Apple / Google badges so swapping in the official
-   artwork later does not move the layout. */
+/* --- Store badges --------------------------------------------------------- */
 .badge {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
   min-height: 3.25rem;
   padding: 0.5rem 1rem;
   border: 1px solid var(--line-strong);
@@ -172,6 +170,37 @@
   transition:
     border-color var(--dur-fast) var(--ease-out),
     box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.badge__icon {
+  flex: none;
+  filter: invert(1);
+}
+
+.badge__copy {
+  display: flex;
+  flex-direction: column;
+}
+
+.badge--compact {
+  min-height: 2.75rem;
+  min-width: 0;
+  padding: 0.4rem 0.5rem;
+  gap: 0.45rem;
+}
+
+.badge--compact .badge__icon {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.badge--compact .badge__store {
+  font-size: var(--step--2);
+}
+
+.badge--compact .badge__note {
+  font-size: 0.6rem;
+  letter-spacing: 0;
 }
 
 a.badge:hover {

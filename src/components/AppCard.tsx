@@ -1,9 +1,10 @@
-import { statusLabel, type App } from '../content/current';
+import { statusLabel, ui, type App } from '../content/current';
 import { asset, url } from '../lib/url';
 import { GameClip } from './GameClip';
 import { useReveal } from '../lib/hooks';
 import { statusModifier } from '../lib/status';
 import { mediaAlt, story } from '../content/story';
+import { StoreBadge } from './StoreBadge';
 
 /**
  * One app, on the grid.
@@ -117,6 +118,9 @@ export function AppCard({
         <p className="mono appcard__platforms">
           {app.platforms ? `${app.kind} · ${app.platforms.join(' · ')}` : app.kind}
         </p>
+        <div className="appcard__stores" role="group" aria-label={`${app.name} — ${ui.getIt}`}>
+          {app.stores.map((store) => <StoreBadge key={store.store} link={store} compact />)}
+        </div>
       </div>
     </li>
   );

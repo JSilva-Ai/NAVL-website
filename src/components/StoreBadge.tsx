@@ -1,44 +1,30 @@
 import type { StoreLink } from '../content/current';
 import { appsPage, ui } from '../content/current';
+import { asset } from '../lib/url';
 
 const LABEL: Record<StoreLink['store'], string> = {
   appStore: 'App Store',
   googlePlay: 'Google Play',
 };
 
-/**
- * A store link.
- *
- * These are deliberately *not* imitations of Apple's "Download on the App
- * Store" or Google's "Get it on Google Play" badges. Both are trademarked
- * artwork with published rules about size, clear space, and alteration, and a
- * hand-drawn lookalike breaks those rules while also looking slightly wrong
- * next to the real thing.
- *
- * [TODO] When an app is published, download the official badge for each store
- * from Apple's Marketing Resources and Google Play's Brand Guidelines, drop
- * the SVGs into public/brand/, and swap the markup below for an <img>. The
- * slot is already the right shape and the layout will not move.
- *
- * Until a store href exists, the badge renders as a disabled, non-focusable
- * marker rather than a dead link.
- */
-export function StoreBadge({ link }: { link: StoreLink }) {
+/** Store names with their logos; unpublished stores remain non-focusable. */
+export function StoreBadge({ link, compact = false }: { link: StoreLink; compact?: boolean }) {
   const label = LABEL[link.store];
+  const className = `badge${compact ? ' badge--compact' : ''}`;
+  const icon = <img className="badge__icon" src={asset(`brand/${link.store === 'appStore' ? 'apple' : 'googleplay'}.svg`)} alt="" width="24" height="24" />;
+  const content = <><span className="badge__store">{label}</span><span className="badge__note">{link.href ? ui.download : appsPage.notYetOnStores}</span></>;
 
   if (!link.href) {
     return (
-      <span className="badge badge--pending" aria-disabled="true">
-        <span className="badge__store">{label}</span>
-        <span className="badge__note">{appsPage.notYetOnStores}</span>
+      <span className={`${className} badge--pending`} aria-disabled="true">
+        {icon}<span className="badge__copy">{content}</span>
       </span>
     );
   }
 
   return (
-    <a className="badge" href={link.href} rel="noopener">
-      <span className="badge__store">{label}</span>
-      <span className="badge__note">{ui.download}</span>
+    <a className={className} href={link.href} rel="noopener">
+      {icon}<span className="badge__copy">{content}</span>
     </a>
   );
 }

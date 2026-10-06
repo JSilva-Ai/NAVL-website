@@ -362,6 +362,18 @@
   letter-spacing: 0.1em;
 }
 
+.appcard__stores {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2xs);
+  margin-top: var(--space-s);
+}
+
+.appcard__stores a.badge {
+  position: relative;
+  z-index: 1;
+}
+
 /* One app: a lone 17rem card in a four-up grid reads as an empty page rather
    than as a studio with one product. While it is alone it lays out
    horizontally, which fills the row and looks deliberate. :has means this
