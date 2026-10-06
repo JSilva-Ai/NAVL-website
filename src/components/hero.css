@@ -82,7 +82,7 @@
 }
 
 .hero__studio-art { display: block; width: 100%; height: 100%; object-fit: cover; object-position: right center; }
-.hero__float--void { inset-inline-end: 6%; bottom: 8%; }
+.hero__float--void { inset-inline-end: 6%; bottom: 8%; width: 13rem; }
 
 .hero__vision-picture img {
   object-fit: cover;
@@ -121,7 +121,7 @@
 .hero__float--bible { inset-inline-start: 6%; top: 7%; }
 .hero__float--shield { inset-inline-end: 5%; top: 48%; }
 .hero__float--galaxy { inset-inline-start: 8%; bottom: 8%; }
-.hero__float-orb { width: 2.3rem; height: 2.3rem; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff, #55aaff 18%, #102d5e 55%, #030711 74%); box-shadow: 0 0 1.5rem rgba(60,155,255,.5); }
+.hero__float-orb { flex: 0 0 2.3rem; width: 2.3rem; height: 2.3rem; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff, #55aaff 18%, #102d5e 55%, #030711 74%); box-shadow: 0 0 1.5rem rgba(60,155,255,.5); }
 .hero__float-orb--gold { background: radial-gradient(circle at 35% 30%, #fff, #ffd57a 18%, #70460c 55%, #0d0802 74%); box-shadow: 0 0 1.5rem rgba(223,164,46,.45); }
 .hero__vision-index { position: absolute; inset-inline-end: 7%; bottom: 6%; z-index: 2; display: grid; text-align: end; color: rgba(255,255,255,.72); font-family: var(--font-mono); }
 .hero__vision-index span:first-child { font-size: clamp(2.3rem, 5vw, 4.6rem); line-height: .85; color: #fff; }
