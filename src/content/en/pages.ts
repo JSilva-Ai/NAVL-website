@@ -39,7 +39,7 @@ export const pages: PageMeta[] = [
     route: 'apps',
     title: 'Products — New AI Vision Labs',
     description:
-      'The six products New AI Vision Labs is building — four intelligent applications and two games — each marked with the stage it is at.',
+      'Explore seven New AI Vision Labs products — four applications and three games — from released work to future concepts.',
   },
   {
     route: 'about',
@@ -57,7 +57,7 @@ export const pages: PageMeta[] = [
     route: 'apps/biblelink',
     title: 'BIBLELINK — New AI Vision Labs',
     description:
-      'BIBLELINK is a daily devotional app by New AI Vision Labs, centered on Scripture, reflection, practical application, and prayer. Currently in final testing before release.',
+      'BIBLELINK is a daily devotional app by New AI Vision Labs, centered on Scripture, reflection, practical application, and prayer. Available now on the App Store.',
   },
   {
     route: 'apps/biblelink/privacy',
@@ -76,6 +76,11 @@ export const pages: PageMeta[] = [
     title: 'GALAXY FORGE — New AI Vision Labs',
     description:
       'GALAXY FORGE is the second game from New AI Vision Labs, currently in development.',
+  },
+  {
+    route: 'apps/nova-frontier',
+    title: 'NOVA FRONTIER — New AI Vision Labs',
+    description: 'NOVA FRONTIER is a future strategy game by New AI Vision Labs, currently in development. Explore its concept artwork and creative direction.',
   },
   {
     route: 'apps/guard',

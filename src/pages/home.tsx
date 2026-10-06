@@ -6,6 +6,8 @@ import { SectionHead } from '../components/Shell';
 import { AppCard } from '../components/AppCard';
 import { home, portfolio } from '../content/current';
 import { InterestSection, LatestSection } from '../components/StudioStory';
+import { AvailableNow, FutureGame } from '../components/LaunchMedia';
+import '../components/launch.css';
 import { url } from '../lib/url';
 
 /**
@@ -84,8 +86,10 @@ function DemoCallout() {
 mount(
   <>
     <Hero />
+    <AvailableNow />
     <Approach />
     <Portfolio />
+    <FutureGame />
     <LatestSection />
     <DemoCallout />
     <InterestSection />

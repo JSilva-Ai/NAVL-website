@@ -32,15 +32,15 @@ const pt: Copy = {
   blurb: 'Um estúdio independente que cria aplicativos inteligentes e jogos originais.',
   location: 'Kennesaw, Geórgia, Estados Unidos',
   nav: ['Produtos', 'Jogo em ação', 'Suporte'],
-  hero: { eyebrow: 'Estúdio independente de tecnologia', headline: ['Criamos', 'tecnologia', 'com propósito.'], accentWord: 'propósito.', primary: 'Conheça nossos produtos', secondary: 'Assista ao jogo' },
+  hero: { eyebrow: 'Estúdio independente de tecnologia', headline: ['Produtos inteligentes.', 'Ideias originais.'], accentWord: 'Ideias originais.', primary: 'Conheça nossos produtos', secondary: 'Assista ao jogo' },
   approach: { label: 'Como trabalhamos', headline: 'Um estúdio pequeno. Produtos completos.', body: ['Tudo o que publicamos nasce aqui. Não fazemos produtos genéricos para terceiros: cada detalhe tem a identidade e a responsabilidade da NAVL.', 'As mesmas pessoas que escrevem o código desenham a experiência e respondem ao suporte. Essa proximidade aparece no cuidado com o produto inteiro.'], points: [
     { title: 'Criamos o que publicamos', body: 'Cada produto é concebido, projetado e desenvolvido internamente, do início ao fim.' },
     { title: 'Respeitamos a privacidade', body: 'Pedimos somente os dados necessários para cada produto funcionar e explicamos isso com clareza.' },
     { title: 'Mostramos o estágio real', body: 'Pesquisa, desenvolvimento, testes ou publicação: o site sempre informa onde cada produto realmente está.' },
   ] },
-  portfolio: { label: 'Portfólio', headline: 'Seis ideias. Uma mesma exigência.', body: 'Quatro aplicativos inteligentes e dois jogos, apresentados com honestidade e uma identidade visual comum.', all: 'Ver todos os produtos', apps: 'IA e aplicativos', games: 'Jogos' },
+  portfolio: { label: 'Portfólio', headline: 'Sete produtos. Uma mesma exigência.', body: 'Quatro aplicativos e três jogos, apresentados com honestidade e uma identidade visual comum.', all: 'Ver todos os produtos', apps: 'IA e aplicativos', games: 'Jogos' },
   demoCallout: { label: 'Jogo em ação', headline: 'Veja VOID STRIKER em ação.', body: 'Assista a uma partida real de VOID STRIKER, com combate espacial, ondas de inimigos e melhorias.', cta: 'Assistir ao vídeo' },
-  appsPage: { label: 'Produtos', headline: 'O que estamos construindo.', lede: 'Seis produtos em diferentes estágios. Todos são nossos e cada página informa o estágio real do trabalho.', note: 'Este produto ainda não foi lançado. O link de download aparecerá quando houver uma versão pública.', pending: 'Não disponível' },
+  appsPage: { label: 'Produtos', headline: 'O que estamos construindo.', lede: 'Sete produtos em diferentes estágios. Todos são nossos e cada página informa o estágio real do trabalho.', note: 'Este produto ainda não foi lançado. O link de download aparecerá quando houver uma versão pública.', pending: 'Não disponível' },
   ui: { skipToContent: 'Ir para o conteúdo', menu: 'Menu', close: 'Fechar', backToApps: 'Todos os produtos', screenshotsLabel: 'Capturas do aplicativo', gameplayLabel: 'Jogo em ação', conceptArtLabel: 'Arte conceitual', noScreenshots: 'As capturas serão publicadas quando o produto tiver uma interface pronta para ser mostrada.', kindLabel: 'Categoria', stageLabel: 'Estágio', supportShort: 'Suporte', supportEmail: 'E-mail de suporte', emailUs: 'Fale conosco', primaryNav: 'Navegação principal', onThisPage: 'Nesta página', lastUpdated: 'Última atualização', getIt: 'Disponibilidade', platforms: 'Plataformas', legalSupport: 'Privacidade e suporte', privacy: 'Política de Privacidade', terms: 'Termos de Uso', dataDeletion: 'Exclusão de dados', playDemo: 'Jogar demonstração', aboutGame: 'Conheça o jogo', deleteRequest: 'Enviar pedido de exclusão', download: 'Ver na loja', languages: 'Idiomas', phone: 'Telefone', productsWord: 'PRODUTOS', conceptNotice: 'Imagem conceitual de um produto em desenvolvimento.' },
   footer: { studio: 'Estúdio', help: 'Ajuda', legal: 'Legal', rights: 'Todos os direitos reservados.' },
   status: { 'Product discovery': 'Pesquisa de produto', 'In development': 'Em desenvolvimento', 'Final testing': 'Testes finais', 'On the stores': 'Disponível nas lojas', 'On the App Store': 'Disponível na App Store' },
@@ -51,6 +51,7 @@ const pt: Copy = {
     biblelink: { positioning: 'Bíblia, reflexão e oração para todos os dias.', tagline: 'Um aplicativo devocional diário disponível na App Store.', kind: 'Aplicativo · Devocional diário', description: ['BibleLink reúne Bíblia, reflexão, aplicação prática e oração em uma experiência serena.', 'Foi criado para apoiar um ritmo diário de leitura e oferece conteúdo em nove idiomas.', 'O aplicativo está disponível na App Store. A disponibilidade no Google Play ainda não foi anunciada.'] },
     'void-striker': { tagline: 'O último caça da humanidade. O Vazio despertou.', kind: 'Jogo', description: ['Enfrente cinco setores de campanha e seis chefes, ou jogue o Desafio Diário e o Modo Sobrevivência. São sete naves e cinco tipos de arma.', 'Ganhe Sucata para desbloquear naves e pinturas. Ajuste vibração e efeitos, e escolha entre português, inglês e espanhol.', 'VOID STRIKER está disponível na App Store. A disponibilidade no Google Play ainda não foi anunciada.'] },
     'galaxy-forge': { tagline: 'Nosso segundo jogo, atualmente em desenvolvimento.', kind: 'Jogo', description: ['GALAXY FORGE é o segundo jogo do estúdio e está sendo desenvolvido.', 'A jogabilidade ainda não é descrita porque as decisões mudam durante essa fase.'], conceptLabel: 'Arte conceitual · jogo em desenvolvimento' },
+    'nova-frontier': { tagline: 'Um novo mundo de estratégia em desenvolvimento.', kind: 'Jogo', description: ['NOVA FRONTIER é um futuro jogo original da New AI Vision Labs, atualmente em desenvolvimento.', 'A imagem abaixo é uma arte conceitual da direção criativa. Sistemas, plataformas e recursos ilustrados ainda podem mudar durante o desenvolvimento.'], conceptLabel: 'Arte conceitual · jogo em desenvolvimento' },
   },
   pageTitles: {},
 };
@@ -59,15 +60,15 @@ const es: Copy = {
   proposition: 'Somos un estudio de tecnología independiente. Diseñamos nuestros propios productos, aplicaciones inteligentes y juegos originales, y los publicamos con nuestra marca.',
   blurb: 'Un estudio independiente que crea aplicaciones inteligentes y juegos originales.', location: 'Kennesaw, Georgia, Estados Unidos',
   nav: ['Productos', 'Gameplay', 'Soporte'],
-  hero: { eyebrow: 'Estudio de tecnología independiente', headline: ['Creamos', 'tecnología', 'con propósito.'], accentWord: 'propósito.', primary: 'Conoce nuestros productos', secondary: 'Ver el juego' },
+  hero: { eyebrow: 'Estudio de tecnología independiente', headline: ['Productos inteligentes.', 'Ideas originales.'], accentWord: 'Ideas originales.', primary: 'Conoce nuestros productos', secondary: 'Ver el juego' },
   approach: { label: 'Cómo trabajamos', headline: 'Un estudio pequeño. Productos completos.', body: ['Todo lo que publicamos nace aquí. Cada detalle lleva la identidad y la responsabilidad de NAVL.', 'Las mismas personas que escriben el código diseñan la experiencia y responden el soporte. Esa cercanía se nota en el producto completo.'], points: [
     { title: 'Creamos lo que publicamos', body: 'Cada producto se concibe, diseña y desarrolla internamente, de principio a fin.' },
     { title: 'Respetamos la privacidad', body: 'Pedimos solo los datos necesarios y explicamos con claridad cómo funciona cada producto.' },
     { title: 'Mostramos la etapa real', body: 'Investigación, desarrollo, pruebas o publicación: siempre indicamos la etapa verdadera.' },
   ] },
-  portfolio: { label: 'Portafolio', headline: 'Seis ideas. Una misma exigencia.', body: 'Cuatro aplicaciones inteligentes y dos juegos, presentados con honestidad y una identidad visual común.', all: 'Ver todos los productos', apps: 'IA y aplicaciones', games: 'Juegos' },
+  portfolio: { label: 'Portafolio', headline: 'Siete productos. Una misma exigencia.', body: 'Cuatro aplicaciones y tres juegos, presentados con honestidad y una identidad visual común.', all: 'Ver todos los productos', apps: 'IA y aplicaciones', games: 'Juegos' },
   demoCallout: { label: 'Gameplay', headline: 'Mira VOID STRIKER en acción.', body: 'Mira una partida real de VOID STRIKER, con combate espacial, oleadas enemigas y mejoras.', cta: 'Ver el vídeo' },
-  appsPage: { label: 'Productos', headline: 'Lo que estamos construyendo.', lede: 'Seis productos en distintas etapas. Todos son nuestros y cada página indica el estado real del trabajo.', note: 'Este producto aún no se ha lanzado. El enlace de descarga aparecerá cuando exista una versión pública.', pending: 'No disponible' },
+  appsPage: { label: 'Productos', headline: 'Lo que estamos construyendo.', lede: 'Siete productos en distintas etapas. Todos son nuestros y cada página indica el estado real del trabajo.', note: 'Este producto aún no se ha lanzado. El enlace de descarga aparecerá cuando exista una versión pública.', pending: 'No disponible' },
   ui: { skipToContent: 'Ir al contenido', menu: 'Menú', close: 'Cerrar', backToApps: 'Todos los productos', screenshotsLabel: 'Capturas de la aplicación', gameplayLabel: 'Juego en acción', conceptArtLabel: 'Arte conceptual', noScreenshots: 'Publicaremos capturas cuando exista una interfaz lista para mostrarse.', kindLabel: 'Categoría', stageLabel: 'Etapa', supportShort: 'Soporte', supportEmail: 'Correo de soporte', emailUs: 'Escríbenos', primaryNav: 'Navegación principal', onThisPage: 'En esta página', lastUpdated: 'Última actualización', getIt: 'Disponibilidad', platforms: 'Plataformas', legalSupport: 'Privacidad y soporte', privacy: 'Política de Privacidad', terms: 'Términos de Uso', dataDeletion: 'Eliminación de datos', playDemo: 'Jugar demostración', aboutGame: 'Conoce el juego', deleteRequest: 'Enviar solicitud de eliminación', download: 'Ver en la tienda', languages: 'Idiomas', phone: 'Teléfono', productsWord: 'PRODUCTOS', conceptNotice: 'Imagen conceptual de un producto en desarrollo.' },
   footer: { studio: 'Estudio', help: 'Ayuda', legal: 'Legal', rights: 'Todos los derechos reservados.' },
   status: { 'Product discovery': 'Investigación de producto', 'In development': 'En desarrollo', 'Final testing': 'Pruebas finales', 'On the stores': 'Disponible en tiendas', 'On the App Store': 'Disponible en App Store' },
@@ -78,6 +79,7 @@ const es: Copy = {
     biblelink: { positioning: 'Biblia, reflexión y oración para cada día.', tagline: 'Una aplicación devocional diaria disponible en App Store.', kind: 'Aplicación · Devocional diario', description: ['BibleLink reúne Biblia, reflexión, aplicación práctica y oración en una experiencia serena.', 'Fue creado para acompañar un ritmo diario de lectura y ofrece contenido en nueve idiomas.', 'La aplicación está disponible en App Store. Aún no se ha anunciado su disponibilidad en Google Play.'] },
     'void-striker': { tagline: 'El último caza de la humanidad. El Vacío ha despertado.', kind: 'Juego', description: ['Enfréntate a cinco sectores de campaña y seis jefes, o juega el Desafío Diario y el Modo Supervivencia. Hay siete naves y cinco tipos de arma.', 'Gana Chatarra para desbloquear naves y diseños. Ajusta la vibración y los efectos, y elige español, inglés o portugués.', 'VOID STRIKER está disponible en App Store. Aún no se ha anunciado su disponibilidad en Google Play.'] },
     'galaxy-forge': { tagline: 'Nuestro segundo juego, actualmente en desarrollo.', kind: 'Juego', description: ['GALAXY FORGE es el segundo juego del estudio y está en desarrollo.', 'La jugabilidad todavía no se describe porque las decisiones cambian durante esta etapa.'], conceptLabel: 'Arte conceptual · juego en desarrollo' },
+    'nova-frontier': { tagline: 'Un nuevo mundo de estrategia en desarrollo.', kind: 'Juego', description: ['NOVA FRONTIER es un futuro juego original de New AI Vision Labs, actualmente en desarrollo.', 'La imagen es arte conceptual de la dirección creativa. Los sistemas, plataformas y funciones ilustrados pueden cambiar durante el desarrollo.'], conceptLabel: 'Arte conceptual · juego en desarrollo' },
   }, pageTitles: {},
 };
 
@@ -85,15 +87,15 @@ const ko: Copy = {
   proposition: '우리는 독립 기술 스튜디오입니다. 지능형 앱과 오리지널 게임을 직접 설계하고 개발해 우리의 이름으로 선보입니다.',
   blurb: '지능형 앱과 오리지널 게임을 만드는 독립 기술 스튜디오.', location: '미국 조지아주 케네소',
   nav: ['제품', '게임플레이', '지원'],
-  hero: { eyebrow: '독립 기술 스튜디오', headline: ['목적이 있는', '기술을', '만듭니다.'], accentWord: '만듭니다.', primary: '제품 둘러보기', secondary: '게임 영상 보기' },
+  hero: { eyebrow: '독립 기술 스튜디오', headline: ['지능적인 제품.', '독창적인 생각.'], accentWord: '독창적인 생각.', primary: '제품 둘러보기', secondary: '게임 영상 보기' },
   approach: { label: '우리가 일하는 방식', headline: '작은 스튜디오. 완성도 높은 제품.', body: ['우리가 공개하는 모든 제품은 이곳에서 시작됩니다. 각 세부 요소에는 NAVL의 정체성과 책임이 담겨 있습니다.', '코드를 작성하고 경험을 설계하는 사람들이 직접 지원에도 답합니다. 이 가까운 거리가 제품 전체의 완성도로 이어집니다.'], points: [
     { title: '직접 만들고 직접 공개합니다', body: '모든 제품은 아이디어부터 출시까지 내부에서 설계하고 개발합니다.' },
     { title: '개인정보를 존중합니다', body: '제품 작동에 필요한 최소한의 데이터만 사용하고 그 이유를 명확히 설명합니다.' },
     { title: '실제 진행 단계를 공개합니다', body: '연구, 개발, 최종 테스트, 출시 중 현재 위치를 솔직하게 표시합니다.' },
   ] },
-  portfolio: { label: '포트폴리오', headline: '여섯 가지 아이디어. 하나의 기준.', body: '네 개의 지능형 앱과 두 개의 게임을 같은 수준의 정직함과 시각적 완성도로 소개합니다.', all: '모든 제품 보기', apps: 'AI 및 애플리케이션', games: '게임' },
+  portfolio: { label: '포트폴리오', headline: '일곱 가지 제품. 하나의 기준.', body: '네 개의 앱과 세 개의 게임을 같은 수준의 정직함과 시각적 완성도로 소개합니다.', all: '모든 제품 보기', apps: 'AI 및 애플리케이션', games: '게임' },
   demoCallout: { label: '게임플레이', headline: 'VOID STRIKER의 전투를 만나보세요.', body: '실제 게임에서 촬영한 우주 전투, 적의 웨이브, 업그레이드 장면을 영상으로 확인하세요.', cta: '게임 영상 보기' },
-  appsPage: { label: '제품', headline: '우리가 만들고 있는 것.', lede: '여섯 제품의 현재 단계를 각 페이지에 정확히 표시합니다.', note: '아직 출시되지 않은 제품입니다. 공개 버전이 준비되면 다운로드 링크가 표시됩니다.', pending: '아직 이용 불가' },
+  appsPage: { label: '제품', headline: '우리가 만들고 있는 것.', lede: '일곱 제품의 현재 단계를 각 페이지에 정확히 표시합니다.', note: '아직 출시되지 않은 제품입니다. 공개 버전이 준비되면 다운로드 링크가 표시됩니다.', pending: '아직 이용 불가' },
   ui: { skipToContent: '본문으로 이동', menu: '메뉴', close: '닫기', backToApps: '모든 제품', screenshotsLabel: '앱 화면', gameplayLabel: '게임플레이', conceptArtLabel: '콘셉트 아트', noScreenshots: '공개할 수 있는 인터페이스가 준비되면 화면을 게시합니다.', kindLabel: '분류', stageLabel: '단계', supportShort: '지원', supportEmail: '지원 이메일', emailUs: '문의하기', primaryNav: '주요 탐색', onThisPage: '이 페이지에서', lastUpdated: '마지막 업데이트', getIt: '이용 가능 여부', platforms: '플랫폼', legalSupport: '개인정보 및 지원', privacy: '개인정보 처리방침', terms: '이용 약관', dataDeletion: '데이터 삭제', playDemo: '데모 플레이', aboutGame: '게임 소개', deleteRequest: '삭제 요청 이메일 보내기', download: '스토어에서 보기', languages: '언어', phone: '전화', productsWord: '제품', conceptNotice: '개발 중인 제품을 위한 콘셉트 이미지입니다.' },
   footer: { studio: '스튜디오', help: '도움말', legal: '법적 고지', rights: '모든 권리 보유.' },
   status: { 'Product discovery': '제품 연구', 'In development': '개발 중', 'Final testing': '최종 테스트', 'On the stores': '스토어 출시', 'On the App Store': 'App Store 출시' },
@@ -104,6 +106,7 @@ const ko: Copy = {
     biblelink: { positioning: '매일을 위한 성경, 묵상과 기도.', tagline: 'App Store에서 이용할 수 있는 매일 묵상 앱.', kind: '애플리케이션 · 매일 묵상', description: ['BibleLink는 성경, 묵상, 삶의 적용과 기도를 차분한 경험으로 연결합니다.', '매일 성경을 읽는 리듬을 돕도록 설계되었으며 아홉 개 언어의 콘텐츠를 제공합니다.', 'App Store에서 이용할 수 있습니다. Google Play 출시 일정은 아직 발표되지 않았습니다.'] },
     'void-striker': { tagline: '인류의 마지막 전투기. 공허가 깨어났습니다.', kind: '게임', description: ['다섯 개의 캠페인 구역과 여섯 명의 보스에 도전하거나 일일 도전과 생존 모드를 즐겨 보세요. 전투기 일곱 대와 무기 다섯 종류를 사용할 수 있습니다.', '게임을 진행하며 새로운 전투기와 외형을 잠금 해제할 수 있습니다. 인터페이스는 영어, 포르투갈어, 스페인어를 지원합니다.', 'VOID STRIKER는 App Store에서 이용할 수 있습니다. Google Play 출시 일정은 아직 발표되지 않았습니다.'] },
     'galaxy-forge': { tagline: '개발 중인 두 번째 게임.', kind: '게임', description: ['GALAXY FORGE는 스튜디오의 두 번째 게임으로 현재 개발 중입니다.', '초기 단계의 결정이 계속 바뀌므로 게임 방식은 아직 공개하지 않습니다.'], conceptLabel: '콘셉트 아트 · 개발 중인 게임' },
+    'nova-frontier': { tagline: '개발 중인 새로운 전략 게임 세계.', kind: '게임', description: ['NOVA FRONTIER는 New AI Vision Labs가 개발 중인 오리지널 게임입니다.', '아래 이미지는 창작 방향을 담은 콘셉트 아트입니다. 묘사된 시스템, 플랫폼과 기능은 개발 과정에서 바뀔 수 있습니다.'], conceptLabel: '콘셉트 아트 · 개발 중인 게임' },
   }, pageTitles: {},
 };
 
@@ -111,15 +114,15 @@ const ar: Copy = {
   proposition: 'نحن استوديو تقني مستقل. نصمم تطبيقات ذكية وألعابًا أصلية ونبنيها بأنفسنا ثم ننشرها باسمنا.',
   blurb: 'استوديو تقني مستقل يصنع تطبيقات ذكية وألعابًا أصلية.', location: 'كينيساو، جورجيا، الولايات المتحدة',
   nav: ['المنتجات', 'أسلوب اللعب', 'الدعم'],
-  hero: { eyebrow: 'استوديو تقني مستقل', headline: ['نصنع', 'تقنية', 'لها غاية.'], accentWord: 'غاية.', primary: 'استكشف منتجاتنا', secondary: 'شاهد أسلوب اللعب' },
+  hero: { eyebrow: 'استوديو تقني مستقل', headline: ['منتجات ذكية.', 'أفكار أصيلة.'], accentWord: 'أفكار أصيلة.', primary: 'استكشف منتجاتنا', secondary: 'شاهد أسلوب اللعب' },
   approach: { label: 'كيف نعمل', headline: 'استوديو صغير. منتج متكامل.', body: ['كل ما ننشره يبدأ هنا. تحمل كل تفصيلة هوية NAVL ومسؤوليتها.', 'الأشخاص الذين يكتبون الشفرة ويصممون التجربة هم أنفسهم من يجيبون عن رسائل الدعم. هذا القرب يظهر في جودة المنتج كله.'], points: [
     { title: 'نصنع ما ننشره', body: 'كل منتج يُصمَّم ويُطوَّر داخليًا من الفكرة إلى الإطلاق.' },
     { title: 'نحترم الخصوصية', body: 'نستخدم الحد الأدنى من البيانات اللازمة ونشرح ذلك بوضوح.' },
     { title: 'نُظهر المرحلة الحقيقية', body: 'بحث أو تطوير أو اختبار أو إطلاق: نعرض دائمًا وضع المنتج الفعلي.' },
   ] },
-  portfolio: { label: 'أعمالنا', headline: 'ست أفكار. معيار واحد.', body: 'أربعة تطبيقات ذكية ولعبتان، بهوية بصرية موحّدة وشفافية كاملة.', all: 'عرض كل المنتجات', apps: 'الذكاء الاصطناعي والتطبيقات', games: 'الألعاب' },
+  portfolio: { label: 'أعمالنا', headline: 'سبعة منتجات. معيار واحد.', body: 'أربعة تطبيقات وثلاث ألعاب، بهوية بصرية موحّدة وشفافية كاملة.', all: 'عرض كل المنتجات', apps: 'الذكاء الاصطناعي والتطبيقات', games: 'الألعاب' },
   demoCallout: { label: 'أسلوب اللعب', headline: 'شاهد VOID STRIKER أثناء اللعب.', body: 'شاهد لقطات حقيقية من القتال الفضائي وموجات الأعداء والترقيات داخل اللعبة.', cta: 'شاهد الفيديو' },
-  appsPage: { label: 'المنتجات', headline: 'ما الذي نبنيه.', lede: 'ستة منتجات في مراحل مختلفة. كلها من صنعنا وتعرض كل صفحة المرحلة الفعلية للعمل.', note: 'لم يصدر هذا المنتج بعد. سيظهر رابط التنزيل عندما تتوفر نسخة عامة.', pending: 'غير متاح بعد' },
+  appsPage: { label: 'المنتجات', headline: 'ما الذي نبنيه.', lede: 'سبعة منتجات في مراحل مختلفة. كلها من صنعنا وتعرض كل صفحة المرحلة الفعلية للعمل.', note: 'لم يصدر هذا المنتج بعد. سيظهر رابط التنزيل عندما تتوفر نسخة عامة.', pending: 'غير متاح بعد' },
   ui: { skipToContent: 'الانتقال إلى المحتوى', menu: 'القائمة', close: 'إغلاق', backToApps: 'كل المنتجات', screenshotsLabel: 'صور التطبيق', gameplayLabel: 'أسلوب اللعب', conceptArtLabel: 'فن تصوري', noScreenshots: 'سننشر الصور عندما تصبح واجهة المنتج جاهزة للعرض.', kindLabel: 'الفئة', stageLabel: 'المرحلة', supportShort: 'الدعم', supportEmail: 'بريد الدعم', emailUs: 'تواصل معنا', primaryNav: 'التنقل الرئيسي', onThisPage: 'في هذه الصفحة', lastUpdated: 'آخر تحديث', getIt: 'التوفر', platforms: 'المنصات', legalSupport: 'الخصوصية والدعم', privacy: 'سياسة الخصوصية', terms: 'شروط الاستخدام', dataDeletion: 'حذف البيانات', playDemo: 'تشغيل العرض', aboutGame: 'عن اللعبة', deleteRequest: 'إرسال طلب حذف', download: 'عرض في المتجر', languages: 'اللغات', phone: 'الهاتف', productsWord: 'منتجات', conceptNotice: 'صورة تصورية لمنتج قيد التطوير.' },
   footer: { studio: 'الاستوديو', help: 'المساعدة', legal: 'قانوني', rights: 'جميع الحقوق محفوظة.' },
   status: { 'Product discovery': 'بحث المنتج', 'In development': 'قيد التطوير', 'Final testing': 'الاختبارات النهائية', 'On the stores': 'متاح في المتاجر', 'On the App Store': 'متاح على App Store' },
@@ -130,6 +133,7 @@ const ar: Copy = {
     biblelink: { positioning: 'الكتاب المقدس والتأمل والصلاة لكل يوم.', tagline: 'تطبيق تعبدي يومي متاح على App Store.', kind: 'تطبيق · تأمل يومي', description: ['يجمع BibleLink الكتاب المقدس والتأمل والتطبيق العملي والصلاة في تجربة هادئة.', 'صُمم لدعم عادة يومية للقراءة ويقدم المحتوى بتسع لغات.', 'BibleLink متاح على App Store، لكن النسخة العربية قادمة قريبًا. لم يُعلن عن توفره على Google Play بعد.'] },
     'void-striker': { tagline: 'مقاتلة البشرية الأخيرة. لقد استيقظ الفراغ.', kind: 'لعبة', description: ['قاتل عبر خمسة قطاعات وستة زعماء، أو جرّب التحدي اليومي ونمط البقاء. تتوفر سبع مقاتلات وخمسة أنواع من الأسلحة.', 'افتح مقاتلات ومظاهر جديدة أثناء اللعب. تتوفر واجهة اللعبة بالإنجليزية والبرتغالية والإسبانية.', 'VOID STRIKER متاح على App Store. لم يُعلن عن توفره على Google Play بعد.'] },
     'galaxy-forge': { tagline: 'لعبتنا الثانية، وهي قيد التطوير.', kind: 'لعبة', description: ['GALAXY FORGE هي اللعبة الثانية للاستوديو ويجري تطويرها الآن.', 'لا نصف أسلوب اللعب بعد لأن القرارات تتغير في هذه المرحلة المبكرة.'], conceptLabel: 'فن تصوري · لعبة قيد التطوير' },
+    'nova-frontier': { tagline: 'عالم استراتيجي جديد قيد التطوير.', kind: 'لعبة', description: ['NOVA FRONTIER لعبة أصلية مستقبلية من New AI Vision Labs قيد التطوير.', 'الصورة أدناه فن تصوري يعرض الاتجاه الإبداعي. قد تتغير الأنظمة والمنصات والميزات المصوّرة خلال التطوير.'], conceptLabel: 'فن تصوري · لعبة قيد التطوير' },
   }, pageTitles: {},
 };
 
@@ -222,7 +226,7 @@ export function siteContent(code: LocaleCode) {
     return { ...app, positioning: p.positioning, tagline: p.tagline, kind: p.kind, description: p.description, screenshots, conceptArt: app.conceptArt ? { ...app.conceptArt, label: p.conceptLabel ?? app.conceptArt.label } : undefined };
   });
   const portfolio = [
-    { ...en.portfolio[0], label: copy.portfolio.apps, items: apps.filter((a) => a.category === 'app') },
+    { ...en.portfolio[0], label: copy.portfolio.apps, items: apps.filter((a) => a.category === 'app').sort((a, b) => Number(b.slug === 'biblelink') - Number(a.slug === 'biblelink')) },
     { ...en.portfolio[1], label: copy.portfolio.games, items: apps.filter((a) => a.category === 'game') },
   ];
   const appsPage = { ...en.appsPage, label: copy.appsPage.label, headline: copy.appsPage.headline, lede: copy.appsPage.lede, inDevelopmentNote: copy.appsPage.note, notYetOnStores: copy.appsPage.pending };

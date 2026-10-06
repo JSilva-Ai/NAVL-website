@@ -133,6 +133,17 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://newaivisionlabs.com/apps/nova-frontier/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://newaivisionlabs.com/apps/nova-frontier/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://newaivisionlabs.com/pt/apps/nova-frontier/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://newaivisionlabs.com/es/apps/nova-frontier/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://newaivisionlabs.com/ko/apps/nova-frontier/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://newaivisionlabs.com/ar/apps/nova-frontier/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://newaivisionlabs.com/apps/nova-frontier/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://newaivisionlabs.com/demo/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://newaivisionlabs.com/demo/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://newaivisionlabs.com/pt/demo/" />
@@ -316,6 +327,17 @@
     <xhtml:link rel="alternate" hreflang="ko" href="https://newaivisionlabs.com/ko/apps/galaxy-forge/" />
     <xhtml:link rel="alternate" hreflang="ar" href="https://newaivisionlabs.com/ar/apps/galaxy-forge/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://newaivisionlabs.com/apps/galaxy-forge/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://newaivisionlabs.com/pt/apps/nova-frontier/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://newaivisionlabs.com/apps/nova-frontier/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://newaivisionlabs.com/pt/apps/nova-frontier/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://newaivisionlabs.com/es/apps/nova-frontier/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://newaivisionlabs.com/ko/apps/nova-frontier/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://newaivisionlabs.com/ar/apps/nova-frontier/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://newaivisionlabs.com/apps/nova-frontier/" />
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -507,6 +529,17 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://newaivisionlabs.com/es/apps/nova-frontier/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://newaivisionlabs.com/apps/nova-frontier/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://newaivisionlabs.com/pt/apps/nova-frontier/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://newaivisionlabs.com/es/apps/nova-frontier/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://newaivisionlabs.com/ko/apps/nova-frontier/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://newaivisionlabs.com/ar/apps/nova-frontier/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://newaivisionlabs.com/apps/nova-frontier/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://newaivisionlabs.com/es/demo/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://newaivisionlabs.com/demo/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://newaivisionlabs.com/pt/demo/" />
@@ -694,6 +727,17 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://newaivisionlabs.com/ko/apps/nova-frontier/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://newaivisionlabs.com/apps/nova-frontier/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://newaivisionlabs.com/pt/apps/nova-frontier/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://newaivisionlabs.com/es/apps/nova-frontier/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://newaivisionlabs.com/ko/apps/nova-frontier/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://newaivisionlabs.com/ar/apps/nova-frontier/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://newaivisionlabs.com/apps/nova-frontier/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://newaivisionlabs.com/ko/demo/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://newaivisionlabs.com/demo/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://newaivisionlabs.com/pt/demo/" />
@@ -877,6 +921,17 @@
     <xhtml:link rel="alternate" hreflang="ko" href="https://newaivisionlabs.com/ko/apps/galaxy-forge/" />
     <xhtml:link rel="alternate" hreflang="ar" href="https://newaivisionlabs.com/ar/apps/galaxy-forge/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://newaivisionlabs.com/apps/galaxy-forge/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://newaivisionlabs.com/ar/apps/nova-frontier/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://newaivisionlabs.com/apps/nova-frontier/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://newaivisionlabs.com/pt/apps/nova-frontier/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://newaivisionlabs.com/es/apps/nova-frontier/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://newaivisionlabs.com/ko/apps/nova-frontier/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://newaivisionlabs.com/ar/apps/nova-frontier/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://newaivisionlabs.com/apps/nova-frontier/" />
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

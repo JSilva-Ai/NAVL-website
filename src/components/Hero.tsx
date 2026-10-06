@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import { apps, home, routes, statusLabel, ui } from '../content/current';
+import { apps, currentLocaleCode, home, routes, statusLabel } from '../content/current';
+import { launchCopy } from '../content/launch';
 import { asset } from '../lib/url';
 import { url } from '../lib/url';
 import { usePointer, useReducedMotion } from '../lib/hooks';
 import { createPerceptionField, type FieldHandle } from '../lib/perceptionField';
-import { mediaAlt } from '../content/story';
 import './hero.css';
 
 /**
@@ -25,12 +25,9 @@ export function Hero() {
   const pointer = usePointer();
   const reduced = useReducedMotion();
   const [live, setLive] = useState(false);
-  /* The one app carrying media. Absent until something ships: the hero drops
-     back to a single column rather than framing a placeholder. */
-  const featured = apps.find((a) => a.slug === 'loop');
+  const copy = launchCopy(currentLocaleCode);
   const bibleLink = apps.find((a) => a.slug === 'biblelink');
-  const shield = apps.find((a) => a.slug === 'shield');
-  const galaxy = apps.find((a) => a.slug === 'galaxy-forge');
+  const voidStriker = apps.find((a) => a.slug === 'void-striker');
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -74,74 +71,38 @@ export function Hero() {
           <p className="hero__lede">{home.hero.lede}</p>
 
           <div className="hero__actions">
-            <a className="btn btn--primary" href={url(home.hero.primaryCta.route)}>
-              {home.hero.primaryCta.label}
+            <a className="btn btn--primary" href={url(`${routes.apps}/biblelink`)}>
+              {copy.bible}
               <span className="btn__arrow" aria-hidden="true">↗</span>
             </a>
-            <a className="btn" href={url(home.hero.secondaryCta.route)}>
-              {home.hero.secondaryCta.label}
+            <a className="btn" href={url(`${routes.apps}/void-striker`)}>
+              {copy.void}
             </a>
           </div>
         </div>
 
-        {/*
-          The product, at full size, above the fold.
-
-          This site was three screens of prose before a visitor saw a single
-          thing the studio had made — which is a strange way to sell craft. The
-          field behind it is masked to fade out on the left, so it was already
-          composed to leave the right side to something; until now that side
-          held nothing.
-
-          The frame is a plain bezel at the house 520x720, not a phone
-          silhouette. A phone outline would be a lie about the aspect — the
-          game's canvas is 13:18, nothing like a handset — and cropping the
-          product to fit a decorative shell is the wrong way round.
-        */}
-        {featured?.conceptArt && (
-          <div className="hero__stage">
-            <div className="hero__vision">
-              <picture className="hero__vision-picture">
-                <source
-                  type="image/webp"
-                  srcSet={`${asset(featured.conceptArt.src)} 1920w, ${asset('media/apps/loop/concept-4k.webp')} 3840w`}
-                  sizes="(max-width: 64rem) 100vw, 50vw"
-                />
-                <img src={asset(featured.conceptArt.src)} alt={mediaAlt(featured.slug, featured.conceptArt.alt)} width="1920" height="1280" />
-              </picture>
-              <span className="hero__vision-shade" aria-hidden="true" />
-              {bibleLink?.icon && (
-                <a className="hero__float hero__float--bible" href={url(`${routes.apps}/biblelink`)}>
-                  <img src={asset(bibleLink.icon.src)} alt="" width="1024" height="1024" />
-                  <span><strong>{bibleLink.name}</strong><small>{statusLabel(bibleLink.status)}</small></span>
-                </a>
-              )}
-              {shield && (
-                <a className="hero__float hero__float--shield" href={url(`${routes.apps}/shield`)}>
-                  <span className="hero__float-orb" aria-hidden="true" />
-                  <span><strong>{shield.name}</strong><small>{statusLabel(shield.status)}</small></span>
-                </a>
-              )}
-              {galaxy && (
-                <a className="hero__float hero__float--galaxy" href={url(`${routes.apps}/galaxy-forge`)}>
-                  <span className="hero__float-orb hero__float-orb--gold" aria-hidden="true" />
-                  <span><strong>{galaxy.name}</strong><small>{statusLabel(galaxy.status)}</small></span>
-                </a>
-              )}
-              <div className="hero__vision-index" aria-hidden="true">
-                <span>06</span>
-                <span>{ui.productsWord}</span>
-              </div>
-            </div>
-            <p className="hero__caption">
-              <a className="hero__caption-link" href={url(`${routes.apps}/${featured.slug}`)}>
-                {featured.name}
+        {/* The right-hand crop uses only the abstract part of the supplied
+            artwork. Its baked-in English words must not duplicate the real,
+            translated headline on the left. */}
+        <div className="hero__stage">
+          <div className="hero__vision hero__vision--studio">
+            <img className="hero__studio-art" src={asset('media/studio/vision-hero.webp')} alt="" width="1200" height="780" fetchPriority="high" />
+            <span className="hero__vision-shade" aria-hidden="true" />
+            {bibleLink?.icon && (
+              <a className="hero__float hero__float--bible" href={url(`${routes.apps}/biblelink`)}>
+                <img src={asset(bibleLink.icon.src)} alt="" width="1024" height="1024" />
+                <span><strong>{bibleLink.name}</strong><small>{statusLabel(bibleLink.status)}</small></span>
               </a>
-              <span className="hero__caption-sep" aria-hidden="true">·</span>
-              <span className="hero__caption-status">{statusLabel(featured.status)}</span>
-            </p>
+            )}
+            {voidStriker && (
+              <a className="hero__float hero__float--void" href={url(`${routes.apps}/void-striker`)}>
+                <span className="hero__float-orb" aria-hidden="true" />
+                <span><strong>{voidStriker.name}</strong><small>{statusLabel(voidStriker.status)}</small></span>
+              </a>
+            )}
           </div>
-        )}
+          <p className="hero__caption">{copy.available}</p>
+        </div>
       </div>
     </section>
   );

@@ -58,6 +58,7 @@ const ROUTES = [
   ['apps/void-striker/privacy/', 'app-void-striker-privacy'],
   ['apps/void-striker/support/', 'app-void-striker-support'],
   ['apps/galaxy-forge/', 'app-galaxy-forge'],
+  ['apps/nova-frontier/', 'app-nova-frontier'],
   ['demo/', 'demo'],
   ['support/', 'support'],
   ['privacy/', 'privacy'],

@@ -8,6 +8,8 @@ import { bibleScreen, mediaAlt, story } from '../content/story';
 import { BibleLinkShowcase, InterestSection } from './StudioStory';
 import { useReducedMotion } from '../lib/hooks';
 import { locales } from '../content/locales';
+import { ProductFilm } from './LaunchMedia';
+import './launch.css';
 
 /**
  * The per-app page template.
@@ -131,13 +133,8 @@ export function AppPage({ slug }: { slug: string }) {
 
           {app.conceptArt && (
             <figure className="concept-hero">
-              {reduced ? (
+              {reduced || app.slug === 'nova-frontier' ? (
                 <picture>
-                  <source
-                    type="image/webp"
-                    srcSet={`${asset(app.conceptArt.src)} 1920w, ${asset(app.conceptArt.src.replace('concept-1920.webp', 'concept-4k.webp'))} 3840w`}
-                    sizes="(max-width: 48rem) 100vw, 80vw"
-                  />
                   <img
                     src={asset(app.conceptArt.src)}
                     alt={mediaAlt(app.slug, app.conceptArt.alt)}
@@ -201,6 +198,13 @@ export function AppPage({ slug }: { slug: string }) {
           )}
         </div>
       </section>
+      {(app.slug === 'biblelink' || app.slug === 'void-striker') && (
+        <section className="section section--ruled app-promo">
+          <div className="container">
+            <ProductFilm slug={app.slug} />
+          </div>
+        </section>
+      )}
       {app.slug === 'biblelink' && <BibleLinkShowcase />}
       {!app.stores.some((store) => store.href) && <InterestSection product={app.name} />}
     </>

@@ -11,7 +11,7 @@ const locales = [
 const routes = [
   '', 'about', 'news', 'apps', 'apps/loop', 'apps/shield', 'apps/guard', 'apps/biblelink',
   'apps/biblelink/privacy', 'apps/biblelink/support', 'apps/void-striker',
-  'apps/galaxy-forge', 'demo', 'support', 'privacy', 'terms', 'data-deletion',
+  'apps/galaxy-forge', 'apps/nova-frontier', 'demo', 'support', 'privacy', 'terms', 'data-deletion',
 ];
 const pathFor = (prefix, route) => [prefix, route].filter(Boolean).join('/');
 const absolute = (prefix, route) => `${origin}/${pathFor(prefix, route)}${pathFor(prefix, route) ? '/' : ''}`;

@@ -107,8 +107,8 @@ export const home = {
   hero: {
     eyebrow: 'Independent technology studio',
     /** Set as three lines so the break is authored, not left to the browser. */
-    headline: ['We build', 'the software', 'we want to use.'],
-    accentWord: 'use.',
+    headline: ['Intelligent products.', 'Original thinking.'],
+    accentWord: 'Original thinking.',
     lede: site.proposition,
     primaryCta: { label: 'See what we are building', route: routes.apps },
     secondaryCta: { label: 'Watch gameplay', route: routes.demo },
@@ -146,8 +146,8 @@ export const home = {
   portfolio: {
     index: '02',
     label: 'Portfolio',
-    headline: 'Six products. One standard.',
-    body: 'Four intelligent applications and two games, each marked with the stage it is actually at.',
+    headline: 'Seven products. One standard.',
+    body: 'Four applications and three games, each marked with the stage it is actually at.',
     cta: { label: 'All products', route: routes.apps },
   },
   demoCallout: {
@@ -495,6 +495,30 @@ export const apps: App[] = [
       { store: 'googlePlay', href: '' },
     ],
   },
+  {
+    slug: 'nova-frontier',
+    name: 'NOVA FRONTIER',
+    category: 'game',
+    kind: 'Game',
+    tagline: 'A new strategy world in development.',
+    status: 'In development',
+    description: [
+      'NOVA FRONTIER is a future original game from New AI Vision Labs, currently in development.',
+      'The image below is concept artwork showing the creative direction. Its depicted systems, platforms, and features are not a release commitment and may change as development continues.',
+    ],
+    screenshots: [],
+    conceptArt: {
+      src: 'media/apps/nova-frontier/concept.webp',
+      alt: 'NOVA FRONTIER concept board with a science-fiction citadel, battles, factions, progression diagrams, and a campaign map.',
+      label: 'Concept artwork · game in development',
+      width: 1200,
+      height: 1097,
+    },
+    stores: [
+      { store: 'appStore', href: '' },
+      { store: 'googlePlay', href: '' },
+    ],
+  },
 ];
 
 /**
@@ -508,7 +532,7 @@ export const portfolio = [
     id: 'applications',
     label: 'AI & applications',
     headline: 'Intelligent applications.',
-    items: apps.filter((a) => a.category === 'app'),
+    items: apps.filter((a) => a.category === 'app').sort((a, b) => Number(b.slug === 'biblelink') - Number(a.slug === 'biblelink')),
   },
   {
     id: 'games',
@@ -522,7 +546,7 @@ export const appsPage = {
   index: '',
   label: 'Products',
   headline: 'What we are building.',
-  lede: 'Six products at different stages. Everything here is our own work, and each one says where it actually is rather than where we would like it to be.',
+  lede: 'Seven products at different stages. Everything here is our own work, and each one says where it actually is rather than where we would like it to be.',
   /** Shown when an app has no store links yet. */
   notYetOnStores: 'Not available yet',
   /**
