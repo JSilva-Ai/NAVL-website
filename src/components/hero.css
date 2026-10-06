@@ -1,360 +1,73 @@
-/* ==========================================================================
-   Home hero
-   ========================================================================== */
-
+/* The supplied NAVL image fills the opening screen. On smaller displays the
+   alternate crop keeps the sculpture without half-visible English lettering. */
 .hero {
   position: relative;
-  min-height: min(92svh, 54rem);
+  min-height: max(100svh, 46rem);
   display: flex;
-  align-items: center;
-  padding-top: calc(var(--nav-h) + var(--space-2xl));
-  padding-bottom: var(--space-3xl);
+  align-items: flex-end;
   overflow: hidden;
   isolation: isolate;
+  background: #040b15;
 }
 
-.hero__canvas {
+.hero__art,
+.hero__art img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  z-index: var(--z-canvas);
-  opacity: 0;
-  transition: opacity 1.4s var(--ease-out);
-  /* The field is behind text; a wash across the whole width would drop the
-     lede's contrast. Fading it out on the left keeps the type on clean
-     ground and lets the field own the right side of the composition. */
-  -webkit-mask-image: linear-gradient(100deg, transparent 6%, #000 46%);
-  mask-image: linear-gradient(100deg, transparent 6%, #000 46%);
 }
 
-.hero__canvas[data-live='true'] {
-  opacity: 1;
-}
+.hero__art { z-index: -2; }
+.hero__art img { object-fit: cover; object-position: center; }
 
-/* Grain, scoped to the hero and unblended. A full-viewport grain layer with
-   mix-blend-mode over a scrolling page costs more frame time than everything
-   else on the page put together. */
-.hero__grain {
+.hero::after {
+  content: '';
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: -1;
   pointer-events: none;
-  opacity: 0.055;
-  background-image: var(--grain-url);
+  background: linear-gradient(0deg, rgba(2, 7, 17, .94), rgba(2, 7, 17, .38) 25%, transparent 57%);
 }
 
 .hero__inner {
-  position: relative;
-  z-index: var(--z-content);
+  width: 100%;
+  padding-top: calc(var(--nav-h) + var(--space-xl));
+  padding-bottom: clamp(1.5rem, 5vw, 3.5rem);
 }
 
-/* Single column until there is room for the device beside the type. Below
-   that the copy leads and the product follows it, which is the right order
-   on a phone — you read the sentence, then you see the thing. */
-@media (min-width: 64rem) {
-  .hero__inner {
+.hero__copy {
+  width: min(100%, 46rem);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid rgba(200, 205, 212, .2);
+  border-radius: 1.15rem;
+  background: rgba(3, 9, 20, .75);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, .28);
+}
+
+.hero__eyebrow { color: #a8cafa; }
+.hero__title { max-width: none; margin-top: var(--space-s); font-size: clamp(2.25rem, 4vw, 3.75rem); }
+.hero__lede { max-width: 58ch; margin-top: var(--space-s); color: #e6edf8; font-size: var(--step-1); }
+.hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-s); margin-top: var(--space-l); }
+
+@media (min-width: 75rem) {
+  .hero__copy {
+    width: 100%;
     display: grid;
-    grid-template-columns: minmax(0, .92fr) minmax(28rem, 1.08fr);
-    gap: var(--space-3xl);
+    grid-template-columns: minmax(0, .72fr) minmax(0, 1.25fr) minmax(13rem, .65fr);
     align-items: center;
+    gap: var(--space-l);
   }
+  .hero__title { font-size: clamp(2rem, 2.8vw, 2.8rem); }
+  .hero__lede, .hero__actions { margin-top: 0; }
+  .hero__actions { display: grid; gap: var(--space-xs); }
+  .hero__actions .btn { width: 100%; justify-content: center; }
 }
 
-.hero__vision {
-  position: relative;
-  width: min(100%, 38rem);
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,.16);
-  border-radius: clamp(1.5rem, 3vw, 3rem);
-  background: var(--black-100);
-  box-shadow:
-    0 5rem 8rem -4rem rgba(0, 0, 0, .9),
-    0 0 0 1px rgba(10,132,255,.08),
-    0 0 8rem -2rem rgba(10,132,255,.25);
-}
-
-.hero__vision-picture,
-.hero__vision-picture img {
-  width: 100%;
-  height: 100%;
-}
-
-.hero__studio-art { display: block; width: 100%; height: 100%; object-fit: cover; object-position: right center; }
-.hero__float--void { inset-inline-end: 6%; bottom: 8%; width: 13rem; }
-
-.hero__vision-picture img {
-  object-fit: cover;
-  transform: scale(1.04);
-}
-
-.hero__vision-shade {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(5,5,7,.06), rgba(5,5,7,.68)),
-    radial-gradient(circle at 50% 35%, transparent 20%, rgba(5,5,7,.2) 70%);
-}
-
-.hero__float {
-  position: absolute;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  gap: .65rem;
-  min-width: 10rem;
-  padding: .7rem .85rem;
-  border: 1px solid rgba(255,255,255,.2);
-  border-radius: 1rem;
-  background: rgba(7, 12, 24, .64);
-  backdrop-filter: blur(22px) saturate(150%);
-  box-shadow: 0 1rem 2.5rem rgba(0,0,0,.38);
-  transition: transform var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out);
-}
-
-.hero__float:hover { transform: translateY(-4px); border-color: var(--blue-a60); }
-.hero__float img { width: 2.35rem; height: 2.35rem; border-radius: .65rem; }
-.hero__float span { display: grid; line-height: 1.15; }
-.hero__float strong { font-size: var(--step--1); letter-spacing: .04em; }
-.hero__float small { margin-top: .22rem; color: var(--chrome-dim); font-size: .62rem; text-transform: uppercase; letter-spacing: .08em; }
-.hero__float--bible { inset-inline-start: 6%; top: 7%; }
-.hero__float--shield { inset-inline-end: 5%; top: 48%; }
-.hero__float--galaxy { inset-inline-start: 8%; bottom: 8%; }
-.hero__float-orb { flex: 0 0 2.3rem; width: 2.3rem; height: 2.3rem; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff, #55aaff 18%, #102d5e 55%, #030711 74%); box-shadow: 0 0 1.5rem rgba(60,155,255,.5); }
-.hero__float-orb--gold { background: radial-gradient(circle at 35% 30%, #fff, #ffd57a 18%, #70460c 55%, #0d0802 74%); box-shadow: 0 0 1.5rem rgba(223,164,46,.45); }
-.hero__vision-index { position: absolute; inset-inline-end: 7%; bottom: 6%; z-index: 2; display: grid; text-align: end; color: rgba(255,255,255,.72); font-family: var(--font-mono); }
-.hero__vision-index span:first-child { font-size: clamp(2.3rem, 5vw, 4.6rem); line-height: .85; color: #fff; }
-.hero__vision-index span:last-child { margin-top: .55rem; font-size: .6rem; letter-spacing: .22em; }
-
-@media (max-width: 63.99rem) {
-  .hero__vision { aspect-ratio: 16 / 11; width: 100%; }
-  .hero__float--shield { top: 42%; }
-}
-
-@media (max-width: 38rem) {
-  .hero__vision { aspect-ratio: 4 / 5; }
-  .hero__float { min-width: 0; padding: .55rem .65rem; }
-  .hero__float strong { font-size: .72rem; }
-  .hero__float small { display: none; }
-}
-
-.hero__stage {
-  margin-top: var(--space-2xl);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-s);
-}
-
-@media (min-width: 64rem) {
-  .hero__stage {
-    margin-top: 0;
-  }
-}
-
-/*
- * A handset.
- *
- * The honest problem with this, which the frame solves rather than hides: the
- * game's canvas is 520x720, a 13:18 picture, and a modern phone screen is
- * about 9:19.5. The game cannot fill it. Scaling to cover would crop 56% of
- * the play area off the sides, which is not a screenshot of the game any more.
- *
- * So it is fitted to the width and centred, and the screen behind it is the
- * game's own near-black rather than a grey letterbox — a portrait game running
- * on a tall phone looks exactly like this, and pretending otherwise would mean
- * showing something the player never sees.
- *
- * The chrome edge is a gradient of the mark's silver, lit from the top left,
- * which is the one place the logo's metal earns its keep without becoming a
- * bevelled typeface.
- */
-.hero__phone {
-  position: relative;
-  width: min(100%, 15rem);
-  aspect-ratio: 9 / 19.5;
-  padding: 0.5rem;
-  border-radius: 2.25rem;
-  background: linear-gradient(150deg, #c8cdd4 0%, #5a606a 34%, #23262b 62%, #6c727b 100%);
-  box-shadow:
-    0 0 0 1px rgb(255 255 255 / 8%),
-    0 40px 90px -35px rgb(10 132 255 / 40%),
-    0 24px 70px -20px rgb(0 0 0 / 85%);
-}
-
-/* #00020f is not a guess: it is the measured colour of all four edges of the
-   game's own frame. Matching it exactly means the fitted clip has no visible
-   boundary — the play area sits in the middle of a screen that is the same
-   colour the game itself paints, which is what a portrait game on a tall phone
-   actually looks like. A grey letterbox would have announced the crop. */
-.hero__screen {
-  height: 100%;
-  border-radius: 1.8rem;
-  overflow: hidden;
-  background: #00020f;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero__screen .clip {
-  width: 100%;
-  display: block;
-}
-
-/* Dressing, not chrome-plating: an island and one side button read as "phone"
-   at a glance and cost two pseudo-elements. */
-.hero__phone-island {
-  position: absolute;
-  top: 1.05rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4.2rem;
-  height: 1.05rem;
-  border-radius: 1rem;
-  /* Slightly darker than the screen, plus a hairline, or it vanishes entirely
-     against a near-black game and the phone loses the one cue that dates it. */
-  background: #000;
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 7%);
-  z-index: 2;
-}
-
-/* Physical `right`, deliberately, and one of the two places on the site that
-   should not become logical: this is a phone's side button, and a phone's
-   side button is on the right of the object regardless of which way the
-   language on its screen reads. Mirroring it would draw a phone that does not
-   exist. The island above is centred, so it is direction-neutral already. */
-.hero__phone-button {
-  position: absolute;
-  right: -1px;
-  top: 27%;
-  width: 2px;
-  height: 3.2rem;
-  border-radius: 2px;
-  background: linear-gradient(180deg, #8a9099, #3a3f47);
-}
-
-.hero__caption {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2xs);
-  font-size: var(--step--2);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--chrome-dim);
-}
-
-.hero__caption-link {
-  color: var(--chrome);
-  min-height: 1.5rem;
-  display: inline-flex;
-  align-items: center;
-}
-
-.hero__caption-link:hover {
-  color: var(--blue-lift);
-}
-
-.hero__caption-status {
-  color: var(--blue);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero__device {
-    box-shadow: 0 0 0 1px rgb(10 132 255 / 12%);
-  }
-}
-
-.hero__eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 0.7em;
-  margin-bottom: var(--space-m);
-}
-
-.hero__dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--blue);
-  box-shadow: 0 0 0 3px var(--blue-a20);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .hero__dot {
-    animation: hero-pulse 2.6s var(--ease-in-out) infinite;
-  }
-}
-
-@keyframes hero-pulse {
-  0%,
-  100% {
-    box-shadow: 0 0 0 3px var(--blue-a20);
-  }
-  50% {
-    box-shadow: 0 0 0 7px rgba(10, 132, 255, 0.04);
-  }
-}
-
-.hero__title {
-  font-size: var(--step-6);
-  max-width: 15ch;
-  /* The line breaks are authored in content; balancing would undo them. */
-  text-wrap: initial;
-}
-
-.hero__line {
-  display: block;
-}
-
-.hero__accent {
-  font-style: normal;
-  background: var(--gradient-blue);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.hero__lede {
-  margin-top: var(--space-l);
-  max-width: 46ch;
-  color: var(--chrome);
-  font-size: var(--step-1);
-}
-
-.hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-s);
-  margin-top: var(--space-xl);
-}
-
-@media (max-width: 40rem) {
-  .hero {
-    min-height: 0;
-    padding-top: calc(var(--nav-h) + var(--space-xl));
-    padding-bottom: var(--space-2xl);
-  }
-
-  /* On a narrow screen there is no space beside the type for the field to
-     live in, so it sits behind everything at low opacity instead of being
-     masked off to one side. */
-  .hero__canvas {
-    -webkit-mask-image: linear-gradient(180deg, transparent 4%, #000 40%);
-    mask-image: linear-gradient(180deg, transparent 4%, #000 40%);
-    opacity: 0;
-  }
-
-  .hero__canvas[data-live='true'] {
-    opacity: 0.55;
-  }
-
-  .hero__title {
-    max-width: none;
-  }
-
-  .hero__actions .btn {
-    flex: 1 1 100%;
-  }
+@media (max-width: 48rem) {
+  .hero { min-height: max(100svh, 42rem); }
+  .hero__art img { object-position: 54% center; }
+  .hero__copy { background: rgba(3, 9, 20, .86); }
+  .hero__actions .btn { flex: 1 1 100%; justify-content: center; }
 }

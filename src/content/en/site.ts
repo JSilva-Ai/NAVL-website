@@ -509,10 +509,10 @@ export const apps: App[] = [
     screenshots: [],
     conceptArt: {
       src: 'media/apps/nova-frontier/concept.webp',
-      alt: 'NOVA FRONTIER concept board with a science-fiction citadel, battles, factions, progression diagrams, and a campaign map.',
+      alt: 'NOVA FRONTIER concept artwork showing explorers overlooking a science-fiction citadel, a distant planet, and an approaching battle.',
       label: 'Concept artwork · game in development',
-      width: 1200,
-      height: 1097,
+      width: 1672,
+      height: 941,
     },
     stores: [
       { store: 'appStore', href: '' },

@@ -35,7 +35,7 @@ export function AvailableNow() {
   const copy = launchCopy(currentLocaleCode);
   const launched = apps.filter((app) => app.slug === 'biblelink' || app.slug === 'void-striker');
   return (
-    <section className="section section--ruled launch" aria-labelledby="launch-title">
+    <section className="section section--ruled launch" id="available-now" aria-labelledby="launch-title">
       <div className="container">
         <p className="label">{copy.available}</p>
         <h2 className="head__title" id="launch-title">BibleLink &amp; VOID STRIKER</h2>
@@ -70,7 +70,7 @@ export function FutureGame() {
           <a className="btn" href={url('apps/nova-frontier')}>{copy.exploreFuture}<span className="btn__arrow" aria-hidden="true">↗</span></a>
         </div>
         <a className="future-game__art" href={url('apps/nova-frontier')} aria-label={copy.exploreFuture}>
-          <img src={asset('media/apps/nova-frontier/concept.webp')} alt="" width="1200" height="1097" loading="lazy" decoding="async" />
+          <img src={asset('media/apps/nova-frontier/concept.webp')} alt="" width="1672" height="941" loading="lazy" decoding="async" />
         </a>
       </div>
     </section>
