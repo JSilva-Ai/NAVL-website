@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { Nav } from './Nav';
 import { Footer } from './Footer';
+import { asset } from '../lib/url';
 
 /**
  * Page chrome shared by every route.
@@ -50,9 +51,8 @@ export function SectionHead({
 }
 
 /**
- * The banner at the top of a subpage. Subpages do not run the WebGL field —
- * it belongs to the home page, where it has room to be the subject rather
- * than a texture behind a heading.
+ * The banner at the top of every subpage shares the studio background with
+ * the home page while keeping each page's own title and introduction.
  */
 export function PageHead({
   label,
@@ -67,6 +67,7 @@ export function PageHead({
 }) {
   return (
     <header className="section pagehead">
+      <img className="pagehead__art" src={asset('media/studio/vision-clean.webp')} alt="" width="1555" height="1011" fetchPriority="high" />
       <div className="container">
         {label && <p className="label pagehead__label">{label}</p>}
         <h1 className="pagehead__title">{title}</h1>
