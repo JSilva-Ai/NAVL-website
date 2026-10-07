@@ -191,6 +191,16 @@
   transition: transform 900ms var(--ease-out), filter 600ms var(--ease-out);
 }
 
+/* NOVA FRONTIER's supplied artwork is a wide cinematic poster with its title
+   inside the image. Keep its native shape so the title is never cropped. */
+.appcard--nova-frontier .appcard__art {
+  aspect-ratio: 1672 / 941;
+}
+
+.appcard--nova-frontier .appcard__concept {
+  object-fit: contain;
+}
+
 .appcard:hover .appcard__concept,
 .appcard:focus-within .appcard__concept {
   transform: scale(1.035);

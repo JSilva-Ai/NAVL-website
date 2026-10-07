@@ -87,9 +87,9 @@ mount(
   <>
     <Hero />
     <AvailableNow />
-    <Approach />
     <Portfolio />
     <FutureGame />
+    <Approach />
     <LatestSection />
     <DemoCallout />
     <InterestSection />

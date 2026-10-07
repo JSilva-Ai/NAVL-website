@@ -40,7 +40,7 @@ export function AppCard({
 
   return (
     <li
-      className="appcard"
+      className={`appcard${app.slug === 'nova-frontier' ? ' appcard--nova-frontier' : ''}`}
       ref={ref}
       data-reveal
       style={{ '--reveal-delay': `${i * 80}ms` } as React.CSSProperties}

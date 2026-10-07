@@ -114,7 +114,7 @@ export const home = {
     secondaryCta: { label: 'Watch gameplay', route: routes.demo },
   },
   approach: {
-    index: '01',
+    index: '02',
     label: 'How we work',
     headline: 'Small studio. Whole product.',
     body: [
@@ -144,7 +144,7 @@ export const home = {
    * products rather than a site for one.
    */
   portfolio: {
-    index: '02',
+    index: '01',
     label: 'Portfolio',
     headline: 'Seven products. One standard.',
     body: 'Four applications and three games, each marked with the stage it is actually at.',
