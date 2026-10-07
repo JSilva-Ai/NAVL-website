@@ -1,7 +1,7 @@
 /**
  * Performance audit.
  *
- *   node scripts/perf.mjs [--url=...] [--cpu=4] [--net=slow]
+ *   node scripts/perf.mjs [--url=...] [--cpu=4] [--vp=desktop|mobile]
  *
  * Reports Core Web Vitals, transfer weight by type, long tasks, and the frame
  * rate the hero field actually sustains under CPU throttling. Numbers, not
@@ -18,11 +18,17 @@ const args = Object.fromEntries(
 );
 const URL = args.url ?? 'http://127.0.0.1:4173/Claude-ai/';
 const cpuThrottle = Number(args.cpu ?? 4);
+const mobile = args.vp === 'mobile';
 
 const browser = await chromium.launch({
+  executablePath: process.env.PLAYWRIGHT_EXECUTABLE_PATH,
   args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'],
 });
-const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+const context = await browser.newContext({
+  viewport: mobile ? { width: 390, height: 844 } : { width: 1440, height: 900 },
+  isMobile: mobile,
+  hasTouch: mobile,
+});
 const page = await context.newPage();
 
 const bytes = { total: 0 };
@@ -123,6 +129,7 @@ const scrollFps = await page.evaluate(
 const kb = (n) => (n / 1024).toFixed(1).padStart(7) + ' KB';
 
 console.log(`\n  CPU throttle       ${cpuThrottle}x`);
+console.log(`  viewport           ${mobile ? 'mobile 390×844' : 'desktop 1440×900'}`);
 console.log(`  load event         ${loadMs} ms`);
 console.log(`  first paint        ${paint['first-paint'] ?? '—'} ms`);
 console.log(`  first contentful   ${paint['first-contentful-paint'] ?? '—'} ms`);

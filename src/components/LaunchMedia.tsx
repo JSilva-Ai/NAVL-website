@@ -5,8 +5,8 @@ import { asset, url } from '../lib/url';
 import { StoreBadge } from './StoreBadge';
 
 const films = {
-  biblelink: { poster: 'media/apps/biblelink/promo/poster.jpg', video: 'media/apps/biblelink/promo/film.mp4' },
-  'void-striker': { poster: 'media/apps/void-striker/promo/poster.jpg', video: 'media/apps/void-striker/promo/film.mp4' },
+  biblelink: { poster: 'media/apps/biblelink/promo/poster.webp', video: 'media/apps/biblelink/promo/film.mp4' },
+  'void-striker': { poster: 'media/apps/void-striker/promo/poster.webp', video: 'media/apps/void-striker/promo/film.mp4' },
 } as const;
 
 export function ProductFilm({ slug }: { slug: keyof typeof films }) {

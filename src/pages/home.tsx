@@ -4,7 +4,8 @@ import { Approach } from '../components/Approach';
 import { Testimonials } from '../components/Testimonials';
 import { SectionHead } from '../components/Shell';
 import { AppCard } from '../components/AppCard';
-import { home, portfolio } from '../content/current';
+import { currentLocaleCode, home, portfolio } from '../content/current';
+import { launchCopy } from '../content/launch';
 import { InterestSection, LatestSection } from '../components/StudioStory';
 import { AvailableNow, FutureGame } from '../components/LaunchMedia';
 import '../components/launch.css';
@@ -14,9 +15,8 @@ import { url } from '../lib/url';
  * The portfolio, on the home page.
  *
  * The whole point of this section is that a visitor who never clicks anything
- * still leaves knowing this is a studio with several products at several
- * stages. So it shows all of them, in the same two groups as /apps, rather
- * than a teaser of two with a link to the rest.
+ * still sees what the studio is building. Released products appear in the
+ * preceding section, and NOVA FRONTIER has its own feature immediately below.
  *
  * The group headings are h3 under this section's h2, which puts the cards at
  * h4 — one level deeper than on /apps, where the groups sit directly under the
@@ -26,17 +26,22 @@ import { url } from '../lib/url';
  */
 function Portfolio() {
   const p = home.portfolio;
+  const upcoming = launchCopy(currentLocaleCode);
+  const groups = portfolio.map((group) => ({
+    ...group,
+    items: group.items.filter((app) => app.slug !== 'biblelink' && app.slug !== 'void-striker' && app.slug !== 'nova-frontier'),
+  }));
   return (
     <section className="section section--ruled" aria-labelledby="portfolio-title">
       <div className="container">
         <SectionHead
           index={p.index}
           label={p.label}
-          headline={p.headline}
-          lede={p.body}
+          headline={upcoming.upcomingTitle}
+          lede={upcoming.upcomingDescription}
           id="portfolio-title"
         />
-        {portfolio.map((group) => (
+        {groups.map((group) => (
           <div className="portfolio-group" key={group.id}>
             <h3 className="head__title head__title--sm" id={`home-group-${group.id}`}>
               {group.label}

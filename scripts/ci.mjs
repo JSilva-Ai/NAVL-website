@@ -3,9 +3,9 @@
  *
  *   npm run ci
  *
- * One command, one definition. This script *is* what .github/workflows/checks.yml
- * runs, rather than a local approximation of it — which is the only arrangement
- * where "it passed locally" and "it passed CI" mean the same thing.
+ * One definition for local and hosted checks. `npm run ci` runs every suite
+ * sequentially; .github/workflows/checks.yml uses --only to run the same
+ * suites in parallel jobs so their combined runtime does not hit one timeout.
  *
  * That is not a hypothetical tidiness. The head refactor shipped a 404 on every
  * page under a subpath and CI caught it on the merge, because CI builds at

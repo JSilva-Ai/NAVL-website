@@ -1275,6 +1275,9 @@
 .journal__meta { display: grid; align-content: start; gap: var(--space-xs); color: var(--chrome-dim); }
 .journal__entry h2 { font-size: var(--step-2); line-height: 1.14; max-width: 24ch; }
 .journal__entry p { color: var(--chrome); margin-top: var(--space-s); max-width: 62ch; }
+.journal__products { display: grid; gap: var(--space-s); margin-block: var(--space-l); }
+.journal__product { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-s); }
+.journal__product > .text-link { min-width: 9rem; }
 
 .bible-story__film { position: relative; max-width: 24rem; margin-inline: auto; border: 1px solid var(--line-strong); border-radius: clamp(1.5rem, 4vw, 2.75rem); padding: .55rem; background: #080a10; box-shadow: var(--shadow-l), 0 0 5rem rgba(10,132,255,.12); overflow: hidden; }
 .bible-story__film video,
