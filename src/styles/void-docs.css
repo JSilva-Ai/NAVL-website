@@ -2,11 +2,12 @@
 
 body {
   background-image:
-    linear-gradient(180deg, rgba(2, 7, 17, .75), var(--black-000) 43rem),
+    linear-gradient(rgba(2, 7, 17, .68), rgba(2, 7, 17, .78)),
     url('/media/studio/vision-clean.webp');
   background-repeat: no-repeat;
-  background-position: center top;
-  background-size: 100% 45rem, auto 45rem;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .void-doc__skip { position: absolute; left: -9999px; }

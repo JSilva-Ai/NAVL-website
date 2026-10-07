@@ -43,6 +43,19 @@ body {
   overflow-x: hidden;
 }
 
+/* Interior pages use the clean studio image as wallpaper throughout the page.
+   The home page has no .pagehead, so its artwork and layout are untouched. */
+body:has(.pagehead) {
+  background-color: #040b15;
+  background-image:
+    linear-gradient(rgba(2, 7, 17, .68), rgba(2, 7, 17, .78)),
+    url('/media/studio/vision-clean.webp');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

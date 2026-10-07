@@ -8,29 +8,17 @@
   padding-top: calc(var(--nav-h) + var(--space-2xl));
   padding-bottom: var(--space-xl);
   position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  background: #040b15;
-}
-
-.pagehead__art {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 73%;
 }
 
 .pagehead::before {
   content: '';
   position: absolute;
   inset: 0;
-  z-index: -1;
-  background: linear-gradient(90deg, rgba(2, 7, 17, .9), rgba(2, 7, 17, .7)),
-    linear-gradient(0deg, var(--black-000), transparent 42%);
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(2, 7, 17, .48), transparent 75%);
 }
+
+.pagehead > .container { position: relative; z-index: 1; }
 
 .pagehead::after {
   content: '';
