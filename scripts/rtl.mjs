@@ -77,7 +77,11 @@ const wanted = (args.vp ? String(args.vp).split(',') : Object.keys(VIEWPORTS)).f
  * on its screen reads, and its island is centred. Mirroring either would draw a
  * phone that does not exist.
  */
-const EXEMPT = ['hero__phone-button', 'hero__phone-island', 'sr-only'];
+// The arrow is tested separately below for its directional transform. Its
+// absolute position shifts by a few pixels on Linux when forcing English text
+// into RTL, because the site's RTL body font is Arabic and has different text
+// metrics. A pixel-for-pixel position comparison there is not a layout check.
+const EXEMPT = ['hero__phone-button', 'hero__phone-island', 'sr-only', 'btn__arrow'];
 
 const browser = await chromium.launch({
   executablePath: process.env.PLAYWRIGHT_EXECUTABLE_PATH,
