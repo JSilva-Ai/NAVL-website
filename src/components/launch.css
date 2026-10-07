@@ -10,7 +10,7 @@
 .launch__copy h3 { margin-top: var(--space-s); font-size: var(--step-2); }
 .launch__copy p { margin-top: var(--space-s); color: var(--chrome); }
 .launch__copy .btn { margin-top: var(--space-l); }
-.launch__store { margin-top: var(--space-m); }
+.launch__store { display: flex; flex-wrap: wrap; gap: var(--space-s); margin-top: var(--space-m); }
 .future-game__grid { display: grid; gap: var(--space-xl); align-items: center; }
 .future-game__copy .head__title { margin-top: var(--space-s); }
 .future-game__copy .btn { margin-top: var(--space-l); }

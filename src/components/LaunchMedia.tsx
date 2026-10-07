@@ -48,7 +48,7 @@ export function AvailableNow() {
                 <h3>{app.name}</h3>
                 <p>{app.tagline}</p>
                 <a className="btn btn--primary" href={url(`apps/${app.slug}`)}>{app.slug === 'biblelink' ? copy.bible : copy.void}<span className="btn__arrow" aria-hidden="true">↗</span></a>
-                <div className="launch__store"><StoreBadge link={app.stores[0]} compact /></div>
+                <div className="launch__store">{app.stores.map((link) => <StoreBadge link={link} compact key={link.store} />)}</div>
               </div>
             </article>
           ))}

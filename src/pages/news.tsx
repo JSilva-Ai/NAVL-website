@@ -24,7 +24,7 @@ mount(
                     if (!app) return null;
                     return <div className="journal__product" key={slug}>
                       <a className="text-link" href={url(`apps/${slug}`)}>{app.name}</a>
-                      <StoreBadge link={app.stores[0]} compact />
+                      {app.stores.map((link) => <StoreBadge link={link} compact key={link.store} />)}
                     </div>;
                   })}
                 </div>

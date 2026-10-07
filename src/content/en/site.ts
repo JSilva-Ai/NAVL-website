@@ -355,12 +355,12 @@ export const apps: App[] = [
     category: 'app',
     kind: 'Application · Daily devotional',
     positioning: 'Scripture, reflection, and prayer for every day.',
-    tagline: 'A daily devotional app, available on the App Store.',
-    status: 'On the App Store',
+    tagline: 'A daily devotional app, available on the App Store and Google Play.',
+    status: 'On the stores',
     description: [
       'BIBLELINK is a daily devotional experience centered on Scripture, reflection, practical application, and prayer.',
       'It is designed around a calm, focused daily rhythm with the Bible, bringing the devotional experience together in one place.',
-      'BIBLELINK is available on the App Store. Google Play availability has not been announced.',
+      'BIBLELINK is available on the App Store and Google Play.',
     ],
     icon: {
       src: 'media/apps/biblelink/icon.png',
@@ -415,7 +415,7 @@ export const apps: App[] = [
     screenshotDisplay: 'gallery',
     stores: [
       { store: 'appStore', href: 'https://apps.apple.com/us/app/biblelink/id6812830407' },
-      { store: 'googlePlay', href: '' },
+      { store: 'googlePlay', href: 'https://play.google.com/store/apps/details?id=com.newaivisionlabs.biblelink' },
     ],
     privacyRoute: routes.bibleLinkPrivacy,
     supportRoute: routes.bibleLinkSupport,
@@ -426,12 +426,12 @@ export const apps: App[] = [
     category: 'game',
     kind: 'Game',
     tagline: 'Humanity’s last fighter. The Void has awakened.',
-    status: 'On the App Store',
+    status: 'On the stores',
     platforms: ['iOS', 'Android'],
     description: [
       'Fight through five campaign sectors, take on six bosses, or enter the Daily Challenge and Survival Mode. Seven starfighters and five weapon types give every run a different rhythm.',
       'Earn Scrap to unlock ships and paint jobs, improve your arsenal between waves, and carry pilot progression into the next run. Haptics, reduced effects, and English, Portuguese, and Spanish interface options let you tune the experience.',
-      'VOID STRIKER is available on the App Store. Google Play availability has not been announced.',
+      'VOID STRIKER is available on the App Store and Google Play.',
     ],
     screenshots: [
       {
@@ -466,7 +466,7 @@ export const apps: App[] = [
     },
     stores: [
       { store: 'appStore', href: 'https://apps.apple.com/us/app/void-striker/id6815695186' },
-      { store: 'googlePlay', href: '' },
+      { store: 'googlePlay', href: 'https://play.google.com/store/apps/details?id=com.navl.voidstriker' },
     ],
     privacyRoute: 'apps/void-striker/privacy',
     supportRoute: 'apps/void-striker/support',
@@ -593,7 +593,7 @@ export const demo = {
     { label: 'Engine', value: 'None. Canvas 2D' },
     { label: 'Audio', value: 'Synthesised, Web Audio' },
   ],
-  note: 'Recorded from the real game build. VOID STRIKER is available on the App Store.',
+  note: 'Recorded from the real game build. VOID STRIKER is available on the App Store and Google Play.',
 };
 
 /* -------------------------------------------------------------------------

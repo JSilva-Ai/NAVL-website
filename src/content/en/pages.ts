@@ -57,7 +57,7 @@ export const pages: PageMeta[] = [
     route: 'apps/biblelink',
     title: 'BIBLELINK — New AI Vision Labs',
     description:
-      'BIBLELINK is a daily devotional app by New AI Vision Labs, centered on Scripture, reflection, practical application, and prayer. Available now on the App Store.',
+      'BIBLELINK is a daily devotional app by New AI Vision Labs, centered on Scripture, reflection, practical application, and prayer. Available now on the App Store and Google Play.',
   },
   {
     route: 'apps/biblelink/privacy',
