@@ -1,48 +1,46 @@
-/* The supplied NAVL image fills the opening screen. On smaller displays the
-   alternate crop keeps the sculpture without half-visible English lettering. */
+/* Keep the supplied artwork unobstructed, with the company introduction below. */
 .hero {
   position: relative;
-  min-height: max(100svh, 46rem);
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-  isolation: isolate;
   background: #040b15;
 }
 
-.hero__art,
+.hero__art {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: clamp(34rem, 55vw, 50rem);
+  overflow: hidden;
+}
+
 .hero__art img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
-.hero__art { z-index: -2; }
-.hero__art img { object-fit: cover; object-position: center; }
-
-.hero::after {
+.hero__art::after {
   content: '';
   position: absolute;
   inset: 0;
-  z-index: -1;
   pointer-events: none;
-  background: linear-gradient(0deg, rgba(2, 7, 17, .94), rgba(2, 7, 17, .38) 25%, transparent 57%);
+  background: linear-gradient(0deg, #040b15, transparent 22%);
 }
 
 .hero__inner {
   width: 100%;
-  padding-top: calc(var(--nav-h) + var(--space-xl));
+  padding-top: var(--space-l);
   padding-bottom: clamp(1.5rem, 5vw, 3.5rem);
 }
 
 .hero__copy {
-  width: min(100%, 46rem);
+  width: 100%;
   padding: clamp(1.25rem, 3vw, 2rem);
   border: 1px solid rgba(200, 205, 212, .2);
   border-radius: 1.15rem;
-  background: rgba(3, 9, 20, .75);
-  backdrop-filter: blur(12px);
+  background: rgba(3, 9, 20, .86);
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, .28);
 }
 
@@ -66,8 +64,7 @@
 }
 
 @media (max-width: 48rem) {
-  .hero { min-height: max(100svh, 42rem); }
+  .hero__art { height: clamp(24rem, 62svh, 36rem); }
   .hero__art img { object-position: 54% center; }
-  .hero__copy { background: rgba(3, 9, 20, .86); }
   .hero__actions .btn { flex: 1 1 100%; justify-content: center; }
 }
