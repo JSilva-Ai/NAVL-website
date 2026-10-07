@@ -1,4 +1,5 @@
-/* The clean NAVL background fills the opening screen across all viewports. */
+/* The supplied NAVL image fills the opening screen. On smaller displays the
+   alternate crop keeps the sculpture without half-visible English lettering. */
 .hero {
   position: relative;
   min-height: max(100svh, 46rem);
@@ -66,6 +67,7 @@
 
 @media (max-width: 48rem) {
   .hero { min-height: max(100svh, 42rem); }
+  .hero__art img { object-position: 54% center; }
   .hero__copy { background: rgba(3, 9, 20, .86); }
   .hero__actions .btn { flex: 1 1 100%; justify-content: center; }
 }

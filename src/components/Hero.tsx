@@ -10,7 +10,8 @@ export function Hero() {
   return (
     <section className="hero" aria-labelledby="hero-title">
       <picture className="hero__art" aria-hidden="true">
-        <img src={asset('media/studio/vision-clean.webp')} alt="" width="1555" height="1011" fetchPriority="high" />
+        <source media="(max-width: 74.99rem)" srcSet={asset('media/studio/vision-mobile.webp')} type="image/webp" />
+        <img src={asset('media/studio/vision-hero.webp')} alt="" width="1556" height="1011" fetchPriority="high" />
       </picture>
 
       <div className="container hero__inner">
