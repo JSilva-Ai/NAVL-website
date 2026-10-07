@@ -1,0 +1,34 @@
+/* Keep the homepage sections together without changing interior page spacing. */
+.hero ~ .section {
+  --section-y: clamp(2.25rem, 1.5rem + 2.2vw, 3.5rem);
+}
+
+.hero ~ .section .head {
+  margin-bottom: var(--space-l);
+}
+
+.hero ~ .launch .launch__grid {
+  margin-top: var(--space-l);
+}
+
+.hero ~ .section .portfolio-group + .portfolio-group {
+  margin-top: var(--space-2xl);
+}
+
+.hero ~ .section .portfolio-group > .head__title--sm {
+  margin-bottom: var(--space-m);
+}
+
+.hero ~ .section .portfolio__more {
+  margin-top: var(--space-xl);
+}
+
+.hero ~ .future-game .future-game__grid {
+  gap: var(--space-l);
+}
+
+@media (max-width: 51.99rem) {
+  .hero ~ .latest .latest__grid {
+    gap: var(--space-l);
+  }
+}

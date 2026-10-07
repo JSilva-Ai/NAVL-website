@@ -9,6 +9,7 @@ import { launchCopy } from '../content/launch';
 import { InterestSection, LatestSection } from '../components/StudioStory';
 import { AvailableNow, FutureGame } from '../components/LaunchMedia';
 import '../components/launch.css';
+import '../styles/home.css';
 import { url } from '../lib/url';
 
 /**
