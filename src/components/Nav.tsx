@@ -81,7 +81,9 @@ export function Nav() {
         }}
       >
         {PUBLISHED.map((code) => (
-          <option value={code} key={code}>{locales[code].endonym}</option>
+          <option value={code} key={code} lang={locales[code].lang} dir={locales[code].dir}>
+            {locales[code].endonym}
+          </option>
         ))}
       </select>
     </label>
