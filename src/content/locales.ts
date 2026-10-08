@@ -22,7 +22,7 @@ export interface Locale {
   dir: 'ltr' | 'rtl';
   /** The URL prefix. English is unprefixed, so every existing URL is unmoved. */
   prefix: string;
-  /** The language's own name, for a switcher — never the English name for it. */
+  /** The language's own name, independent of the page's current language. */
   endonym: string;
   /** og:locale. */
   ogLocale: string;
@@ -47,6 +47,15 @@ export const locales: Record<LocaleCode, Locale> = {
    * country-specific strategy to go with it.
    */
   ar: { code: 'ar', lang: 'ar', dir: 'rtl', prefix: 'ar', endonym: 'العربية', ogLocale: 'ar_AR' },
+};
+
+/** Names shown in the language selector, translated into the current page language. */
+export const languageNames: Record<LocaleCode, Record<LocaleCode, string>> = {
+  en: { en: 'English', pt: 'Portuguese', es: 'Spanish', ko: 'Korean', ar: 'Arabic' },
+  pt: { en: 'Inglês', pt: 'Português', es: 'Espanhol', ko: 'Coreano', ar: 'Árabe' },
+  es: { en: 'Inglés', pt: 'Portugués', es: 'Español', ko: 'Coreano', ar: 'Árabe' },
+  ko: { en: '영어', pt: '포르투갈어', es: '스페인어', ko: '한국어', ar: '아랍어' },
+  ar: { en: 'الإنجليزية', pt: 'البرتغالية', es: 'الإسبانية', ko: 'الكورية', ar: 'العربية' },
 };
 
 /**

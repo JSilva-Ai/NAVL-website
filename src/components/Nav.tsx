@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Lockup } from './Logo';
 import { nav, routes, site, ui } from '../content/current';
 import { isCurrent, url, currentLocale } from '../lib/url';
-import { PUBLISHED, locales, localeFromRoute } from '../content/locales';
+import { PUBLISHED, languageNames, locales, localeFromRoute } from '../content/locales';
 import { story } from '../content/story';
 import { useMediaQuery, useScrollY } from '../lib/hooks';
 import './nav.css';
@@ -17,6 +17,7 @@ import './nav.css';
  */
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const locale = currentLocale();
   const compact = useMediaQuery('(max-width: 64rem)');
   const scrolled = useScrollY() > 12;
   const sheetRef = useRef<HTMLDivElement>(null);
@@ -71,7 +72,7 @@ export function Nav() {
       <span aria-hidden="true">◎</span>
       <select
         aria-label={ui.languages}
-        value={currentLocale().code}
+        value={locale.code}
         onChange={(event) => {
           const target = locales[event.target.value as keyof typeof locales];
           const base = import.meta.env.BASE_URL.replace(/^\/+|\/+$/g, '');
@@ -81,8 +82,8 @@ export function Nav() {
         }}
       >
         {PUBLISHED.map((code) => (
-          <option value={code} key={code} lang={locales[code].lang} dir={locales[code].dir}>
-            {locales[code].endonym}
+          <option value={code} key={code}>
+            {languageNames[locale.code][code]}
           </option>
         ))}
       </select>
