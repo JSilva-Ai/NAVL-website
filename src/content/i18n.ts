@@ -17,7 +17,7 @@ type Copy = {
   nav: [string, string, string];
   hero: { eyebrow: string; headline: string[]; accentWord: string; primary: string; secondary: string };
   approach: { label: string; headline: string; body: string[]; points: { title: string; body: string }[] };
-  portfolio: { label: string; headline: string; body: string; all: string; apps: string; games: string };
+  portfolio: { label: string; headline: string; body: string; all: string; apps: string; games: string; appsHeadline: string; gamesHeadline: string };
   demoCallout: { label: string; headline: string; body: string; cta: string };
   appsPage: { label: string; headline: string; lede: string; note: string; pending: string };
   ui: Record<string, string>;
@@ -38,7 +38,7 @@ const pt: Copy = {
     { title: 'Respeitamos a privacidade', body: 'Pedimos somente os dados necessários para cada produto funcionar e explicamos isso com clareza.' },
     { title: 'Mostramos o estágio real', body: 'Pesquisa, desenvolvimento, testes ou publicação: o site sempre informa onde cada produto realmente está.' },
   ] },
-  portfolio: { label: 'Portfólio', headline: 'Sete produtos. Uma mesma exigência.', body: 'Quatro aplicativos e três jogos, apresentados com honestidade e uma identidade visual comum.', all: 'Ver todos os produtos', apps: 'IA e aplicativos', games: 'Jogos' },
+  portfolio: { label: 'Portfólio', headline: 'Sete produtos. Uma mesma exigência.', body: 'Quatro aplicativos e três jogos, apresentados com honestidade e uma identidade visual comum.', all: 'Ver todos os produtos', apps: 'IA e aplicativos', games: 'Jogos', appsHeadline: 'Aplicativos inteligentes.', gamesHeadline: 'Jogos originais.' },
   demoCallout: { label: 'Jogo em ação', headline: 'Veja VOID STRIKER em ação.', body: 'Assista a uma partida real de VOID STRIKER, com combate espacial, ondas de inimigos e melhorias.', cta: 'Assistir ao vídeo' },
   appsPage: { label: 'Produtos', headline: 'O que estamos construindo.', lede: 'Sete produtos em diferentes estágios. Todos são nossos e cada página informa o estágio real do trabalho.', note: 'Este produto ainda não foi lançado. O link de download aparecerá quando houver uma versão pública.', pending: 'Não disponível' },
   ui: { skipToContent: 'Ir para o conteúdo', menu: 'Menu', close: 'Fechar', backToApps: 'Todos os produtos', screenshotsLabel: 'Capturas do aplicativo', gameplayLabel: 'Jogo em ação', conceptArtLabel: 'Arte conceitual', noScreenshots: 'As capturas serão publicadas quando o produto tiver uma interface pronta para ser mostrada.', kindLabel: 'Categoria', stageLabel: 'Estágio', supportShort: 'Suporte', supportEmail: 'E-mail de suporte', emailUs: 'Fale conosco', primaryNav: 'Navegação principal', onThisPage: 'Nesta página', lastUpdated: 'Última atualização', getIt: 'Disponibilidade', platforms: 'Plataformas', legalSupport: 'Privacidade e suporte', privacy: 'Política de Privacidade', terms: 'Termos de Uso', dataDeletion: 'Exclusão de dados', playDemo: 'Jogar demonstração', aboutGame: 'Conheça o jogo', deleteRequest: 'Enviar pedido de exclusão', download: 'Ver na loja', languages: 'Idiomas', phone: 'Telefone', productsWord: 'PRODUTOS', conceptNotice: 'Imagem conceitual de um produto em desenvolvimento.' },
@@ -66,7 +66,7 @@ const es: Copy = {
     { title: 'Respetamos la privacidad', body: 'Pedimos solo los datos necesarios y explicamos con claridad cómo funciona cada producto.' },
     { title: 'Mostramos la etapa real', body: 'Investigación, desarrollo, pruebas o publicación: siempre indicamos la etapa verdadera.' },
   ] },
-  portfolio: { label: 'Portafolio', headline: 'Siete productos. Una misma exigencia.', body: 'Cuatro aplicaciones y tres juegos, presentados con honestidad y una identidad visual común.', all: 'Ver todos los productos', apps: 'IA y aplicaciones', games: 'Juegos' },
+  portfolio: { label: 'Portafolio', headline: 'Siete productos. Una misma exigencia.', body: 'Cuatro aplicaciones y tres juegos, presentados con honestidad y una identidad visual común.', all: 'Ver todos los productos', apps: 'IA y aplicaciones', games: 'Juegos', appsHeadline: 'Aplicaciones inteligentes.', gamesHeadline: 'Juegos originales.' },
   demoCallout: { label: 'Gameplay', headline: 'Mira VOID STRIKER en acción.', body: 'Mira una partida real de VOID STRIKER, con combate espacial, oleadas enemigas y mejoras.', cta: 'Ver el vídeo' },
   appsPage: { label: 'Productos', headline: 'Lo que estamos construyendo.', lede: 'Siete productos en distintas etapas. Todos son nuestros y cada página indica el estado real del trabajo.', note: 'Este producto aún no se ha lanzado. El enlace de descarga aparecerá cuando exista una versión pública.', pending: 'No disponible' },
   ui: { skipToContent: 'Ir al contenido', menu: 'Menú', close: 'Cerrar', backToApps: 'Todos los productos', screenshotsLabel: 'Capturas de la aplicación', gameplayLabel: 'Juego en acción', conceptArtLabel: 'Arte conceptual', noScreenshots: 'Publicaremos capturas cuando exista una interfaz lista para mostrarse.', kindLabel: 'Categoría', stageLabel: 'Etapa', supportShort: 'Soporte', supportEmail: 'Correo de soporte', emailUs: 'Escríbenos', primaryNav: 'Navegación principal', onThisPage: 'En esta página', lastUpdated: 'Última actualización', getIt: 'Disponibilidad', platforms: 'Plataformas', legalSupport: 'Privacidad y soporte', privacy: 'Política de Privacidad', terms: 'Términos de Uso', dataDeletion: 'Eliminación de datos', playDemo: 'Jugar demostración', aboutGame: 'Conoce el juego', deleteRequest: 'Enviar solicitud de eliminación', download: 'Ver en la tienda', languages: 'Idiomas', phone: 'Teléfono', productsWord: 'PRODUCTOS', conceptNotice: 'Imagen conceptual de un producto en desarrollo.' },
@@ -93,20 +93,20 @@ const ko: Copy = {
     { title: '개인정보를 존중합니다', body: '제품 작동에 필요한 최소한의 데이터만 사용하고 그 이유를 명확히 설명합니다.' },
     { title: '실제 진행 단계를 공개합니다', body: '연구, 개발, 최종 테스트, 출시 중 현재 위치를 솔직하게 표시합니다.' },
   ] },
-  portfolio: { label: '포트폴리오', headline: '일곱 가지 제품. 하나의 기준.', body: '네 개의 앱과 세 개의 게임을 같은 수준의 정직함과 시각적 완성도로 소개합니다.', all: '모든 제품 보기', apps: 'AI 및 애플리케이션', games: '게임' },
-  demoCallout: { label: '게임플레이', headline: 'VOID STRIKER의 전투를 만나보세요.', body: '실제 게임에서 촬영한 우주 전투, 적의 웨이브, 업그레이드 장면을 영상으로 확인하세요.', cta: '게임 영상 보기' },
+  portfolio: { label: '포트폴리오', headline: '일곱 가지 제품. 하나의 기준.', body: '네 개의 앱과 세 개의 게임을 같은 수준의 정직함과 시각적 완성도로 소개합니다.', all: '모든 제품 보기', apps: 'AI 및 애플리케이션', games: '게임', appsHeadline: '지능형 애플리케이션.', gamesHeadline: '오리지널 게임.' },
+  demoCallout: { label: '게임플레이', headline: '보이드 스트라이커의 전투를 만나보세요.', body: '실제 게임에서 촬영한 우주 전투, 적의 웨이브, 업그레이드 장면을 영상으로 확인하세요.', cta: '게임 영상 보기' },
   appsPage: { label: '제품', headline: '우리가 만들고 있는 것.', lede: '일곱 제품의 현재 단계를 각 페이지에 정확히 표시합니다.', note: '아직 출시되지 않은 제품입니다. 공개 버전이 준비되면 다운로드 링크가 표시됩니다.', pending: '아직 이용 불가' },
   ui: { skipToContent: '본문으로 이동', menu: '메뉴', close: '닫기', backToApps: '모든 제품', screenshotsLabel: '앱 화면', gameplayLabel: '게임플레이', conceptArtLabel: '콘셉트 아트', noScreenshots: '공개할 수 있는 인터페이스가 준비되면 화면을 게시합니다.', kindLabel: '분류', stageLabel: '단계', supportShort: '지원', supportEmail: '지원 이메일', emailUs: '문의하기', primaryNav: '주요 탐색', onThisPage: '이 페이지에서', lastUpdated: '마지막 업데이트', getIt: '이용 가능 여부', platforms: '플랫폼', legalSupport: '개인정보 및 지원', privacy: '개인정보 처리방침', terms: '이용 약관', dataDeletion: '데이터 삭제', playDemo: '데모 플레이', aboutGame: '게임 소개', deleteRequest: '삭제 요청 이메일 보내기', download: '스토어에서 보기', languages: '언어', phone: '전화', productsWord: '제품', conceptNotice: '개발 중인 제품을 위한 콘셉트 이미지입니다.' },
   footer: { studio: '스튜디오', help: '도움말', legal: '법적 고지', rights: '모든 권리 보유.' },
   status: { 'Product discovery': '제품 연구', 'In development': '개발 중', 'Final testing': '최종 테스트', 'On the stores': '스토어 출시', 'On the App Store': 'App Store 출시' },
   products: {
-    loop: { positioning: '한발 앞서 생각하는 지능.', tagline: '처음부터 다국어로 설계된 소비자용 앱.', kind: 'AI · 소비자 앱', description: ['LOOP는 능동형 지능을 중심으로 개발 중인 소비자용 애플리케이션입니다.', '완성된 뒤 번역하는 방식이 아니라 첫 설계부터 여러 언어를 고려합니다.', '세부 기능이 확정되면 공개합니다. 아직 출시일은 정해지지 않았습니다.'], conceptLabel: '콘셉트 아트 · 개발 중인 제품' },
-    shield: { positioning: '신뢰하기 전에 확인하세요.', tagline: '“이것을 믿어도 될까?”라는 질문에서 시작한 연구 단계의 콘셉트.', kind: 'AI · 디지털 보호', description: ['SHIELD는 낯선 메시지, 의심스러운 링크, 청구서, QR 코드처럼 일상적인 순간에서 출발합니다.', '행동하기 전에 디지털 상호작용을 판단하도록 돕는 개인 신뢰 지능을 연구하고 있습니다.', '현재는 연구 단계이며 검증되지 않은 보호 효과를 약속하지 않습니다.'], conceptLabel: '콘셉트 아트 · 제품 연구' },
-    guard: { positioning: '잃기 전에 알아차리세요.', tagline: '조용히 빠져나가는 돈을 살펴보는 연구 단계의 콘셉트.', kind: 'AI · 재정 보호', description: ['무료 체험 전환, 자동 갱신, 환불 기한처럼 놓치기 쉬운 날짜에서 손실이 생깁니다.', 'GUARD는 이런 순간을 더 잘 보이게 만드는 개념을 연구합니다.', '아직 은행 연결, 취소, 환불 요청 또는 송금 기능은 제공하지 않습니다.'], conceptLabel: '콘셉트 아트 · 제품 연구' },
-    biblelink: { positioning: '매일을 위한 성경, 묵상과 기도.', tagline: 'App Store와 Google Play에서 이용할 수 있는 매일 묵상 앱.', kind: '애플리케이션 · 매일 묵상', description: ['BibleLink는 성경, 묵상, 삶의 적용과 기도를 차분한 경험으로 연결합니다.', '매일 성경을 읽는 리듬을 돕도록 설계되었으며 아홉 개 언어의 콘텐츠를 제공합니다.', 'App Store와 Google Play에서 이용할 수 있습니다.'] },
-    'void-striker': { tagline: '인류의 마지막 전투기. 공허가 깨어났습니다.', kind: '게임', description: ['다섯 개의 캠페인 구역과 여섯 명의 보스에 도전하거나 일일 도전과 생존 모드를 즐겨 보세요. 전투기 일곱 대와 무기 다섯 종류를 사용할 수 있습니다.', '게임을 진행하며 새로운 전투기와 외형을 잠금 해제할 수 있습니다. 인터페이스는 영어, 포르투갈어, 스페인어를 지원합니다.', 'VOID STRIKER는 App Store와 Google Play에서 이용할 수 있습니다.'] },
-    'galaxy-forge': { tagline: '개발 중인 두 번째 게임.', kind: '게임', description: ['GALAXY FORGE는 스튜디오의 두 번째 게임으로 현재 개발 중입니다.', '초기 단계의 결정이 계속 바뀌므로 게임 방식은 아직 공개하지 않습니다.'], conceptLabel: '콘셉트 아트 · 개발 중인 게임' },
-    'nova-frontier': { tagline: '개발 중인 새로운 전략 게임 세계.', kind: '게임', description: ['NOVA FRONTIER는 New AI Vision Labs가 개발 중인 오리지널 게임입니다.', '아래 이미지는 창작 방향을 담은 콘셉트 아트입니다. 묘사된 시스템, 플랫폼과 기능은 개발 과정에서 바뀔 수 있습니다.'], conceptLabel: '콘셉트 아트 · 개발 중인 게임' },
+    loop: { positioning: '한발 앞서 생각하는 지능.', tagline: '처음부터 다국어로 설계된 소비자용 앱.', kind: 'AI · 소비자 앱', description: ['루프는 능동형 지능을 중심으로 개발 중인 소비자용 애플리케이션입니다.', '완성된 뒤 번역하는 방식이 아니라 첫 설계부터 여러 언어를 고려합니다.', '세부 기능이 확정되면 공개합니다. 아직 출시일은 정해지지 않았습니다.'], conceptLabel: '콘셉트 아트 · 개발 중인 제품' },
+    shield: { positioning: '신뢰하기 전에 확인하세요.', tagline: '“이것을 믿어도 될까?”라는 질문에서 시작한 연구 단계의 콘셉트.', kind: 'AI · 디지털 보호', description: ['쉴드는 낯선 메시지, 의심스러운 링크, 청구서, QR 코드처럼 일상적인 순간에서 출발합니다.', '행동하기 전에 디지털 상호작용을 판단하도록 돕는 개인 신뢰 지능을 연구하고 있습니다.', '현재는 연구 단계이며 검증되지 않은 보호 효과를 약속하지 않습니다.'], conceptLabel: '콘셉트 아트 · 제품 연구' },
+    guard: { positioning: '잃기 전에 알아차리세요.', tagline: '조용히 빠져나가는 돈을 살펴보는 연구 단계의 콘셉트.', kind: 'AI · 재정 보호', description: ['무료 체험 전환, 자동 갱신, 환불 기한처럼 놓치기 쉬운 날짜에서 손실이 생깁니다.', '가드는 이런 순간을 더 잘 보이게 만드는 개념을 연구합니다.', '아직 은행 연결, 취소, 환불 요청 또는 송금 기능은 제공하지 않습니다.'], conceptLabel: '콘셉트 아트 · 제품 연구' },
+    biblelink: { positioning: '매일을 위한 성경, 묵상과 기도.', tagline: 'App Store와 Google Play에서 이용할 수 있는 매일 묵상 앱.', kind: '애플리케이션 · 매일 묵상', description: ['바이블링크는 성경, 묵상, 삶의 적용과 기도를 차분한 경험으로 연결합니다.', '매일 성경을 읽는 리듬을 돕도록 설계되었으며 아홉 개 언어의 콘텐츠를 제공합니다.', 'App Store와 Google Play에서 이용할 수 있습니다.'] },
+    'void-striker': { tagline: '인류의 마지막 전투기. 공허가 깨어났습니다.', kind: '게임', description: ['다섯 개의 캠페인 구역과 여섯 명의 보스에 도전하거나 일일 도전과 생존 모드를 즐겨 보세요. 전투기 일곱 대와 무기 다섯 종류를 사용할 수 있습니다.', '게임을 진행하며 새로운 전투기와 외형을 잠금 해제할 수 있습니다. 인터페이스는 영어, 포르투갈어, 스페인어를 지원합니다.', '보이드 스트라이커는 App Store와 Google Play에서 이용할 수 있습니다.'] },
+    'galaxy-forge': { tagline: '개발 중인 두 번째 게임.', kind: '게임', description: ['갤럭시 포지는 스튜디오의 두 번째 게임으로 현재 개발 중입니다.', '초기 단계의 결정이 계속 바뀌므로 게임 방식은 아직 공개하지 않습니다.'], conceptLabel: '콘셉트 아트 · 개발 중인 게임' },
+    'nova-frontier': { tagline: '개발 중인 새로운 전략 게임 세계.', kind: '게임', description: ['노바 프런티어는 뉴 에이아이 비전 랩스가 개발 중인 오리지널 게임입니다.', '아래 이미지는 창작 방향을 담은 콘셉트 아트입니다. 묘사된 시스템, 플랫폼과 기능은 개발 과정에서 바뀔 수 있습니다.'], conceptLabel: '콘셉트 아트 · 개발 중인 게임' },
   }, pageTitles: {},
 };
 
@@ -120,24 +120,35 @@ const ar: Copy = {
     { title: 'نحترم الخصوصية', body: 'نستخدم الحد الأدنى من البيانات اللازمة ونشرح ذلك بوضوح.' },
     { title: 'نُظهر المرحلة الحقيقية', body: 'بحث أو تطوير أو اختبار أو إطلاق: نعرض دائمًا وضع المنتج الفعلي.' },
   ] },
-  portfolio: { label: 'أعمالنا', headline: 'سبعة منتجات. معيار واحد.', body: 'أربعة تطبيقات وثلاث ألعاب، بهوية بصرية موحّدة وشفافية كاملة.', all: 'عرض كل المنتجات', apps: 'الذكاء الاصطناعي والتطبيقات', games: 'الألعاب' },
-  demoCallout: { label: 'أسلوب اللعب', headline: 'شاهد VOID STRIKER أثناء اللعب.', body: 'شاهد لقطات حقيقية من القتال الفضائي وموجات الأعداء والترقيات داخل اللعبة.', cta: 'شاهد الفيديو' },
+  portfolio: { label: 'أعمالنا', headline: 'سبعة منتجات. معيار واحد.', body: 'أربعة تطبيقات وثلاث ألعاب، بهوية بصرية موحّدة وشفافية كاملة.', all: 'عرض كل المنتجات', apps: 'الذكاء الاصطناعي والتطبيقات', games: 'الألعاب', appsHeadline: 'تطبيقات ذكية.', gamesHeadline: 'ألعاب أصلية.' },
+  demoCallout: { label: 'أسلوب اللعب', headline: 'شاهد فويد سترايكر أثناء اللعب.', body: 'شاهد لقطات حقيقية من القتال الفضائي وموجات الأعداء والترقيات داخل اللعبة.', cta: 'شاهد الفيديو' },
   appsPage: { label: 'المنتجات', headline: 'ما الذي نبنيه.', lede: 'سبعة منتجات في مراحل مختلفة. كلها من صنعنا وتعرض كل صفحة المرحلة الفعلية للعمل.', note: 'لم يصدر هذا المنتج بعد. سيظهر رابط التنزيل عندما تتوفر نسخة عامة.', pending: 'غير متاح بعد' },
   ui: { skipToContent: 'الانتقال إلى المحتوى', menu: 'القائمة', close: 'إغلاق', backToApps: 'كل المنتجات', screenshotsLabel: 'صور التطبيق', gameplayLabel: 'أسلوب اللعب', conceptArtLabel: 'فن تصوري', noScreenshots: 'سننشر الصور عندما تصبح واجهة المنتج جاهزة للعرض.', kindLabel: 'الفئة', stageLabel: 'المرحلة', supportShort: 'الدعم', supportEmail: 'بريد الدعم', emailUs: 'تواصل معنا', primaryNav: 'التنقل الرئيسي', onThisPage: 'في هذه الصفحة', lastUpdated: 'آخر تحديث', getIt: 'التوفر', platforms: 'المنصات', legalSupport: 'الخصوصية والدعم', privacy: 'سياسة الخصوصية', terms: 'شروط الاستخدام', dataDeletion: 'حذف البيانات', playDemo: 'تشغيل العرض', aboutGame: 'عن اللعبة', deleteRequest: 'إرسال طلب حذف', download: 'عرض في المتجر', languages: 'اللغات', phone: 'الهاتف', productsWord: 'منتجات', conceptNotice: 'صورة تصورية لمنتج قيد التطوير.' },
   footer: { studio: 'الاستوديو', help: 'المساعدة', legal: 'قانوني', rights: 'جميع الحقوق محفوظة.' },
   status: { 'Product discovery': 'بحث المنتج', 'In development': 'قيد التطوير', 'Final testing': 'الاختبارات النهائية', 'On the stores': 'متاح في المتاجر', 'On the App Store': 'متاح على App Store' },
   products: {
-    loop: { positioning: 'ذكاء يفكر خطوة إلى الأمام.', tagline: 'تطبيق للمستخدم قيد التطوير، صُمم متعدد اللغات منذ البداية.', kind: 'ذكاء اصطناعي · تطبيق للمستخدم', description: ['LOOP تطبيق نعمل عليه حول مفهوم الذكاء الاستباقي.', 'صُمم متعدد اللغات من البداية لأن إضافة لغة إلى منتج مكتمل ليست مجرد ترجمة.', 'سنعلن التفاصيل عندما تستقر. لا يوجد موعد إطلاق معلن حاليًا.'], conceptLabel: 'فن تصوري · منتج قيد التطوير' },
-    shield: { positioning: 'اعرف قبل أن تثق.', tagline: 'فكرة في مرحلة البحث تبدأ بسؤال: هل يمكنني الوثوق بهذا؟', kind: 'ذكاء اصطناعي · حماية رقمية', description: ['ينطلق SHIELD من مواقف يومية: رسالة مجهولة أو رابط مريب أو فاتورة أو رمز QR.', 'ندرس فكرة تساعد الشخص على تقييم التفاعل الرقمي قبل النقر أو الرد أو إرسال المال.', 'ما زال في مرحلة البحث ولا نَعِد بحماية لم تُختبر بعد.'], conceptLabel: 'فن تصوري · بحث المنتج' },
-    guard: { positioning: 'اعرف قبل أن تخسر.', tagline: 'فكرة تبحث في المال الذي يخرج بهدوء.', kind: 'ذكاء اصطناعي · حماية مالية', description: ['قد تأتي الخسارة من موعد منسي: تجربة تتحول إلى رسوم أو تجديد تلقائي أو انتهاء مهلة إرجاع.', 'GUARD هو المفهوم الذي ندرسه لإظهار تلك اللحظات بوضوح.', 'لا يتصل حاليًا بالبنوك ولا يلغي خدمات أو يطلب استردادًا أو يحرك الأموال.'], conceptLabel: 'فن تصوري · بحث المنتج' },
-    biblelink: { positioning: 'الكتاب المقدس والتأمل والصلاة لكل يوم.', tagline: 'تطبيق تعبدي يومي متاح على App Store وGoogle Play.', kind: 'تطبيق · تأمل يومي', description: ['يجمع BibleLink الكتاب المقدس والتأمل والتطبيق العملي والصلاة في تجربة هادئة.', 'صُمم لدعم عادة يومية للقراءة ويقدم المحتوى بتسع لغات.', 'BibleLink متاح على App Store وGoogle Play، لكن النسخة العربية قادمة قريبًا.'] },
-    'void-striker': { tagline: 'مقاتلة البشرية الأخيرة. لقد استيقظ الفراغ.', kind: 'لعبة', description: ['قاتل عبر خمسة قطاعات وستة زعماء، أو جرّب التحدي اليومي ونمط البقاء. تتوفر سبع مقاتلات وخمسة أنواع من الأسلحة.', 'افتح مقاتلات ومظاهر جديدة أثناء اللعب. تتوفر واجهة اللعبة بالإنجليزية والبرتغالية والإسبانية.', 'VOID STRIKER متاح على App Store وGoogle Play.'] },
-    'galaxy-forge': { tagline: 'لعبتنا الثانية، وهي قيد التطوير.', kind: 'لعبة', description: ['GALAXY FORGE هي اللعبة الثانية للاستوديو ويجري تطويرها الآن.', 'لا نصف أسلوب اللعب بعد لأن القرارات تتغير في هذه المرحلة المبكرة.'], conceptLabel: 'فن تصوري · لعبة قيد التطوير' },
-    'nova-frontier': { tagline: 'عالم استراتيجي جديد قيد التطوير.', kind: 'لعبة', description: ['NOVA FRONTIER لعبة أصلية مستقبلية من New AI Vision Labs قيد التطوير.', 'الصورة أدناه فن تصوري يعرض الاتجاه الإبداعي. قد تتغير الأنظمة والمنصات والميزات المصوّرة خلال التطوير.'], conceptLabel: 'فن تصوري · لعبة قيد التطوير' },
+    loop: { positioning: 'ذكاء يفكر خطوة إلى الأمام.', tagline: 'تطبيق للمستخدم قيد التطوير، صُمم متعدد اللغات منذ البداية.', kind: 'ذكاء اصطناعي · تطبيق للمستخدم', description: ['لوب تطبيق نعمل عليه حول مفهوم الذكاء الاستباقي.', 'صُمم متعدد اللغات من البداية لأن إضافة لغة إلى منتج مكتمل ليست مجرد ترجمة.', 'سنعلن التفاصيل عندما تستقر. لا يوجد موعد إطلاق معلن حاليًا.'], conceptLabel: 'فن تصوري · منتج قيد التطوير' },
+    shield: { positioning: 'اعرف قبل أن تثق.', tagline: 'فكرة في مرحلة البحث تبدأ بسؤال: هل يمكنني الوثوق بهذا؟', kind: 'ذكاء اصطناعي · حماية رقمية', description: ['ينطلق شيلد من مواقف يومية: رسالة مجهولة أو رابط مريب أو فاتورة أو رمز QR.', 'ندرس فكرة تساعد الشخص على تقييم التفاعل الرقمي قبل النقر أو الرد أو إرسال المال.', 'ما زال في مرحلة البحث ولا نَعِد بحماية لم تُختبر بعد.'], conceptLabel: 'فن تصوري · بحث المنتج' },
+    guard: { positioning: 'اعرف قبل أن تخسر.', tagline: 'فكرة تبحث في المال الذي يخرج بهدوء.', kind: 'ذكاء اصطناعي · حماية مالية', description: ['قد تأتي الخسارة من موعد منسي: تجربة تتحول إلى رسوم أو تجديد تلقائي أو انتهاء مهلة إرجاع.', 'غارد هو المفهوم الذي ندرسه لإظهار تلك اللحظات بوضوح.', 'لا يتصل حاليًا بالبنوك ولا يلغي خدمات أو يطلب استردادًا أو يحرك الأموال.'], conceptLabel: 'فن تصوري · بحث المنتج' },
+    biblelink: { positioning: 'الكتاب المقدس والتأمل والصلاة لكل يوم.', tagline: 'تطبيق تعبدي يومي متاح على App Store وGoogle Play.', kind: 'تطبيق · تأمل يومي', description: ['يجمع بايبل لينك الكتاب المقدس والتأمل والتطبيق العملي والصلاة في تجربة هادئة.', 'صُمم لدعم عادة يومية للقراءة ويقدم المحتوى بتسع لغات.', 'بايبل لينك متاح على App Store وGoogle Play، لكن النسخة العربية قادمة قريبًا.'] },
+    'void-striker': { tagline: 'مقاتلة البشرية الأخيرة. لقد استيقظ الفراغ.', kind: 'لعبة', description: ['قاتل عبر خمسة قطاعات وستة زعماء، أو جرّب التحدي اليومي ونمط البقاء. تتوفر سبع مقاتلات وخمسة أنواع من الأسلحة.', 'افتح مقاتلات ومظاهر جديدة أثناء اللعب. تتوفر واجهة اللعبة بالإنجليزية والبرتغالية والإسبانية.', 'فويد سترايكر متاح على App Store وGoogle Play.'] },
+    'galaxy-forge': { tagline: 'لعبتنا الثانية، وهي قيد التطوير.', kind: 'لعبة', description: ['غالاكسي فورج هي اللعبة الثانية للاستوديو ويجري تطويرها الآن.', 'لا نصف أسلوب اللعب بعد لأن القرارات تتغير في هذه المرحلة المبكرة.'], conceptLabel: 'فن تصوري · لعبة قيد التطوير' },
+    'nova-frontier': { tagline: 'عالم استراتيجي جديد قيد التطوير.', kind: 'لعبة', description: ['نوفا فرونتير لعبة أصلية مستقبلية من نيو إيه آي فيجن لابز قيد التطوير.', 'الصورة أدناه فن تصوري يعرض الاتجاه الإبداعي. قد تتغير الأنظمة والمنصات والميزات المصوّرة خلال التطوير.'], conceptLabel: 'فن تصوري · لعبة قيد التطوير' },
   }, pageTitles: {},
 };
 
 export const localized: Partial<Record<LocaleCode, Copy>> = { pt, es, ko, ar };
+
+const productNames: Partial<Record<LocaleCode, Record<string, string>>> = {
+  ko: {
+    loop: '루프', shield: '쉴드', guard: '가드', biblelink: '바이블링크',
+    'void-striker': '보이드 스트라이커', 'galaxy-forge': '갤럭시 포지', 'nova-frontier': '노바 프런티어',
+  },
+  ar: {
+    loop: 'لوب', shield: 'شيلد', guard: 'غارد', biblelink: 'بايبل لينك',
+    'void-striker': 'فويد سترايكر', 'galaxy-forge': 'غالاكسي فورج', 'nova-frontier': 'نوفا فرونتير',
+  },
+};
 
 const visualCopy: Partial<Record<LocaleCode, {
   demoLede: string;
@@ -208,7 +219,7 @@ export function siteContent(code: LocaleCode) {
   const copy = localized[code];
   if (!copy) return en;
   const visual = visualCopy[code];
-  const site = { ...en.site, proposition: copy.proposition, blurb: copy.blurb, location: copy.location };
+  const site = { ...en.site, name: code === 'ar' ? 'نيو إيه آي فيجن لابز' : code === 'ko' ? '뉴 에이아이 비전 랩스' : en.site.name, proposition: copy.proposition, blurb: copy.blurb, location: copy.location };
   const nav = en.nav.map((item, i) => ({ ...item, label: copy.nav[i] }));
   const home = {
     ...en.home,
@@ -223,16 +234,17 @@ export function siteContent(code: LocaleCode) {
     const screenshots = app.slug === 'biblelink' && visual
       ? app.screenshots.map((shot, index) => ({ ...shot, ...visual.shots[index] }))
       : app.screenshots;
-    return { ...app, positioning: p.positioning, tagline: p.tagline, kind: p.kind, description: p.description, screenshots, conceptArt: app.conceptArt ? { ...app.conceptArt, label: p.conceptLabel ?? app.conceptArt.label } : undefined };
+    return { ...app, displayName: productNames[code]?.[app.slug], positioning: p.positioning, tagline: p.tagline, kind: p.kind, description: p.description, screenshots, conceptArt: app.conceptArt ? { ...app.conceptArt, label: p.conceptLabel ?? app.conceptArt.label } : undefined };
   });
   const portfolio = [
-    { ...en.portfolio[0], label: copy.portfolio.apps, items: apps.filter((a) => a.category === 'app').sort((a, b) => Number(b.slug === 'biblelink') - Number(a.slug === 'biblelink')) },
-    { ...en.portfolio[1], label: copy.portfolio.games, items: apps.filter((a) => a.category === 'game') },
+    { ...en.portfolio[0], label: copy.portfolio.apps, headline: copy.portfolio.appsHeadline, items: apps.filter((a) => a.category === 'app').sort((a, b) => Number(b.slug === 'biblelink') - Number(a.slug === 'biblelink')) },
+    { ...en.portfolio[1], label: copy.portfolio.games, headline: copy.portfolio.gamesHeadline, items: apps.filter((a) => a.category === 'game') },
   ];
   const appsPage = { ...en.appsPage, label: copy.appsPage.label, headline: copy.appsPage.headline, lede: copy.appsPage.lede, inDevelopmentNote: copy.appsPage.note, notYetOnStores: copy.appsPage.pending };
   const demo = {
     ...en.demo,
     label: copy.demoCallout.label,
+    headline: apps.find((app) => app.slug === 'void-striker')?.displayName ?? en.demo.headline,
     lede: visual?.demoLede ?? copy.demoCallout.body,
     clipAlt: visual?.clipAlt ?? en.demo.clipAlt,
     note: visual?.note ?? en.demo.note,
@@ -269,18 +281,18 @@ export function pagesFor(code: LocaleCode): PageMeta[] {
         news: ['Novedades del estudio — New AI Vision Labs', 'Preparación de lanzamientos, avances de productos y trabajos seleccionados de New AI Vision Labs.'],
       },
       ko: {
-        about: ['New AI Vision Labs 소개', 'BibleLink와 VOID STRIKER를 비롯한 오리지널 앱과 게임을 만드는 독립 스튜디오를 소개합니다.'],
-        news: ['스튜디오 소식 — New AI Vision Labs', 'New AI Vision Labs의 출시 준비, 제품 이정표, 주요 작업을 전합니다.'],
+        about: ['뉴 에이아이 비전 랩스 소개', '바이블링크와 보이드 스트라이커를 비롯한 오리지널 앱과 게임을 만드는 독립 스튜디오를 소개합니다.'],
+        news: ['스튜디오 소식 — 뉴 에이아이 비전 랩스', '뉴 에이아이 비전 랩스의 출시 준비, 제품 이정표, 주요 작업을 전합니다.'],
       },
       ar: {
-        about: ['عن New AI Vision Labs', 'تعرّف على الاستوديو المستقل وراء BibleLink وVOID STRIKER ومجموعة متنامية من التطبيقات والألعاب الأصلية.'],
-        news: ['أخبار الاستوديو — New AI Vision Labs', 'استعدادات الإطلاق ومراحل المنتجات وأعمال مختارة من New AI Vision Labs.'],
+        about: ['عن نيو إيه آي فيجن لابز', 'تعرّف على الاستوديو المستقل وراء بايبل لينك وفويد سترايكر ومجموعة متنامية من التطبيقات والألعاب الأصلية.'],
+        news: ['أخبار الاستوديو — نيو إيه آي فيجن لابز', 'استعدادات الإطلاق ومراحل المنتجات وأعمال مختارة من نيو إيه آي فيجن لابز.'],
       },
     };
     const localStory = page.route === 'about' || page.route === 'news' ? storyMeta[code]?.[page.route] : undefined;
     return {
       ...page,
-      title: app ? `${app.name} — ${c.site.name}` : localStory?.[0] ?? titles[page.route] ?? page.title,
+      title: app ? `${app.displayName ?? app.name} — ${c.site.name}` : localStory?.[0] ?? titles[page.route] ?? page.title,
       description: app?.tagline ?? localStory?.[1] ?? (page.route === '' ? copy.proposition : page.description),
     };
   });

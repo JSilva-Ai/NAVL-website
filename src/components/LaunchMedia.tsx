@@ -17,16 +17,16 @@ export function ProductFilm({ slug }: { slug: keyof typeof films }) {
   return (
     <figure className="launch-film">
       {started ? (
-        <video controls autoPlay playsInline preload="none" poster={asset(media.poster)} aria-label={`${app.name} — ${launchCopy(currentLocaleCode).watch}`}>
+        <video controls autoPlay playsInline preload="none" poster={asset(media.poster)} aria-label={`${app.displayName ?? app.name} — ${launchCopy(currentLocaleCode).watch}`}>
           <source src={asset(media.video)} type="video/mp4" />
         </video>
       ) : (
-        <button className="launch-film__play" type="button" onClick={() => setStarted(true)} aria-label={`${launchCopy(currentLocaleCode).watch}: ${app.name}`}>
+        <button className="launch-film__play" type="button" onClick={() => setStarted(true)} aria-label={`${launchCopy(currentLocaleCode).watch}: ${app.displayName ?? app.name}`}>
           <img src={asset(media.poster)} alt="" width="720" height="1280" loading="lazy" decoding="async" />
           <span className="launch-film__play-icon" aria-hidden="true">▶</span>
         </button>
       )}
-      <figcaption>{app.name} · {launchCopy(currentLocaleCode).watch}</figcaption>
+      <figcaption>{app.displayName ?? app.name} · {launchCopy(currentLocaleCode).watch}</figcaption>
     </figure>
   );
 }
@@ -38,14 +38,18 @@ export function AvailableNow() {
     <section className="section section--ruled launch" id="available-now" aria-labelledby="launch-title">
       <div className="container">
         <p className="label">{copy.available}</p>
-        <h2 className="head__title" id="launch-title">BibleLink &amp; VOID STRIKER</h2>
+        <h2 className="head__title" id="launch-title">
+          {currentLocaleCode === 'en' || currentLocaleCode === 'pt' || currentLocaleCode === 'es'
+            ? 'BibleLink & VOID STRIKER'
+            : launched.map((app) => app.displayName ?? app.name).join(' · ')}
+        </h2>
         <div className="launch__grid">
           {launched.map((app) => (
             <article className="launch__card" key={app.slug}>
               <ProductFilm slug={app.slug as keyof typeof films} />
               <div className="launch__copy">
                 <span className="pill pill--released">{statusLabel(app.status)}</span>
-                <h3>{app.name}</h3>
+                <h3>{app.displayName ?? app.name}</h3>
                 <p>{app.tagline}</p>
                 <a className="btn btn--primary" href={url(`apps/${app.slug}`)}>{app.slug === 'biblelink' ? copy.bible : copy.void}<span className="btn__arrow" aria-hidden="true">↗</span></a>
                 <div className="launch__store">{app.stores.map((link) => <StoreBadge link={link} compact key={link.store} />)}</div>
@@ -65,7 +69,7 @@ export function FutureGame() {
       <div className="container future-game__grid">
         <div className="future-game__copy">
           <p className="label">{copy.future}</p>
-          <h2 className="head__title" id="future-game-title">NOVA FRONTIER</h2>
+          <h2 className="head__title" id="future-game-title">{apps.find((app) => app.slug === 'nova-frontier')?.displayName ?? 'NOVA FRONTIER'}</h2>
           <p className="head__lede">{copy.futureDescription}</p>
           <a className="btn" href={url('apps/nova-frontier')}>{copy.exploreFuture}<span className="btn__arrow" aria-hidden="true">↗</span></a>
         </div>

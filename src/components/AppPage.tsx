@@ -36,7 +36,7 @@ export function AppPage({ slug }: { slug: string }) {
     <>
       <PageHead
         label={<a href={url(routes.apps)}>{ui.backToApps}</a>}
-        title={app.name}
+        title={app.displayName ?? app.name}
         /* The product's own line where it has one — that sentence is the whole
            idea in eight words, and it earns the lede slot over a description of
            what stage the thing is at. */
@@ -172,7 +172,7 @@ export function AppPage({ slug }: { slug: string }) {
             <ul
               className={`shots${app.screenshotDisplay === 'gallery' ? ' shots--gallery' : ''}`}
               tabIndex={app.screenshotDisplay === 'gallery' ? 0 : undefined}
-              aria-label={app.screenshotDisplay === 'gallery' ? `${app.name} — ${ui.screenshotsLabel}` : undefined}
+              aria-label={app.screenshotDisplay === 'gallery' ? `${app.displayName ?? app.name} — ${ui.screenshotsLabel}` : undefined}
             >
               {app.screenshots.map((s, index) => {
                 const localized = app.slug === 'biblelink' ? bibleScreen(index, s) : s;

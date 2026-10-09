@@ -78,7 +78,12 @@ export function Nav() {
           const base = import.meta.env.BASE_URL.replace(/^\/+|\/+$/g, '');
           const here = location.pathname.replace(/^\/+|\/+$/g, '');
           const route = localeFromRoute(base && here.startsWith(base) ? here.slice(base.length) : here).rest;
-          location.href = url(route, target);
+          const destination = target.code === 'en' ? route : ({
+            'demo/void-striker': 'demo',
+            'apps/void-striker/privacy': 'privacy',
+            'apps/void-striker/support': 'support',
+          } as Record<string, string>)[route] ?? route;
+          location.href = url(destination, target);
         }}
       >
         {PUBLISHED.map((code) => (
@@ -97,8 +102,8 @@ export function Nav() {
       </a>
 
       <div className="container nav__inner">
-      <a className="nav__brand" href={url(routes.home)} aria-label="New AI Vision Labs">
-          <Lockup />
+        <a className="nav__brand" href={url(routes.home)} aria-label={site.name}>
+          <Lockup name={site.name} />
         </a>
 
         {!compact && <nav className="nav__links" aria-label={ui.primaryNav}>{links}</nav>}

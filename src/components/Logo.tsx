@@ -66,11 +66,11 @@ export function Logo({ size = 34, className }: { size?: number; className?: stri
 }
 
 /** Mark plus wordmark. The nav and the footer both use this. */
-export function Lockup({ size = 26 }: { size?: number }) {
+export function Lockup({ size = 26, name = 'New AI Vision Labs' }: { size?: number; name?: string }) {
   return (
     <span className="lockup">
       <Logo size={size} />
-      <span className="lockup__word">New AI Vision Labs</span>
+      <span className="lockup__word">{name}</span>
     </span>
   );
 }

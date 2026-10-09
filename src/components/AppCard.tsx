@@ -94,7 +94,7 @@ export function AppCard({
              reads as an image that failed to load. */
           <div className="appcard__cover" aria-hidden="true">
             <span className="appcard__cover-mark" />
-            <span className="appcard__cover-name">{app.name}</span>
+            <span className="appcard__cover-name">{app.displayName ?? app.name}</span>
             {app.positioning && (
               <span className="appcard__cover-line">{app.positioning}</span>
             )}
@@ -109,7 +109,7 @@ export function AppCard({
         <span className={`pill pill--${stage}`}>{statusLabel(app.status)}</span>
         <H className="appcard__name">
           <a className="appcard__link" href={url(`apps/${app.slug}`)}>
-            {app.name}
+            {app.displayName ?? app.name}
           </a>
         </H>
         <p className="appcard__tagline">{app.tagline}</p>
@@ -118,7 +118,7 @@ export function AppCard({
         <p className="mono appcard__platforms">
           {app.platforms ? `${app.kind} · ${app.platforms.join(' · ')}` : app.kind}
         </p>
-        <div className="appcard__stores" role="group" aria-label={`${app.name} — ${ui.getIt}`}>
+        <div className="appcard__stores" role="group" aria-label={`${app.displayName ?? app.name} — ${ui.getIt}`}>
           {app.stores.map((store) => <StoreBadge key={store.store} link={store} compact />)}
         </div>
       </div>

@@ -112,8 +112,21 @@
     text-align: right;
   }
 
+  [dir='rtl'] .hero__translation-brand span,
+  [dir='rtl'] .hero__translation-signature,
+  html[lang='ko'] .hero__translation-brand span,
+  html[lang='ko'] .hero__translation-signature {
+    direction: rtl;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
   [dir='rtl'] .hero__translation-copy {
     width: min(31vw, 27rem);
+  }
+
+  [dir='rtl'] .hero__translation-signature {
+    text-align: right;
   }
 }
 

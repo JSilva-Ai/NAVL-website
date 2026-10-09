@@ -23,6 +23,13 @@
   line-height: 1;
 }
 
+[dir='rtl'] .lockup__word,
+html[lang='ko'] .lockup__word {
+  letter-spacing: 0;
+  margin-inline-end: 0;
+  text-transform: none;
+}
+
 @media (max-width: 26rem) {
   .lockup__word {
     display: none;

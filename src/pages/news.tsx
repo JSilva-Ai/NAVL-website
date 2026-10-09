@@ -23,7 +23,7 @@ mount(
                     const app = apps.find((item) => item.slug === slug);
                     if (!app) return null;
                     return <div className="journal__product" key={slug}>
-                      <a className="text-link" href={url(`apps/${slug}`)}>{app.name}</a>
+                      <a className="text-link" href={url(`apps/${slug}`)}>{app.displayName ?? app.name}</a>
                       {app.stores.map((link) => <StoreBadge link={link} compact key={link.store} />)}
                     </div>;
                   })}

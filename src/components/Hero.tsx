@@ -7,6 +7,7 @@ import './hero.css';
 /** The studio comes first; released products begin in the next section. */
 export function Hero() {
   const copy = launchCopy(currentLocaleCode);
+  const localizedBrand = currentLocaleCode === 'ar' || currentLocaleCode === 'ko';
 
   return (
     <section className="hero" aria-labelledby="hero-title">
@@ -20,15 +21,15 @@ export function Hero() {
       ) : (
         <div className="hero__translation">
           <div className="hero__translation-copy">
-            <div className="hero__translation-brand" lang="en">
+            <div className="hero__translation-brand" lang={localizedBrand ? currentLocaleCode : 'en'}>
               <Logo size={42} />
-              <span>New AI<br />Vision Labs.</span>
+              <span>{localizedBrand ? site.name : <>New AI<br />Vision Labs.</>}</span>
             </div>
             <p className="hero__translation-tagline">
               <span>{home.hero.headline[0]}</span>
               <span>{home.hero.headline[1]}</span>
             </p>
-            <p className="hero__translation-signature" lang="en">New AI Vision Labs.</p>
+            <p className="hero__translation-signature" lang={localizedBrand ? currentLocaleCode : 'en'}>{site.name}.</p>
           </div>
         </div>
       )}

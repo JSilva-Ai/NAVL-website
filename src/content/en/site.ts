@@ -216,6 +216,8 @@ export type Status = 'Product discovery' | 'In development' | 'Final testing' | 
 export interface App {
   slug: string;
   name: string;
+  /** Name shown in a localized interface; store listings keep the official name. */
+  displayName?: string;
   category: Category;
   /** What kind of thing it is, e.g. 'AI · Digital protection'. Shown on the card. */
   kind: string;
