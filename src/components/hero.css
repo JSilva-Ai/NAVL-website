@@ -30,6 +30,93 @@
   background: linear-gradient(0deg, #040b15, transparent 12%);
 }
 
+/* Other languages replace the words baked into the desktop image. The clean
+   background blends into the original before the glass sculpture begins. */
+.hero__translation {
+  display: none;
+}
+
+@media (min-width: 75rem) {
+  .hero__translation {
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 1;
+    display: block;
+    height: clamp(34rem, 50vw, 50rem);
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .hero__translation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: min(100%, 84rem);
+    transform: translateX(-50%);
+    background: url('/media/studio/vision-clean.webp') center 20% / cover no-repeat;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 39%, transparent 41%);
+    mask-image: linear-gradient(90deg, transparent, #000 5%, #000 39%, transparent 41%);
+  }
+
+  .hero__translation-copy {
+    position: absolute;
+    top: 34%;
+    left: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter)));
+    width: min(38vw, 31rem);
+    color: var(--white);
+    direction: ltr;
+    text-align: left;
+  }
+
+  .hero__translation-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: fit-content;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+
+  .hero__translation-brand span {
+    padding-left: 1rem;
+    border-left: 1px solid rgba(255, 255, 255, .35);
+  }
+
+  .hero__translation-tagline {
+    display: grid;
+    margin-top: clamp(2.75rem, 4.5vw, 4rem);
+    font-size: clamp(2rem, 3vw, 3.1rem);
+    line-height: 1.07;
+    letter-spacing: -.045em;
+  }
+
+  .hero__translation-tagline span:last-child {
+    color: #77a4ff;
+  }
+
+  .hero__translation-signature {
+    margin-top: 1.25rem;
+    color: rgba(255, 255, 255, .57);
+    font-size: .73rem;
+    letter-spacing: .45em;
+    text-transform: uppercase;
+  }
+
+  [dir='rtl'] .hero__translation-tagline {
+    direction: rtl;
+    text-align: right;
+  }
+
+  [dir='rtl'] .hero__translation-copy {
+    width: min(31vw, 27rem);
+  }
+}
+
 .hero__inner {
   width: 100%;
   padding-top: 0;
@@ -71,11 +158,16 @@
 
   .hero__art img {
     left: 50%;
+    right: auto;
     width: min(100%, 84rem);
     transform: translateX(-50%);
     object-position: center top;
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 94%, transparent);
     mask-image: linear-gradient(90deg, transparent, #000 5%, #000 94%, transparent);
+  }
+
+  .hero__translation::before {
+    background-position: center top;
   }
 }
 
