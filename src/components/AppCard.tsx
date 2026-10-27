@@ -1,4 +1,5 @@
-import { statusLabel, ui, type App } from '../content/current';
+import { statusLabel, ui, currentLocaleCode, type App } from '../content/current';
+import { productStage } from '../content/product-pages';
 import { asset, url } from '../lib/url';
 import { GameClip } from './GameClip';
 import { useReveal } from '../lib/hooks';
@@ -106,7 +107,7 @@ export function AppCard({
         {/* The status sits here rather than over the art: a clip fills the slot
             edge to edge and every corner of it is game HUD, so an overlay pill
             covers the score or the credits whichever corner it takes. */}
-        <span className={`pill pill--${stage}`}>{statusLabel(app.status)}</span>
+        <span className={`pill pill--${stage}`}>{app.slug === 'special-dates' || app.slug === 'personal-finance' ? productStage(app, currentLocaleCode) : statusLabel(app.status)}</span>
         <H className="appcard__name">
           <a className="appcard__link" href={url(`apps/${app.slug}`)}>
             {app.displayName ?? app.name}

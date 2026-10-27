@@ -1,6 +1,7 @@
 import * as en from './en/site.ts';
 import { pages as enPages, type PageMeta } from './en/pages.ts';
 import type { LocaleCode } from './locales.ts';
+import { extraApps, productMedia, productDetail } from './product-pages.ts';
 
 type ProductCopy = {
   positioning?: string;
@@ -215,7 +216,7 @@ const visualCopy: Partial<Record<LocaleCode, {
   },
 };
 
-export function siteContent(code: LocaleCode) {
+function originalSiteContent(code: LocaleCode) {
   const copy = localized[code];
   if (!copy) return en;
   const visual = visualCopy[code];
@@ -255,12 +256,37 @@ export function siteContent(code: LocaleCode) {
   return { ...en, site, nav, home, apps, portfolio, appsPage, demo, ui, footer };
 }
 
+export function siteContent(code: LocaleCode) {
+  const content = originalSiteContent(code);
+  const apps = [...content.apps, ...extraApps(code)].map(app => productMedia(
+    ['biblelink', 'void-striker', 'galaxy-forge', 'nova-frontier'].includes(app.slug)
+      ? { ...app, platforms: ['iPhone', 'Android'] }
+      : app, code),
+  ).map(app => {
+    if (code !== 'pt' && code !== 'en' && ['loop', 'shield', 'guard', 'galaxy-forge'].includes(app.slug)) return app;
+    const detail = productDetail(app, code);
+    return { ...app, positioning: detail.headline, tagline: detail.intro,
+      description: [detail.intro, ...detail.features.map(item => `${item.title}: ${item.body}`), ...(detail.note ? [detail.note] : [])] };
+  });
+  const collection = {
+    pt: ['Dez produtos. Muitas possibilidades.', 'Aplicativos e jogos da NAVL, dos lançamentos às próximas ideias.'],
+    en: ['Ten products. Many possibilities.', 'NAVL applications and games, from releases to what comes next.'],
+    es: ['Diez productos. Muchas posibilidades.', 'Aplicaciones y juegos de NAVL, de los lanzamientos a las próximas ideas.'],
+    ko: ['열 개의 제품. 새로운 가능성.', '출시된 제품부터 다음 아이디어까지, NAVL의 앱과 게임.'],
+    ar: ['عشرة منتجات. إمكانيات كثيرة.', 'تطبيقات وألعاب NAVL، من الإصدارات الحالية إلى الأفكار القادمة.'],
+  }[code];
+  return { ...content, apps, appsPage: { ...content.appsPage, headline: collection[0], lede: collection[1] }, home: { ...content.home, portfolio: { ...content.home.portfolio, headline: collection[0], body: collection[1] } }, portfolio: content.portfolio.map(group => ({ ...group, items: apps.filter(app => app.category === (group.id === content.portfolio[0].id ? 'app' : 'game')) })) };
+}
+
 export function pagesFor(code: LocaleCode): PageMeta[] {
   const copy = localized[code];
-  if (!copy) return enPages;
   const c = siteContent(code);
+  if (!copy) return enPages.map(page => {
+    const app = /^apps\/[^/]+$/.test(page.route) ? c.apps.find(item => page.route === `apps/${item.slug}`) : undefined;
+    return app ? { ...page, title: `${app.name} — ${c.site.name}`, description: app.tagline } : page;
+  });
   return enPages.map((page) => {
-    const appSlug = page.route.startsWith('apps/') ? page.route.split('/')[1] : '';
+    const appSlug = /^apps\/[^/]+$/.test(page.route) ? page.route.split('/')[1] : '';
     const app = appSlug ? c.apps.find((item) => item.slug === appSlug) : undefined;
     const titles: Record<string, string> = {
       '': `${c.site.name} — ${copy.hero.eyebrow}`,

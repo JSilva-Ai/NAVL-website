@@ -151,7 +151,7 @@ for (const name of wanted) {
         // viewport inside its own horizontal scroller. The document itself
         // must still remain within bounds; those off-screen children are not
         // layout overflow.
-        if (el.closest('.shots--gallery')) return;
+        if (el.closest('.shots--gallery, .product-gallery')) return;
         if (r.left < -1 || r.right > w + 1) {
           out.push(`${el.tagName.toLowerCase()}.${String(el.className).slice(0, 34)} [${Math.round(r.left)}…${Math.round(r.right)}]`);
         }

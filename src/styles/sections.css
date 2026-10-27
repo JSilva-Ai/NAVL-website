@@ -167,9 +167,19 @@
 
 .appcard__art {
   position: relative;
-  aspect-ratio: var(--media-ratio);
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  flex-shrink: 0;
   background: var(--black-150);
   border-bottom: 1px solid var(--line);
+}
+
+/* Media cannot impose its intrinsic phone-screen height on the card row. */
+.appcard__art > :is(img, picture, .appcard__cover, .appcard__icon-art, .clip) {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 
 /* Inside a card the clip is already framed by the card, so it drops its own
@@ -185,7 +195,7 @@
 .appcard__art img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .appcard__art picture {

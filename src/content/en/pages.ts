@@ -29,6 +29,9 @@ export interface PageMeta {
 }
 
 export const pages: PageMeta[] = [
+  { route: 'apps/trophiva', title: 'Trophiva — New AI Vision Labs', description: 'A nutrition product in development to track, understand, and plan everyday food choices.' },
+  { route: 'apps/personal-finance', title: 'Offline Personal Finance — New AI Vision Labs', description: 'An approved future offline personal finance product. Development has not started.' },
+  { route: 'apps/special-dates', title: 'NAVL Special Dates — New AI Vision Labs', description: 'A future countdown and special dates app. Approved product; feature development is paused.' },
   {
     route: '',
     title: 'New AI Vision Labs — independent technology studio',
@@ -39,7 +42,7 @@ export const pages: PageMeta[] = [
     route: 'apps',
     title: 'Products — New AI Vision Labs',
     description:
-      'Explore seven New AI Vision Labs products — four applications and three games — from released work to future concepts.',
+      'Explore ten New AI Vision Labs products — seven applications and three games — from released work to future concepts.',
   },
   {
     route: 'about',

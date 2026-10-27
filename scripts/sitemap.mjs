@@ -9,6 +9,7 @@ const locales = [
   { prefix: 'ar', hreflang: 'ar' },
 ];
 const routes = [
+  'apps/trophiva', 'apps/personal-finance', 'apps/special-dates',
   '', 'about', 'news', 'apps', 'apps/loop', 'apps/shield', 'apps/guard', 'apps/biblelink',
   'apps/biblelink/privacy', 'apps/biblelink/support', 'apps/void-striker',
   'apps/galaxy-forge', 'apps/nova-frontier', 'demo', 'support', 'privacy', 'terms', 'data-deletion',
