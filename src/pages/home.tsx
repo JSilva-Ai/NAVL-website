@@ -1,104 +1,22 @@
 import { mount } from './mount';
 import { Hero } from '../components/Hero';
 import { Approach } from '../components/Approach';
-import { Testimonials } from '../components/Testimonials';
 import { SectionHead } from '../components/Shell';
-import { AppCard } from '../components/AppCard';
-import { currentLocaleCode, home, portfolio } from '../content/current';
+import { apps, currentLocaleCode, home, statusLabel } from '../content/current';
 import { launchCopy } from '../content/launch';
-import { InterestSection, LatestSection } from '../components/StudioStory';
-import { AvailableNow, FutureGame } from '../components/LaunchMedia';
-import '../components/launch.css';
+import { pageCopy, productStage, productSlugs } from '../content/product-pages';
+import { InterestSection } from '../components/StudioStory';
 import '../styles/home.css';
+import '../styles/company-products.css';
 import { url } from '../lib/url';
 
-/**
- * The portfolio, on the home page.
- *
- * The whole point of this section is that a visitor who never clicks anything
- * still sees what the studio is building. Released products appear in the
- * preceding section, and NOVA FRONTIER has its own feature immediately below.
- *
- * The group headings are h3 under this section's h2, which puts the cards at
- * h4 — one level deeper than on /apps, where the groups sit directly under the
- * page h1. AppCard takes the level rather than fixing it, because a skipped
- * heading level is an axe violation and a real problem for anyone navigating
- * by headings.
- */
-function Portfolio() {
-  const p = home.portfolio;
-  const upcoming = launchCopy(currentLocaleCode);
-  const groups = portfolio.map((group) => ({
-    ...group,
-    items: group.items.filter((app) => app.slug !== 'biblelink' && app.slug !== 'void-striker' && app.slug !== 'nova-frontier'),
-  }));
-  return (
-    <section className="section section--ruled" aria-labelledby="portfolio-title">
-      <div className="container">
-        <SectionHead
-          index={p.index}
-          label={p.label}
-          headline={upcoming.upcomingTitle}
-          lede={upcoming.upcomingDescription}
-          id="portfolio-title"
-        />
-        {groups.map((group) => (
-          <div className="portfolio-group" key={group.id}>
-            <h3 className="head__title head__title--sm" id={`home-group-${group.id}`}>
-              {group.label}
-            </h3>
-            <ul className="appgrid" aria-labelledby={`home-group-${group.id}`}>
-              {group.items.map((app, i) => (
-                <AppCard app={app} i={i} key={app.slug} />
-              ))}
-            </ul>
-          </div>
-        ))}
-        <p className="portfolio__more">
-          <a className="btn btn--sm" href={url(p.cta.route)}>
-            {p.cta.label}
-            <span className="btn__arrow" aria-hidden="true">↗</span>
-          </a>
-        </p>
-      </div>
-    </section>
-  );
+function ProductDestinations() {
+  const c = launchCopy(currentLocaleCode);
+  return <section className="section section--ruled company-products" id="available-now" aria-labelledby="portfolio-title"><div className="container">
+    <SectionHead label={home.portfolio.label} headline={home.portfolio.cta.label} lede={c.upcomingDescription} id="portfolio-title"/>
+    <div className="company-products__links">{productSlugs.map(slug => apps.find(app => app.slug === slug)!).map((app, i) => <a href={url(`apps/${app.slug}`)} key={app.slug}><span className="company-products__number">{String(i+1).padStart(2,'0')}</span><span><strong>{app.displayName ?? app.name}</strong><small>{app.stores.some(s => s.href) ? statusLabel(app.status) : productStage(app,currentLocaleCode)}</small></span><span aria-hidden="true">↗</span></a>)}</div>
+    <a className="btn btn--sm" href={url('apps')}>{pageCopy[currentLocaleCode].explore}<span aria-hidden="true">↗</span></a>
+  </div></section>;
 }
 
-function DemoCallout() {
-  const c = home.demoCallout;
-  return (
-    <section className="section demo-callout" aria-labelledby="demo-callout-title">
-      <div className="container demo-callout__inner">
-        <div>
-          {/* head__label, not label: the index and the word are a flex row with
-              a gap. A bare .label renders them touching — "02PLAYABLE". */}
-          <p className="label head__label">
-            <span className="head__index mono">{c.index}</span>
-            {c.label}
-          </p>
-          <h2 className="head__title" id="demo-callout-title">{c.headline}</h2>
-          <p className="head__lede">{c.body}</p>
-        </div>
-        <a className="btn btn--primary" href={url(c.cta.route)}>
-          {c.cta.label}
-          <span className="btn__arrow" aria-hidden="true">↗</span>
-        </a>
-      </div>
-    </section>
-  );
-}
-
-mount(
-  <>
-    <Hero />
-    <AvailableNow />
-    <Portfolio />
-    <FutureGame />
-    <Approach />
-    <LatestSection />
-    <DemoCallout />
-    <InterestSection />
-    <Testimonials />
-  </>,
-);
+mount(<><Hero/><Approach/><ProductDestinations/><InterestSection/></>);

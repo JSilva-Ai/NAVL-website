@@ -1,9 +1,5 @@
-/**
- * One entry per app. To add an app: copy this file and apps/<slug>/index.html,
- * and change the slug in both. The slug must match an entry in `apps` in
- * src/content/site.ts.
- */
-import { mount } from './mount';
-import { AppPage } from '../components/AppPage';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { ProductSite } from '../components/ProductSite';
 
-mount(<AppPage slug="void-striker" />);
+createRoot(document.getElementById('root')!).render(<StrictMode><ProductSite slug="void-striker"/></StrictMode>);

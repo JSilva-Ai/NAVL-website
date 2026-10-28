@@ -1,3 +1,5 @@
-import { mount } from './mount';
-import { AppPage } from '../components/AppPage';
-mount(<AppPage slug="personal-finance" />);
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { ProductSite } from '../components/ProductSite';
+
+createRoot(document.getElementById('root')!).render(<StrictMode><ProductSite slug="personal-finance"/></StrictMode>);
